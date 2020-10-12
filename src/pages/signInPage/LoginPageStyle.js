@@ -6,19 +6,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#fafafa',
   },
   outerCard: {
-    height: 320,
+    height: 350,
   },
   innerCardEmail: {
     justifyContent: 'space-around',
-    height: 80,
+    height: 85,
   },
   innerCardPassword: {
     justifyContent: 'space-around',
-    height: 80,
+    height: 85,
   },
   innerCardSubmit: {
     justifyContent: 'space-around',
-    height: 80,
+    height: 85,
   },
   titleLogin: {
     backgroundColor: 'black',

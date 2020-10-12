@@ -16,25 +16,25 @@ class LoginPage extends Component {
         <View>
           <Text style={styles.loginText}>Login</Text>
           <Card containerStyle={styles.outerCard}>
-            <KeyboardAvoidingView
+            {/* <KeyboardAvoidingView
               behavior="padding"
-              contentContainerStyle={{flex: 1}}>
-              <View style={styles.innerCardEmail}>
-                <InputOutline placeholder="Email" />
-              </View>
-              <View style={styles.innerCardPassword}>
-                <InputOutline placeholder="password" />
-              </View>
-              <View>
-                <Text style={styles.alignResetPassword}>resetPassword?</Text>
-              </View>
-              <View style={styles.innerCardSubmit}>
-                <Button title="submit" />
-              </View>
-              <View>
-                <Text style={styles.alignSignUp}>createNewOne</Text>
-              </View>
-            </KeyboardAvoidingView>
+              contentContainerStyle={{flex: 1}}> */}
+            <View style={styles.innerCardEmail}>
+              <InputOutline placeholder="Email" />
+            </View>
+            <View style={styles.innerCardPassword}>
+              <InputOutline placeholder="password" />
+            </View>
+            <View>
+              <Text style={styles.alignResetPassword}>resetPassword?</Text>
+            </View>
+            <View style={styles.innerCardSubmit}>
+              <Button title="submit" />
+            </View>
+            <View>
+              <Text style={styles.alignSignUp}>createNewOne</Text>
+            </View>
+            {/* </KeyboardAvoidingView> */}
           </Card>
         </View>
       </View>
