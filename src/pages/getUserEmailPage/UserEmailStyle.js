@@ -11,5 +11,8 @@ const EmailStyles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 25,
   },
+  emailCard: {
+    height: 200,
+  },
 });
 export default EmailStyles;

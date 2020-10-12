@@ -7,7 +7,7 @@ class UserEmail extends Component {
   render() {
     return (
       <View style={EmailStyle.userEmailHeader}>
-        <Card containerStyle={{height: 200}}>
+        <Card containerStyle={EmailStyle.emailCard}>
           <View style={EmailStyle.userEmailView}>
             <Text style={EmailStyle.UserEmailinnerCardText}>UserEmail</Text>
           </View>
