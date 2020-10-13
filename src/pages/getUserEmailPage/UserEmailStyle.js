@@ -12,7 +12,13 @@ const EmailStyles = StyleSheet.create({
     fontSize: 25,
   },
   emailCard: {
-    height: 200,
+    height: 210,
+  },
+  emailCardSubmit: {
+    height: 59,
+  },
+  userMailTextField: {
+    height: 100,
   },
 });
 export default EmailStyles;
