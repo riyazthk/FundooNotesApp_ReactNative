@@ -4,7 +4,7 @@ import {Card} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
 import InputOutline from 'react-native-input-outline';
 import newUserStyles from './NewUserStyle';
-
+import {TextField, FilledTextField} from 'react-native-material-textfield';
 class NewUser extends Component {
   render() {
     return (
@@ -14,19 +14,19 @@ class NewUser extends Component {
           <Card containerStyle={newUserStyles.newUserCard}>
             <ScrollView>
               <View style={newUserStyles.newUserFirstName}>
-                <InputOutline placeholder="firstName" />
+                <TextField placeholder="firstName" />
               </View>
               <View style={newUserStyles.newUserLastName}>
-                <InputOutline placeholder="lastName" />
+                <TextField placeholder="lastName" />
               </View>
               <View style={newUserStyles.newUserEmail}>
-                <InputOutline placeholder="Email" />
+                <TextField placeholder="Email" />
               </View>
               <View style={newUserStyles.newUserPassword}>
-                <InputOutline placeholder="password" />
+                <TextField placeholder="password" />
               </View>
               <View style={newUserStyles.newUserConfirmPassword}>
-                <InputOutline placeholder="confirmPassword" />
+                <TextField placeholder="confirmPassword" />
               </View>
               <View style={newUserStyles.newUserSubmit}>
                 <Button title="submit" />
