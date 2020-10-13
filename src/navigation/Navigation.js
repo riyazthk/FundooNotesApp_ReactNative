@@ -14,9 +14,9 @@ function Navigation() {
         initialRouteName="loginPage"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="loginPage" component={LoginPage} />
-        {/* <Stack.Screen name="loginPage" component={UserEmail} />
-        <Stack.Screen name="loginPage" component={ResetPassword} />
-        <Stack.Screen name="loginPage" component={NewUser} /> */}
+        <Stack.Screen name="userEmail" component={UserEmail} />
+        <Stack.Screen name="resetPassword" component={ResetPassword} />
+        <Stack.Screen name="signUp" component={NewUser} />
       </Stack.Navigator>
     </NavigationContainer>
   );

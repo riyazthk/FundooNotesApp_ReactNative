@@ -7,6 +7,7 @@ import {OutlinedTextField} from 'react-native-material-textfield';
 import {TextField, FilledTextField} from 'react-native-material-textfield';
 import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
+import SubmitForm from './SubmitForm';
 
 class LoginPage extends Component {
   constructor(props) {
@@ -16,13 +17,18 @@ class LoginPage extends Component {
         emailInput: '',
         error: '',
         errorColor: 'grey',
+        emailCount: 0,
       },
       password: {
         passwordValue: '',
         error: '',
         errorColor: 'grey',
+        passwordCount: 0,
       },
     };
+    this.handleEmailInput = this.handleEmailInput.bind(this);
+    this.handlePasswordInput = this.handlePasswordInput.bind(this);
+    this.handleLoginForm = this.handleLoginForm.bind(this);
   }
   handleEmailInput(emailValue) {
     const value = EmailInput(emailValue);
@@ -31,12 +37,14 @@ class LoginPage extends Component {
         email: {
           error: 'invalid email',
           errorColor: 'red',
+          emailCount: 1,
         },
       });
     } else {
       this.setState({
         email: {
           emailInput: value,
+          emailCount: 2,
         },
       });
     }
@@ -44,22 +52,53 @@ class LoginPage extends Component {
   handlePasswordInput(passwordInputValue) {
     const value = PasswordInput(passwordInputValue);
     if (value === false) {
-      console.log(value);
-
       this.setState({
         password: {
           error: 'password atleast one character,symbols and number',
           errorColor: 'red',
+          passwordCount: 1,
         },
       });
     } else {
       this.setState({
         password: {
           passwordValue: value,
+          passwordCount: 2,
         },
       });
     }
   }
+  handleLoginForm() {
+    if (
+      this.state.email.emailCount === 1 ||
+      this.state.password.passwordCount === 1 ||
+      this.state.email.emailCount === 0 ||
+      this.state.password.passwordCount === 0
+    ) {
+      if (this.state.email.emailCount === 0) {
+        this.setState({
+          email: {error: 'email should not empty', errorColor: 'red'},
+        });
+      }
+      if (this.state.password.passwordCount === 0) {
+        this.setState({
+          password: {error: 'password should not empty', errorColor: 'red'},
+        });
+      }
+    }
+    if (
+      this.state.email.emailCount === 2 &&
+      this.state.password.passwordCount === 2
+    ) {
+      console.log('sucess');
+    }
+  }
+  handleSignUp = () => {
+    this.props.navigation.navigate('signUp');
+  };
+  handleResetPassword = () => {
+    this.props.navigation.navigate('userEmail');
+  };
   render() {
     return (
       // <ScrollView>
@@ -85,13 +124,19 @@ class LoginPage extends Component {
               />
             </View>
             <View>
-              <Text style={styles.alignResetPassword}>resetPassword?</Text>
+              <Text
+                style={styles.alignResetPassword}
+                onPress={this.handleResetPassword}>
+                resetPassword?
+              </Text>
             </View>
             <View style={styles.innerCardSubmit}>
-              <Button title="submit" />
+              <Button title="submit" onPress={this.handleLoginForm} />
             </View>
             <View>
-              <Text style={styles.alignSignUp}>createNewOne</Text>
+              <Text style={styles.alignSignUp} onPress={this.handleSignUp}>
+                createNewOne
+              </Text>
             </View>
           </Card>
         </View>
