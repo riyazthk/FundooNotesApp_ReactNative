@@ -5,20 +5,26 @@ import {ScrollView} from 'react-native-gesture-handler';
 import newUserStyles from './SignUpStyle';
 import {OutlinedTextField} from 'react-native-material-textfield';
 class NewUser extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       firstName: {
         firstNameValue: '',
         error: '',
         errorColor: '',
-        passwordCount: 0,
+        firstNameCount: 0,
       },
       lastName: {
         lastNameValue: '',
         error: '',
         errorColor: '',
-        confirmPasswordCount: 0,
+        lastNameCount: 0,
+      },
+      email: {
+        emailValue: '',
+        error: '',
+        errorColor: '',
+        emailCount: 0,
       },
       password: {
         passwordValue: '',
@@ -32,8 +38,103 @@ class NewUser extends Component {
         errorColor: '',
         confirmPasswordCount: 0,
       },
-    }
+    };
   }
+  handlefirstNameInput = () => {
+    const value = FirstNameInput(firstNameInputValue);
+    if (value === false) {
+      this.setState({
+        firstName: {
+          error: 'invalid email',
+          errorColor: 'red',
+          firstNameCount: 1,
+        },
+      });
+    } else {
+      this.setState({
+        firstName: {
+          firstNameValue: value,
+          firstNameCount: 2,
+        },
+      });
+    }
+  };
+  handlelastNameInput = (lastNameInputValue) => {
+    const value = LastNameInput(lastNameInputValue);
+    if (value === false) {
+      this.setState({
+        lastName: {
+          error: 'invalid email',
+          errorColor: 'red',
+          lastNameCount: 1,
+        },
+      });
+    } else {
+      this.setState({
+        lastName: {
+          lastNameValue: value,
+          lastNameCount: 2,
+        },
+      });
+    }
+  };
+  handleemailInput = (emailValue) => {
+    const value = EmailInput(emailValue);
+    if (value === false) {
+      this.setState({
+        email: {
+          error: 'invalid email',
+          errorColor: 'red',
+          emailCount: 1,
+        },
+      });
+    } else {
+      this.setState({
+        email: {
+          emailValue: value,
+          emailCount: 2,
+        },
+      });
+    }
+  };
+  handlePasswordInput = (passwordInputValue) => {
+    const value = PasswordInput(passwordInputValue);
+    if (value === false) {
+      this.setState({
+        password: {
+          error: 'password atleast one character,symbols and number',
+          errorColor: 'red',
+          passwordCount: 1,
+        },
+      });
+    } else {
+      this.setState({
+        password: {
+          passwordValue: value,
+          passwordCount: 2,
+        },
+      });
+    }
+  };
+  handleconfirmPasswordInput = (confirmPasswordInputValue) => {
+    const value = ConfirmPasswordInput(confirmPasswordInputValue);
+    if (value === false) {
+      this.setState({
+        confirmPassword: {
+          error: 'password atleast one character,symbols and number',
+          errorColor: 'red',
+          confirmPasswordCount: 1,
+        },
+      });
+    } else {
+      this.setState({
+        confirmPassword: {
+          confirmPasswordValue: value,
+          confirmPasswordCount: 2,
+        },
+      });
+    }
+  };
   render() {
     return (
       <View style={newUserStyles.newUserHeader}>
@@ -64,9 +165,7 @@ class NewUser extends Component {
               <View style={newUserStyles.newUserEmail}>
                 <OutlinedTextField
                   label="email"
-                  onChangeText={(email) =>
-                    this.handleemailInput(email)
-                  }
+                  onChangeText={(email) => this.handleemailInput(email)}
                   error={this.state.email.error}
                   errorColor={this.state.email.errorColor}
                 />
