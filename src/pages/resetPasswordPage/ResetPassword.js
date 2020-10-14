@@ -13,13 +13,13 @@ class ResetPassword extends Component {
       password: {
         passwordValue: '',
         error: '',
-        errorColor: '',
+        errorColor: 'grey',
         passwordCount: 0,
       },
       confirmPassword: {
         confirmPasswordValue: '',
         error: '',
-        errorColor: '',
+        errorColor: 'grey',
         confirmPasswordCount: 0,
       },
     };
@@ -75,6 +75,7 @@ class ResetPassword extends Component {
             <View style={ResetPasswordStyle.resetEnterPassword}>
               <OutlinedTextField
                 label="password"
+                tintColor="grey"
                 textContentType={'password'}
                 onChangeText={(password) => this.handlePasswordInput(password)}
                 error={this.state.password.error}
@@ -85,11 +86,12 @@ class ResetPassword extends Component {
               <OutlinedTextField
                 label="confirmPassword"
                 textContentType={'password'}
+                tintColor="grey"
                 onChangeText={(password) =>
                   this.handleConfirmPasswordInput(password)
                 }
-                error={this.state.password.error}
-                errorColor={this.state.password.errorColor}
+                error={this.state.confirmPassword.error}
+                errorColor={this.state.confirmPassword.errorColor}
               />
             </View>
             <View style={ResetPasswordStyle.resetCardSubmit}>
@@ -101,4 +103,5 @@ class ResetPassword extends Component {
     );
   }
 }
+
 export default ResetPassword;

@@ -1,8 +1,6 @@
-const regexValidateEmail = new RegExp(
-    /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-  );
+const regexvalidateName = new RegExp(/^[A-Z]{1}[a-z]{3,}$/);
   const FirstNameInput = (firstNameInputValue) => {
-    if (regexValidateEmail.test(firstNameInputValue)) {
+    if (regexvalidateName.test(firstNameInputValue)) {
       return firstNameInputValue;
     } else {
       return false;

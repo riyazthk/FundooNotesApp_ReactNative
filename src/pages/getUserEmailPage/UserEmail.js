@@ -49,8 +49,8 @@ class UserEmail extends Component {
       });
     }
     if (this.state.email.emailCount === 2) {
-      //   this.props.navigation.navigate('resetPassword');
-      console.log('sucess');
+        this.props.navigation.navigate('resetPassword');
+      // console.log('sucess');
     }
   };
   render() {

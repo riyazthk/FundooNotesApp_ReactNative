@@ -4,7 +4,7 @@ import React from 'react';
 import LoginPage from '../pages/signInPage/LoginPage';
 import UserEmail from '../pages/getUserEmailPage/UserEmail';
 import ResetPassword from '../pages/resetPasswordPage/ResetPassword';
-import NewUser from '../pages/signUpPage/NewUser';
+import SignUp from '../pages/signUpPage/SignUp';
 
 const Stack = createStackNavigator();
 function Navigation() {
@@ -16,7 +16,7 @@ function Navigation() {
         <Stack.Screen name="loginPage" component={LoginPage} />
         <Stack.Screen name="userEmail" component={UserEmail} />
         <Stack.Screen name="resetPassword" component={ResetPassword} />
-        <Stack.Screen name="signUp" component={NewUser} />
+        <Stack.Screen name="signUp" component={SignUp} />
       </Stack.Navigator>
     </NavigationContainer>
   );

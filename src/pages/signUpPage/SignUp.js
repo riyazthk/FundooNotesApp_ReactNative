@@ -4,48 +4,53 @@ import {Card} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
 import newUserStyles from './SignUpStyle';
 import {OutlinedTextField} from 'react-native-material-textfield';
-class NewUser extends Component {
+import FirstNameInput from './FirstNameInput';
+import LastNameInput from './LastNameInput';
+import EmailInput from '../signInPage/EmailInput';
+import PasswordInput from '../signInPage/PasswordInput';
+import ConfirmPasswordInput from './ConfirmPasswordInput';
+class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       firstName: {
         firstNameValue: '',
         error: '',
-        errorColor: '',
+        errorColor: 'grey',
         firstNameCount: 0,
       },
       lastName: {
         lastNameValue: '',
         error: '',
-        errorColor: '',
+        errorColor: 'grey',
         lastNameCount: 0,
       },
       email: {
         emailValue: '',
         error: '',
-        errorColor: '',
+        errorColor: 'grey',
         emailCount: 0,
       },
       password: {
         passwordValue: '',
         error: '',
-        errorColor: '',
+        errorColor: 'grey',
         passwordCount: 0,
       },
       confirmPassword: {
         confirmPasswordValue: '',
         error: '',
-        errorColor: '',
+        errorColor: 'grey',
         confirmPasswordCount: 0,
       },
     };
   }
-  handlefirstNameInput = () => {
+  handlefirstNameInput = (firstNameInputValue) => {
     const value = FirstNameInput(firstNameInputValue);
     if (value === false) {
       this.setState({
         firstName: {
-          error: 'invalid email',
+          error: 'invalid firstName',
           errorColor: 'red',
           firstNameCount: 1,
         },
@@ -64,7 +69,7 @@ class NewUser extends Component {
     if (value === false) {
       this.setState({
         lastName: {
-          error: 'invalid email',
+          error: 'invalid lastName',
           errorColor: 'red',
           lastNameCount: 1,
         },
@@ -100,6 +105,7 @@ class NewUser extends Component {
   handlePasswordInput = (passwordInputValue) => {
     const value = PasswordInput(passwordInputValue);
     if (value === false) {
+      console.log(value);
       this.setState({
         password: {
           error: 'password atleast one character,symbols and number',
@@ -135,71 +141,131 @@ class NewUser extends Component {
       });
     }
   };
+  handleSignUpSubmit = () => {
+    if (
+      this.state.password.passwordValue !==
+      this.state.confirmPassword.confirmPasswordValue
+    ) {
+      this.setState({
+        confirmPassword: {
+          error: 'password not matching',
+          errorColor: 'red',
+        },
+      });
+    }
+    if (this.state.password.passwordCount === 0) {
+      this.setState({
+        password: {
+          error: 'Password should not be empty',
+          errorColor: 'red',
+        },
+      });
+    }
+    if (this.state.confirmPassword.confirmPasswordCount === 0) {
+      this.setState({
+        confirmPassword: {
+          error: 'confirmPassword should not be empty',
+          errorColor: 'red',
+        },
+      });
+    }
+    if (this.state.firstName.firstNameCount === 0) {
+      this.setState({
+        firstName: {
+          error: 'firstName should not be empty',
+          errorColor: 'red',
+        },
+      });
+    }
+    if (this.state.lastName.lastNameCount === 0) {
+      this.setState({
+        lastName: {
+          error: 'lastName should not be empty',
+          errorColor: 'red',
+        },
+      });
+    }
+    if (this.state.email.emailCount === 0) {
+      this.setState({
+        email: {
+          error: 'lastName should not be empty',
+          errorColor: 'red',
+        },
+      });
+    }
+    if (
+      this.state.firstName.firstNameCount === 2 &&
+      this.state.lastName.lastNameCount === 2 &&
+      this.state.password.passwordCount === 2 &&
+      this.state.confirmPassword.confirmPasswordCount === 2 &&
+      this.state.email.emailCount === 2
+    ) {
+      this.props.navigation.navigate('loginPage')
+    }
+  };
   render() {
     return (
       <View style={newUserStyles.newUserHeader}>
         <View>
-          <Text style={newUserStyles.newUserTitle}>SignUp</Text>
-          <Card containerStyle={newUserStyles.newUserCard}>
-            <ScrollView>
-              <View style={newUserStyles.newUserFirstName}>
-                <OutlinedTextField
-                  label="firstName"
-                  onChangeText={(firstName) =>
-                    this.handlefirstNameInput(firstName)
-                  }
-                  error={this.state.firstName.error}
-                  errorColor={this.state.firstName.errorColor}
-                />
-              </View>
-              <View style={newUserStyles.newUserLastName}>
-                <OutlinedTextField
-                  label="lastName"
-                  onChangeText={(lastName) =>
-                    this.handlelastNameInput(lastName)
-                  }
-                  error={this.state.lastName.error}
-                  errorColor={this.state.lastName.errorColor}
-                />
-              </View>
-              <View style={newUserStyles.newUserEmail}>
-                <OutlinedTextField
-                  label="email"
-                  onChangeText={(email) => this.handleemailInput(email)}
-                  error={this.state.email.error}
-                  errorColor={this.state.email.errorColor}
-                />
-              </View>
-              <View style={newUserStyles.newUserPassword}>
-                <OutlinedTextField
-                  label="password"
-                  textContentType={'password'}
-                  onChangeText={(password) =>
-                    this.handlePasswordInput(password)
-                  }
-                  error={this.state.password.error}
-                  errorColor={this.state.password.errorColor}
-                />
-              </View>
-              <View style={newUserStyles.newUserConfirmPassword}>
-                <OutlinedTextField
-                  label="confirmPassword"
-                  textContentType={'password'}
-                  onChangeText={(confirmPassword) =>
-                    this.handleconfirmPasswordInput(confirmPassword)
-                  }
-                  error={this.state.password.error}
-                  errorColor={this.state.password.errorColor}
-                />
-              </View>
-              <View style={newUserStyles.newUserSubmit}>
-                <Button title="submit" />
-              </View>
-            </ScrollView>
-          </Card>
+          <View style={newUserStyles.newUserTitleBox}>
+            <Text style={newUserStyles.newUserTitle}>SignUp</Text>
+          </View>
+          {/* <Card containerStyle={newUserStyles.newUserCard}> */}
+          <ScrollView>
+            <View style={newUserStyles.newUserFirstName}>
+              <OutlinedTextField
+                label="firstName"
+                onChangeText={(firstName) =>
+                  this.handlefirstNameInput(firstName)
+                }
+                error={this.state.firstName.error}
+                errorColor={this.state.firstName.errorColor}
+              />
+            </View>
+            <View style={newUserStyles.newUserLastName}>
+              <OutlinedTextField
+                label="lastName"
+                onChangeText={(lastName) => this.handlelastNameInput(lastName)}
+                error={this.state.lastName.error}
+                errorColor={this.state.lastName.errorColor}
+              />
+            </View>
+            <View style={newUserStyles.newUserEmail}>
+              <OutlinedTextField
+                label="email"
+                onChangeText={(email) => this.handleemailInput(email)}
+                error={this.state.email.error}
+                errorColor={this.state.email.errorColor}
+              />
+            </View>
+            <View style={newUserStyles.newUserPassword}>
+              <OutlinedTextField
+                label="password"
+                // textContentType={'password'}
+                onChangeText={(password) => this.handlePasswordInput(password)}
+                error={this.state.password.error}
+                errorColor={this.state.password.errorColor}
+              />
+            </View>
+            <View style={newUserStyles.newUserConfirmPassword}>
+              <OutlinedTextField
+                label="confirmPassword"
+                // textContentType={'password'}
+                onChangeText={(confirmPassword) =>
+                  this.handleconfirmPasswordInput(confirmPassword)
+                }
+                error={this.state.confirmPassword.error}
+                errorColor={this.state.confirmPassword.errorColor}
+              />
+            </View>
+            <View style={newUserStyles.newUserSubmit}>
+              <Button title="submit" onPress={this.handleSignUpSubmit} />
+            </View>
+          </ScrollView>
+          {/* </Card> */}
         </View>
       </View>
     );
   }
 }
-export default NewUser;
+export default SignUp;

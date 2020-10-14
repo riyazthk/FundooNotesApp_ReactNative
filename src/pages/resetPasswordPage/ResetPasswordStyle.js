@@ -5,10 +5,10 @@ const ResetPasswordStyle = StyleSheet.create({
     fontSize: 23,
   },
   resetPasswordCard: {
-    height: 330,
+    height: 350,
   },
   resetEnterPassword: {
-    height: 80,
+    height: 100,
   },
   resetReEnterPassword: {
     height: 85,
@@ -17,5 +17,9 @@ const ResetPasswordStyle = StyleSheet.create({
     height: 85,
     justifyContent: 'space-around',
   },
+  resetPasswordView:{
+    height:60,
+    // backgroundColor:'black'
+  }
 });
 export default ResetPasswordStyle;
