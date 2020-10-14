@@ -2,12 +2,9 @@ import {Button, View, Text} from 'react-native';
 import React, {Component} from 'react';
 import {Card} from 'react-native-elements';
 import styles from './LoginPageStyle';
-import InputOutline from 'react-native-input-outline';
-import {OutlinedTextField} from 'react-native-material-textfield';
-import {TextField, FilledTextField} from 'react-native-material-textfield';
+import {TextField, OutlinedTextField} from 'react-native-material-textfield';
 import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
-import SubmitForm from './SubmitForm';
 
 class LoginPage extends Component {
   constructor(props) {
@@ -105,9 +102,9 @@ class LoginPage extends Component {
       <View style={styles.headerScreen}>
         <View>
           <Text style={styles.loginText}>Login</Text>
-          <Card containerStyle={styles.outerCard}>
+          {/* <Card containerStyle={styles.outerCard}> */}
             <View style={styles.innerCardEmail}>
-              <TextField
+              <OutlinedTextField
                 label="Email"
                 onChangeText={(text) => this.handleEmailInput(text)}
                 error={this.state.email.error}
@@ -115,7 +112,7 @@ class LoginPage extends Component {
               />
             </View>
             <View style={styles.innerCardPassword}>
-              <TextField
+              <OutlinedTextField
                 label="password"
                 textContentType={'password'}
                 onChangeText={(password) => this.handlePasswordInput(password)}
@@ -135,10 +132,10 @@ class LoginPage extends Component {
             </View>
             <View>
               <Text style={styles.alignSignUp} onPress={this.handleSignUp}>
-                createNewOne
+                SignUp
               </Text>
             </View>
-          </Card>
+          {/* </Card> */}
         </View>
       </View>
     );

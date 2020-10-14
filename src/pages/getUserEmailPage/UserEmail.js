@@ -1,6 +1,6 @@
 import {View, Text, Button} from 'react-native';
 import React, {Component} from 'react';
-import {TextField} from 'react-native-material-textfield';
+import {TextField, OutlinedTextField} from 'react-native-material-textfield';
 import {Card} from 'react-native-elements';
 import EmailStyle from './UserEmailStyle';
 const regexValidateEmail = new RegExp(
@@ -49,6 +49,7 @@ class UserEmail extends Component {
       });
     }
     if (this.state.email.emailCount === 2) {
+      //   this.props.navigation.navigate('resetPassword');
       console.log('sucess');
     }
   };
@@ -60,7 +61,7 @@ class UserEmail extends Component {
             <Text style={EmailStyle.UserEmailinnerCardText}>UserEmail</Text>
           </View>
           <View style={EmailStyle.userMailTextField}>
-            <TextField
+            <OutlinedTextField
               label="email"
               onChangeText={(email) => this.handleEmailInput(email)}
               error={this.state.email.error}
