@@ -5,6 +5,7 @@ import styles from './LoginPageStyle';
 import {TextField, OutlinedTextField} from 'react-native-material-textfield';
 import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
+import {SignIn} from '../../services/dataBaseController';
 
 class LoginPage extends Component {
   constructor(props) {
@@ -65,7 +66,7 @@ class LoginPage extends Component {
       });
     }
   }
-  handleLoginForm() {
+  handleLoginForm = async (event) => {
     if (
       this.state.email.emailCount === 1 ||
       this.state.password.passwordCount === 1 ||
@@ -87,9 +88,56 @@ class LoginPage extends Component {
       this.state.email.emailCount === 2 &&
       this.state.password.passwordCount === 2
     ) {
-      console.log('sucess');
+      // let loginData = {
+      //   email: this.state.email.emailInput,
+      //   password: this.state.password.passwordValue,
+      // };
+      //   signIn(loginData).then((response) => {
+      //     console.log(response);
+      //     let token = response.data.id;
+      //     if (response.status !== 200) {
+      //       this.setState({
+      //         email: {
+      //           error: 'check username and password',
+      //           errorColor: 'red',
+      //         },
+      //         password: {
+      //           error: 'check username and password',
+      //           errorColor: 'red',
+      //         },
+      //       });
+      //     }
+      //     if (response.status === 200) {
+      //       this.props.navigation.navigate('homePage');
+      //     }
+      //   });
+      // }
+      let value = await SignIn(
+        this.state.email.emailInput,
+        this.state.password.passwordValue,
+      );
+      console.log('console ', value);
+      if (value === 'auth/user-not-found') {
+        console.log('error in email');
+        this.setState({
+          email: {
+            error: 'invalid email',
+            errorColor: 'red',
+          },
+        });
+      } else if (value === 'auth/wrong-password') {
+        console.log('error in passw');
+        this.setState({
+          password: {
+            error: 'invalid password',
+            errorColor: 'red',
+          },
+        });
+      } else {
+        this.props.navigation.navigate('homePage');
+      }
     }
-  }
+  };
   handleSignUp = () => {
     this.props.navigation.navigate('signUp');
   };
@@ -103,38 +151,38 @@ class LoginPage extends Component {
         <View>
           <Text style={styles.loginText}>Login</Text>
           {/* <Card containerStyle={styles.outerCard}> */}
-            <View style={styles.innerCardEmail}>
-              <OutlinedTextField
-                label="Email"
-                onChangeText={(text) => this.handleEmailInput(text)}
-                error={this.state.email.error}
-                errorColor={this.state.email.errorColor}
-              />
-            </View>
-            <View style={styles.innerCardPassword}>
-              <OutlinedTextField
-                label="password"
-                textContentType={'password'}
-                onChangeText={(password) => this.handlePasswordInput(password)}
-                error={this.state.password.error}
-                errorColor={this.state.password.errorColor}
-              />
-            </View>
-            <View>
-              <Text
-                style={styles.alignResetPassword}
-                onPress={this.handleResetPassword}>
-                resetPassword?
-              </Text>
-            </View>
-            <View style={styles.innerCardSubmit}>
-              <Button title="submit" onPress={this.handleLoginForm} />
-            </View>
-            <View>
-              <Text style={styles.alignSignUp} onPress={this.handleSignUp}>
-                SignUp
-              </Text>
-            </View>
+          <View style={styles.innerCardEmail}>
+            <OutlinedTextField
+              label="Email"
+              onChangeText={(text) => this.handleEmailInput(text)}
+              error={this.state.email.error}
+              errorColor={this.state.email.errorColor}
+            />
+          </View>
+          <View style={styles.innerCardPassword}>
+            <OutlinedTextField
+              label="password"
+              textContentType={'password'}
+              onChangeText={(password) => this.handlePasswordInput(password)}
+              error={this.state.password.error}
+              errorColor={this.state.password.errorColor}
+            />
+          </View>
+          <View>
+            <Text
+              style={styles.alignResetPassword}
+              onPress={this.handleResetPassword}>
+              resetPassword?
+            </Text>
+          </View>
+          <View style={styles.innerCardSubmit}>
+            <Button title="submit" onPress={this.handleLoginForm} />
+          </View>
+          <View>
+            <Text style={styles.alignSignUp} onPress={this.handleSignUp}>
+              SignUp
+            </Text>
+          </View>
           {/* </Card> */}
         </View>
       </View>

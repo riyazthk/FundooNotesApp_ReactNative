@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {View, Text, Button} from 'react-native';
-import {Card} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
 import newUserStyles from './SignUpStyle';
 import {OutlinedTextField} from 'react-native-material-textfield';
@@ -9,6 +8,8 @@ import LastNameInput from './LastNameInput';
 import EmailInput from '../signInPage/EmailInput';
 import PasswordInput from '../signInPage/PasswordInput';
 import ConfirmPasswordInput from './ConfirmPasswordInput';
+import {signUp} from '../../services/UserServices';
+import signUpData, {SignUpData} from '../../services/dataBaseController';
 class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -141,7 +142,7 @@ class SignUp extends Component {
       });
     }
   };
-  handleSignUpSubmit = () => {
+  handleSignUpSubmit = async (event) => {
     if (
       this.state.password.passwordValue !==
       this.state.confirmPassword.confirmPasswordValue
@@ -200,7 +201,22 @@ class SignUp extends Component {
       this.state.confirmPassword.confirmPasswordCount === 2 &&
       this.state.email.emailCount === 2
     ) {
-      this.props.navigation.navigate('loginPage')
+      let value = await SignUpData(
+        this.state.firstName.firstNameValue,
+        this.state.lastName.lastNameValue,
+        this.state.email.emailValue,
+        this.state.password.passwordValue,
+      );
+      if (value === 'The email address is already in use by another account.') {
+        this.setState({
+          email: {
+            error: 'email already register',
+            errorColor: 'red',
+          },
+        });
+      } else {
+        this.props.navigation.navigate('loginPage');
+      }
     }
   };
   render() {

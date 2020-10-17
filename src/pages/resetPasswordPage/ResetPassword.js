@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, Button} from 'react-native';
 import {Card} from 'react-native-elements';
 import ResetPasswordStyle from './ResetPasswordStyle';
-import {TextField,OutlinedTextField} from 'react-native-material-textfield';
+import {TextField, OutlinedTextField} from 'react-native-material-textfield';
 const regexvalidatePassword = new RegExp(
   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
 );
