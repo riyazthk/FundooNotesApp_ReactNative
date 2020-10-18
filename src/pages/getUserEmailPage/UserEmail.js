@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {TextField, OutlinedTextField} from 'react-native-material-textfield';
 import {Card} from 'react-native-elements';
 import EmailStyle from './UserEmailStyle';
+import {GetUserEmail} from '../../services/dataBaseController';
 const regexValidateEmail = new RegExp(
   /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
 );
@@ -36,7 +37,7 @@ class UserEmail extends Component {
       });
     }
   };
-  handleSubmitForm = () => {
+  handleSubmitForm = async (event) => {
     if (
       this.state.email.emailCount === 0 ||
       this.state.email.emailCount === 1
@@ -49,8 +50,9 @@ class UserEmail extends Component {
       });
     }
     if (this.state.email.emailCount === 2) {
-        this.props.navigation.navigate('resetPassword');
-      // console.log('sucess');
+      let data = await GetUserEmail(this.state.email.emailValue);
+      console.log('data', data);
+      this.props.navigation.navigate('resetPassword');
     }
   };
   render() {

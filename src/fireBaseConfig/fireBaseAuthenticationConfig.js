@@ -1,14 +1,17 @@
 import firebase from 'firebase';
 import 'firebase/firestore';
 const firebaseConfig = {
-  apiKey: 'AIzaSyCk58uzRSbo_OnTsVOm7dYerV0JWf3gDaY',
-  authDomain: 'fundoonotes-25669.firebaseapp.com',
-  databaseURL: 'https://fundoonotes-25669.firebaseio.com',
-  projectId: 'fundoonotes-25669',
-  storageBucket: 'fundoonotes-25669.appspot.com',
-  messagingSenderId: '1038530122638',
-  appId: '1:1038530122638:web:5261176e92968742570adf',
+  apiKey: 'AIzaSyBzPthO2oQFuEDjMXYcrxrpO-cScPKlzWc',
+  authDomain: 'fundooapp-5f1ac.firebaseapp.com',
+  databaseURL: 'https://fundooapp-5f1ac.firebaseio.com',
+  projectId: 'fundooapp-5f1ac',
+  storageBucket: 'fundooapp-5f1ac.appspot.com',
+  messagingSenderId: '954751924626',
+  appId: '1:954751924626:web:6ea0ef2b7cbf6397b1a94b',
 };
-const Firebase = firebase.initializeApp(firebaseConfig);
-export let Dbase = firebase.firestore(Firebase);
+// const Firebase = firebase.initializeApp(firebaseConfig);
+// export let Dbase = firebase.firestore(Firebase);
 //let dbase = firebase.database();
+firebase.initializeApp(firebaseConfig);
+const dbase = firebase.database();
+export default {dbase, firebase};
