@@ -52,7 +52,7 @@ class UserEmail extends Component {
     if (this.state.email.emailCount === 2) {
       let data = await GetUserEmail(this.state.email.emailValue);
       console.log('data', data);
-      this.props.navigation.navigate('resetPassword');
+      this.props.navigation.navigate('loginPage');
     }
   };
   render() {
