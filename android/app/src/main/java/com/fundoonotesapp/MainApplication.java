@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import org.pgsqlite.SQLitePluginPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -12,6 +13,7 @@ import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import androidx.multidex.MultiDexApplication; // <-- ADD THIS IMPORT
+// import org.pgsqlite.SQLitePluginPackage;
 
 public class MainApplication extends MultiDexApplication implements ReactApplication {
   private final ReactNativeHost mReactNativeHost =
@@ -41,6 +43,12 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
     return mReactNativeHost;
   }
 
+  // @Override
+  //   protected List<ReactPackage> getPackages() {
+  //     return Arrays.<ReactPackage>asList(
+  //       new SQLitePluginPackage(),   // register SQLite Plugin here
+  //       new MainReactPackage());
+  //   }
   @Override
   public void onCreate() {
     super.onCreate();

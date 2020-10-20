@@ -10,6 +10,8 @@ target 'FundooNotesApp' do
 
   pod 'react-native-sqlite-storage', :path => '../node_modules/react-native-sqlite-storage'
 
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+
   target 'FundooNotesAppTests' do
     inherit! :complete
     # Pods for testing

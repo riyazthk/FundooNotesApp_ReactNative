@@ -6,6 +6,9 @@ import {TextField, OutlinedTextField} from 'react-native-material-textfield';
 import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
 import {SignIn} from '../../services/dataBaseController';
+// import {openDatabase} from 'react-native-sqlite-storage';
+import { AddToken } from '../../dataBase/AddToken';
+// var db = openDatabase({name: 'Reactoffline.db'});
 
 class LoginPage extends Component {
   constructor(props) {
@@ -134,7 +137,13 @@ class LoginPage extends Component {
           },
         });
       } else {
-        this.props.navigation.navigate('homePage');
+        AddToken(value)
+          .then(() => {
+            this.props.navigation.navigate('homePage');
+          })
+          .catch((err) => {
+            console.log('database wrongly created');
+          });
       }
     }
   };

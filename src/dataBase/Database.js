@@ -27,12 +27,13 @@ export default class Database {
             .then((DB) => {
               db = DB;
               console.log('database open');
-              db.executeSql('')
+              db.transaction('CREATE TABLE Token(tokenId,tokenValue)')
                 .then(() => {
-                  console.log('database is ready');
+                  console.log('database table  is ready');
                 })
                 .catch((err) => {
                   console.log('received error', err);
+                  console.log('database not ready yet');
                 });
               resolve(db);
             })
@@ -46,3 +47,8 @@ export default class Database {
     });
   }
 }
+// module.exports=Database
+
+// "react-native-input-outline": "^1.0.2",
+
+//"react-native-material-textfield": "git+https://github.com/javarahulsharma/react-native-material-textfield.git",
