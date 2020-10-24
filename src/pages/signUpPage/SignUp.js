@@ -2,14 +2,13 @@ import React, {Component} from 'react';
 import {View, Text, Button} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import newUserStyles from './SignUpStyle';
-import {OutlinedTextField} from 'react-native-material-textfield';
+import {Input} from 'react-native-elements';
 import FirstNameInput from './FirstNameInput';
 import LastNameInput from './LastNameInput';
 import EmailInput from '../signInPage/EmailInput';
 import PasswordInput from '../signInPage/PasswordInput';
 import ConfirmPasswordInput from './ConfirmPasswordInput';
-import {signUp} from '../../services/UserServices';
-import signUpData, {SignUpData} from '../../services/dataBaseController';
+import {SignUpData} from '../../services/dataBaseController';
 class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -229,49 +228,49 @@ class SignUp extends Component {
           {/* <Card containerStyle={newUserStyles.newUserCard}> */}
           <ScrollView>
             <View style={newUserStyles.newUserFirstName}>
-              <OutlinedTextField
-                label="firstName"
+              <Input
+                placeholder="firstName"
                 onChangeText={(firstName) =>
                   this.handlefirstNameInput(firstName)
                 }
-                error={this.state.firstName.error}
-                errorColor={this.state.firstName.errorColor}
+                errorMessage={this.state.firstName.error}
+                // errorColor={this.state.firstName.errorColor}
               />
             </View>
             <View style={newUserStyles.newUserLastName}>
-              <OutlinedTextField
-                label="lastName"
+              <Input
+                placeholder="lastName"
                 onChangeText={(lastName) => this.handlelastNameInput(lastName)}
-                error={this.state.lastName.error}
-                errorColor={this.state.lastName.errorColor}
+                errorMessage={this.state.lastName.error}
+                // errorColor={this.state.lastName.errorColor}
               />
             </View>
             <View style={newUserStyles.newUserEmail}>
-              <OutlinedTextField
-                label="email"
+              <Input
+                placeholder="email"
                 onChangeText={(email) => this.handleemailInput(email)}
-                error={this.state.email.error}
-                errorColor={this.state.email.errorColor}
+                errorMessage={this.state.email.error}
+                // errorColor={this.state.email.errorColor}
               />
             </View>
             <View style={newUserStyles.newUserPassword}>
-              <OutlinedTextField
-                label="password"
+              <Input
+                placeholder="password"
                 // textContentType={'password'}
                 onChangeText={(password) => this.handlePasswordInput(password)}
-                error={this.state.password.error}
+                errorMessage={this.state.password.error}
                 errorColor={this.state.password.errorColor}
               />
             </View>
             <View style={newUserStyles.newUserConfirmPassword}>
-              <OutlinedTextField
-                label="confirmPassword"
+              <Input
+                placeholder="confirmPassword"
                 // textContentType={'password'}
                 onChangeText={(confirmPassword) =>
                   this.handleconfirmPasswordInput(confirmPassword)
                 }
-                error={this.state.confirmPassword.error}
-                errorColor={this.state.confirmPassword.errorColor}
+                errorMessage={this.state.confirmPassword.error}
+                // errorColor={this.state.confirmPassword.errorColor}
               />
             </View>
             <View style={newUserStyles.newUserSubmit}>

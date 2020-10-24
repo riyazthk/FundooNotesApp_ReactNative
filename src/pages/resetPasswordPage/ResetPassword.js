@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, Button} from 'react-native';
-import {Card} from 'react-native-elements';
+import {Card, Input} from 'react-native-elements';
 import ResetPasswordStyle from './ResetPasswordStyle';
-import {TextField, OutlinedTextField} from 'react-native-material-textfield';
 const regexvalidatePassword = new RegExp(
   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
 );
@@ -73,25 +72,21 @@ class ResetPassword extends Component {
           </View>
           <View>
             <View style={ResetPasswordStyle.resetEnterPassword}>
-              <OutlinedTextField
-                label="password"
-                tintColor="grey"
-                textContentType={'password'}
+              <Input
+                placeholder="password"
                 onChangeText={(password) => this.handlePasswordInput(password)}
-                error={this.state.password.error}
-                errorColor={this.state.password.errorColor}
+                errorMessage={this.state.password.error}
+                //errorColor={this.state.password.errorColor}
               />
             </View>
             <View style={ResetPasswordStyle.resetReEnterPassword}>
-              <OutlinedTextField
-                label="confirmPassword"
-                textContentType={'password'}
-                tintColor="grey"
+              <Input
+                placeholder="confirmPassword"
                 onChangeText={(password) =>
                   this.handleConfirmPasswordInput(password)
                 }
-                error={this.state.confirmPassword.error}
-                errorColor={this.state.confirmPassword.errorColor}
+                errorMessage={this.state.confirmPassword.error}
+                // errorColor={this.state.confirmPassword.errorColor}
               />
             </View>
             <View style={ResetPasswordStyle.resetCardSubmit}>

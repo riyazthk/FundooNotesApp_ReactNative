@@ -1,7 +1,6 @@
 import {View, Text, Button} from 'react-native';
 import React, {Component} from 'react';
-import {TextField, OutlinedTextField} from 'react-native-material-textfield';
-import {Card} from 'react-native-elements';
+import {Card, Input} from 'react-native-elements';
 import EmailStyle from './UserEmailStyle';
 import {GetUserEmail} from '../../services/dataBaseController';
 const regexValidateEmail = new RegExp(
@@ -63,11 +62,11 @@ class UserEmail extends Component {
             <Text style={EmailStyle.UserEmailinnerCardText}>UserEmail</Text>
           </View>
           <View style={EmailStyle.userMailTextField}>
-            <OutlinedTextField
-              label="email"
+            <Input
+              placeholder="email"
               onChangeText={(email) => this.handleEmailInput(email)}
-              error={this.state.email.error}
-              errorColor={this.state.email.errorColor}
+              errorMessage={this.state.email.error}
+              // errorColor={this.state.email.errorColor}
             />
           </View>
           <View style={EmailStyle.emailCardSubmit}>

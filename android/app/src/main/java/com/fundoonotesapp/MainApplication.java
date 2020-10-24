@@ -4,8 +4,12 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
-import org.pgsqlite.SQLitePluginPackage;
+// import org.pgsqlite.SQLitePluginPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -43,12 +47,16 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
     return mReactNativeHost;
   }
 
-  // @Override
-  //   protected List<ReactPackage> getPackages() {
-  //     return Arrays.<ReactPackage>asList(
-  //       new SQLitePluginPackage(),   // register SQLite Plugin here
-  //       new MainReactPackage());
-  //   }
+  //  @Override
+  //    protected List<ReactPackage> getPackages() {
+  //      return Arrays.<ReactPackage>asList(
+  // //       new SQLitePluginPackage(),   // register SQLite Plugin here
+  //        new MainReactPackage(),
+  //           new VectorIconsPackage(),
+  //           new VectorIconsPackage(),
+  //           new FBSDKPackage(),
+  //           new FBSDKPackage());
+  //    }
   @Override
   public void onCreate() {
     super.onCreate();

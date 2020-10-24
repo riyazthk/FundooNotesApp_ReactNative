@@ -1,5 +1,7 @@
 import firebase from '../fireBaseConfig/fireBaseAuthenticationConfig';
 import dbase from '../fireBaseConfig/fireBaseAuthenticationConfig';
+import {AccessToken, LoginManager} from 'react-native-fbsdk';
+
 export async function SignUpData(firstName, lastName, email, password) {
   let data = {
     FirstName: firstName,
@@ -72,4 +74,23 @@ export async function GetUserEmail(email) {
       console.log('err', err);
       return err;
     });
+}
+
+export async function FaceBookLogin() {
+  console.log('entry facebook login pager');
+  const result = await LoginManager.logInWithPermissions([
+    'public_profile',
+    'email',
+  ]);
+  if (result.isCancelled) {
+    throw 'User cancelled login process';
+  }
+  const data = await AccessToken.getCurrentAccessToken();
+  if (!data) {
+    throw 'Something went wrong obtaining access token';
+  }
+  const facebookCredential = firebase.firebase.auth.FacebookAuthProvider.credential(
+    data.accessToken,
+  );
+  return firebase.firebase.auth().signInWithCredential(facebookCredential);
 }

@@ -1,16 +1,13 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 
-class HomePage extends Component {
-  constructor() {
-    super();
-  }
+class SearchBarCard extends Component {
   render() {
     return (
       <View>
-        <Text>hello</Text>
+        <Text>home</Text>
       </View>
     );
   }
 }
-export default HomePage;
+export default SearchBarCard;

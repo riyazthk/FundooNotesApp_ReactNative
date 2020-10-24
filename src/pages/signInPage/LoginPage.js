@@ -1,15 +1,14 @@
 import {Button, View, Text} from 'react-native';
 import React, {Component} from 'react';
-import {Card} from 'react-native-elements';
 import styles from './LoginPageStyle';
-import {TextField, OutlinedTextField} from 'react-native-material-textfield';
 import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
-import {SignIn} from '../../services/dataBaseController';
+import {FaceBookLogin, SignIn} from '../../services/dataBaseController';
 // import {openDatabase} from 'react-native-sqlite-storage';
-import { AddToken } from '../../dataBase/AddToken';
+import {AddToken} from '../../dataBase/AddToken';
 // var db = openDatabase({name: 'Reactoffline.db'});
-
+import {Input} from 'react-native-elements';
+import StatusBarView from '../../dashBoard/statusBar/StatusBarView';
 class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -91,30 +90,6 @@ class LoginPage extends Component {
       this.state.email.emailCount === 2 &&
       this.state.password.passwordCount === 2
     ) {
-      // let loginData = {
-      //   email: this.state.email.emailInput,
-      //   password: this.state.password.passwordValue,
-      // };
-      //   signIn(loginData).then((response) => {
-      //     console.log(response);
-      //     let token = response.data.id;
-      //     if (response.status !== 200) {
-      //       this.setState({
-      //         email: {
-      //           error: 'check username and password',
-      //           errorColor: 'red',
-      //         },
-      //         password: {
-      //           error: 'check username and password',
-      //           errorColor: 'red',
-      //         },
-      //       });
-      //     }
-      //     if (response.status === 200) {
-      //       this.props.navigation.navigate('homePage');
-      //     }
-      //   });
-      // }
       let value = await SignIn(
         this.state.email.emailInput,
         this.state.password.passwordValue,
@@ -137,13 +112,15 @@ class LoginPage extends Component {
           },
         });
       } else {
-        AddToken(value)
-          .then(() => {
-            this.props.navigation.navigate('homePage');
-          })
-          .catch((err) => {
-            console.log('database wrongly created');
-          });
+        // AddToken(value);
+        // .then(() => {
+        //   this.props.navigation.navigate('homePage');
+        // })
+        // .catch((err) => {
+        //   console.log('database wrongly created');
+        // });
+
+        this.props.navigation.navigate('homePage');
       }
     }
   };
@@ -153,46 +130,70 @@ class LoginPage extends Component {
   handleResetPassword = () => {
     this.props.navigation.navigate('userEmail');
   };
+  handleFbLogin = async (event) => {
+    let response = await FaceBookLogin();
+    console.log(response);
+  };
   render() {
     return (
       // <ScrollView>
-      <View style={styles.headerScreen}>
-        <View>
-          <Text style={styles.loginText}>Login</Text>
-          {/* <Card containerStyle={styles.outerCard}> */}
-          <View style={styles.innerCardEmail}>
-            <OutlinedTextField
-              label="Email"
-              onChangeText={(text) => this.handleEmailInput(text)}
-              error={this.state.email.error}
-              errorColor={this.state.email.errorColor}
-            />
-          </View>
-          <View style={styles.innerCardPassword}>
-            <OutlinedTextField
-              label="password"
-              textContentType={'password'}
-              onChangeText={(password) => this.handlePasswordInput(password)}
-              error={this.state.password.error}
-              errorColor={this.state.password.errorColor}
-            />
-          </View>
+      <View>
+        <StatusBarView />
+        <View style={styles.headerScreen}>
           <View>
-            <Text
-              style={styles.alignResetPassword}
-              onPress={this.handleResetPassword}>
-              resetPassword?
-            </Text>
+            <Text style={styles.loginText}>Login</Text>
+            {/* <Card containerStyle={styles.outerCard}> */}
+            <View style={styles.innerCardEmail}>
+              <Input
+                placeholder="Email"
+                onChangeText={(text) => this.handleEmailInput(text)}
+                errorMessage={this.state.email.error}
+                // errorColor={this.state.email.errorColor}
+              />
+            </View>
+            <View style={styles.innerCardPassword}>
+              <Input
+                placeholder="password"
+                textContentType={'password'}
+                onChangeText={(password) => this.handlePasswordInput(password)}
+                errorMessage={this.state.password.error}
+                // errorColor={this.state.password.errorColor}
+              />
+            </View>
+            <View>
+              <Text
+                style={styles.alignResetPassword}
+                onPress={this.handleResetPassword}>
+                resetPassword?
+              </Text>
+            </View>
+            <View style={styles.innerCardSubmit}>
+              <Button title="submit" onPress={this.handleLoginForm} />
+            </View>
+            <View>
+              <Text style={styles.alignSignUp} onPress={this.handleSignUp}>
+                SignUp
+              </Text>
+            </View>
+            <View>
+              {/* <LoginButton
+              onLoginFinished={(error, result) => {
+                if (error) {
+                  console.log('login has error: ' + result.error);
+                } else if (result.isCancelled) {
+                  console.log('login is cancelled.');
+                } else {
+                  AccessToken.getCurrentAccessToken().then((data) => {
+                    console.log(data.accessToken.toString());
+                  });
+                }
+              }}
+              onLogoutFinished={() => console.log('logout.')}
+            /> */}
+              <Button title="sign in faceBook" onPress={this.handleFbLogin} />
+            </View>
+            {/* </Card> */}
           </View>
-          <View style={styles.innerCardSubmit}>
-            <Button title="submit" onPress={this.handleLoginForm} />
-          </View>
-          <View>
-            <Text style={styles.alignSignUp} onPress={this.handleSignUp}>
-              SignUp
-            </Text>
-          </View>
-          {/* </Card> */}
         </View>
       </View>
     );

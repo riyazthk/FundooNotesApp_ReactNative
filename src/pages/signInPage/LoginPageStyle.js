@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'space-around',
     backgroundColor: '#fafafa',
-    padding:25
+    padding: 25,
   },
   outerCard: {
     height: 350,
