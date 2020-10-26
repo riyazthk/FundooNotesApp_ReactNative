@@ -132,7 +132,8 @@ class LoginPage extends Component {
   };
   handleFbLogin = async (event) => {
     let response = await FaceBookLogin();
-    console.log(response);
+    console.log(response.user.uid);
+    this.props.navigation.navigate('homePage');
   };
   render() {
     return (

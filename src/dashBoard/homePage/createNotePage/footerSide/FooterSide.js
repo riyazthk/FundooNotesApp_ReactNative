@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import {Card} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Ionicons';
 import FooterSideStyle from './FooterSideStyle';
@@ -13,13 +13,19 @@ class FooterSide extends Component {
       <View>
         <View style={FooterSideStyle.footerComponent}>
           <View style={FooterSideStyle.addCircle}>
-            <Icon name="add-circle-outline" size={30} />
+            <Image
+              source={require('../../../../assets/extra.png')}
+              style={{height: 35, width: 35}}
+            />
           </View>
           <View style={FooterSideStyle.text}>
             <Text style={FooterSideStyle.footerText}>Edited 12:17</Text>
           </View>
           <View style={FooterSideStyle.ellipsis}>
-            <Icon name="ellipsis-vertical-outline" size={30} />
+            <Image
+              source={require('../../../../assets/more.png')}
+              style={{height: 35, width: 35}}
+            />
           </View>
         </View>
       </View>

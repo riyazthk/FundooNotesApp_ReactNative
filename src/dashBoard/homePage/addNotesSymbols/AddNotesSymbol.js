@@ -7,17 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 
 function AddNotesSymbol(createNotePage) {
   const navigation = useNavigation();
-  return (
-    <View>
-      <Card containerStyle={addNotesSymbolStyles.notesCard}>
-        <Icon
-          name="plus"
-          size={50}
-          onPress={() => navigation.navigate('createNotePage')}
-        />
-      </Card>
-    </View>
-  );
+  return <View></View>;
 }
 //}
 export default AddNotesSymbol;

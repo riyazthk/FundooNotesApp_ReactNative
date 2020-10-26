@@ -20,5 +20,8 @@ const homePageStyles = StyleSheet.create({
 
     elevation: 7,
   },
+  searchBar: {
+    height: '70%',
+  },
 });
 export default homePageStyles;

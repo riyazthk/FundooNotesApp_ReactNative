@@ -9,12 +9,14 @@ const CreateNoteStyles = StyleSheet.create({
   body: {
     // flex: 1,
     height: '75%',
+    paddingLeft: 15,
   },
   footer: {
     flex: 1,
     height: '10%',
-    backgroundColor: 'violet',
+    // backgroundColor: 'violet',
     paddingTop: 20,
+    paddingLeft: 15,
     // backgroundColor: 'blue',
     // justifyContent: 'flex-end',
     // alignSelf: 'baseline',

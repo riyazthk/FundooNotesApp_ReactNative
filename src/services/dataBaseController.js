@@ -1,6 +1,7 @@
 import firebase from '../fireBaseConfig/fireBaseAuthenticationConfig';
 import dbase from '../fireBaseConfig/fireBaseAuthenticationConfig';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
+import AddNotesSymbol from '../dashBoard/homePage/addNotesSymbols/AddNotesSymbol';
 
 export async function SignUpData(firstName, lastName, email, password) {
   let data = {
@@ -93,4 +94,14 @@ export async function FaceBookLogin() {
     data.accessToken,
   );
   return firebase.firebase.auth().signInWithCredential(facebookCredential);
+}
+export async function AddNotes(titleValue, notesValue) {
+  console.log(titleValue, notesValue);
+  let data = {
+    title: titleValue,
+    notes: notesValue,
+  };
+  let response = await dbase.dbase
+    .ref('/notes/' + 'THbOLZ2ABpbWuZnJI1THnh4QBl72')
+    .push(data);
 }

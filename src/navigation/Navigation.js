@@ -1,12 +1,12 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import React, {useState, useContext, useEffect} from 'react';
+import React from 'react';
 import LoginPage from '../pages/signInPage/LoginPage';
 import UserEmail from '../pages/getUserEmailPage/UserEmail';
 import ResetPassword from '../pages/resetPasswordPage/ResetPassword';
 import SignUp from '../pages/signUpPage/SignUp';
-import HomePage from '../dashBoard/homePage/mainPage/HomePage';
 import CreateNotePage from '../dashBoard/homePage/createNotePage/createNote/CreateNotePage';
+import HomePage from '../dashBoard/homePage/mainPage/headerHomePage/HomePage';
 
 const Stack = createStackNavigator();
 function Navigation() {
@@ -15,7 +15,7 @@ function Navigation() {
       <Stack.Navigator
         // initialRouteName={user ? 'homePage' : 'loginPage'}
         // screenOptions={{headerShown: false}}>
-        initialRouteName={'homePage'}
+        initialRouteName={'loginPage'}
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="loginPage" component={LoginPage} />
         <Stack.Screen name="userEmail" component={UserEmail} />
