@@ -5,7 +5,7 @@ import colorItemStyle from './colorItemsStyle';
 import React from 'react';
 import {addColorNote} from '../../../../IntermediateDataServices/CallDataBase';
 
-function ColorItems() {
+function ColorItems({setColor}) {
   // const navigation = useNavigation();
   let notesColor = [
     {title: 'MAROON', id: '#fc9dc9'},
@@ -20,7 +20,7 @@ function ColorItems() {
   // const [color, setColor] = useState();
   const handleClickColor = (value) => {
     addColorNote(value);
-    // setColor(value);
+    setColor(value);
     // navigation.navigate('createNotePage', {color: value});
   };
   const renderItem = ({item}) => {

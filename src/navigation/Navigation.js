@@ -15,7 +15,7 @@ function Navigation() {
       <Stack.Navigator
         // initialRouteName={user ? 'homePage' : 'loginPage'}
         // screenOptions={{headerShown: false}}>
-        initialRouteName={'loginPage'}
+        initialRouteName={'homePage'}
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="loginPage" component={LoginPage} />
         <Stack.Screen name="userEmail" component={UserEmail} />

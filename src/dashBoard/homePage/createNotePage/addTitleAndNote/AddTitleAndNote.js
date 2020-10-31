@@ -12,6 +12,7 @@ function AddTitleAndNote(props) {
   const [notes, setNotes] = useState(
     props.item !== undefined ? props.item.notes : '',
   );
+
   const handleTitleValue = (text) => {
     setTitle(text);
   };
@@ -23,7 +24,7 @@ function AddTitleAndNote(props) {
     <View>
       <View style={AddTitleAndNoteStyle.title}>
         <TextInput
-          style={{height: 40, borderColor: 'white', borderWidth: 1}}
+          style={{height: 40, borderColor: props.color, borderWidth: 1}}
           placeholder="title"
           onChangeText={(text) => handleTitleValue(text)}
           value={title}
@@ -31,7 +32,7 @@ function AddTitleAndNote(props) {
       </View>
       <View style={AddTitleAndNoteStyle.note}>
         <TextInput
-          style={{height: 40, borderColor: 'white', borderWidth: 1}}
+          style={{height: 40, borderColor: props.color, borderWidth: 1}}
           placeholder="note"
           onChangeText={(text) => handleNoteValue(text)}
           value={notes}

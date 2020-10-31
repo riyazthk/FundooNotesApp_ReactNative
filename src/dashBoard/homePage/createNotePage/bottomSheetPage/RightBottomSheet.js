@@ -3,7 +3,7 @@ import React, {useRef} from 'react';
 import {useState} from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import {CallDataBases} from '../../../../IntermediateDataServices/CallDataBase';
+import {CallDeleteNotes} from '../../../../IntermediateDataServices/CallDataBase';
 import ColorItems from '../colorItems/ColorItems';
 import bottomSheetStyle from './RightBottomSheetStyle';
 
@@ -18,7 +18,7 @@ function RightBottomSheet(props) {
   };
   const handleClickDelete = () => {
     setDeleteOption('delete');
-    CallDataBases(deleteOption, index);
+    CallDeleteNotes(deleteOption, index);
     navigation.navigate('homePage');
   };
   const handleClickCopy = () => {};
@@ -117,7 +117,7 @@ function RightBottomSheet(props) {
           </View>
         </TouchableOpacity>
         <View>
-          <ColorItems />
+          <ColorItems setColor={props.setColor} />
         </View>
       </RBSheet>
     </View>

@@ -117,13 +117,12 @@ class LoginPage extends Component {
         // .catch((err) => {
         //   console.log('database wrongly created');
         // });
-        setTimeout(() => {
-          Snackbar.show({
-            text: 'Login sucessFully',
-            duration: Snackbar.LENGTH_SHORT,
-          });
-          this.props.navigation.navigate('homePage');
-        }, 1500);
+
+        Snackbar.show({
+          text: 'Login sucessFully',
+          duration: Snackbar.LENGTH_SHORT,
+        });
+        this.props.navigation.navigate('homePage');
       }
     }
   };

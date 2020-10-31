@@ -5,8 +5,5 @@ const colorItemStyle = StyleSheet.create({
     flexDirection: 'row',
     // flexWrap: 'wrap',
   },
-  cardStyle:{
-
-  }
 });
 export default colorItemStyle;

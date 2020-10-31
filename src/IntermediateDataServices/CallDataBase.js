@@ -11,13 +11,13 @@ export function CallDataBase(title, notes, index) {
   getIndex = index;
   console.log(boolean);
 }
-export function CallDataBases(value, index) {
-  console.log('enter');
-  console.log(value);
+export function CallDataBases() {
   boolean = true;
+
   if (getColor === undefined) {
     getColor = 'white';
   }
+  console.log('test', getTitle, getNotes);
   if (
     boolean === true &&
     getTitle !== undefined &&
@@ -26,15 +26,15 @@ export function CallDataBases(value, index) {
   ) {
     AddNotes(getTitle, getNotes, getColor);
   } else if (getIndex !== undefined) {
-    EditNotes(getTitle, getNotes, getIndex);
-  }
-  if (value === 'delete') {
-    console.log('enter delete');
-    DeleteNotes(index);
+    EditNotes(getTitle, getNotes, getIndex, getColor);
   }
 }
 export function addColorNote(value) {
   console.log('color', value);
 
   getColor = value;
+}
+export function CallDeleteNotes(value, index) {
+  console.log('deleteNote');
+  DeleteNotes(index);
 }
