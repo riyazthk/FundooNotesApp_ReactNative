@@ -12,7 +12,7 @@ function FooterSide(props) {
       <View style={FooterSideStyle.footerComponent}>
         <View style={FooterSideStyle.addCircle}>
           <Image
-            source={require('../../../../assets/extra.png')}
+            source={require('../../../../assets/box.png')}
             style={FooterSideStyle.styleImage}
           />
         </View>

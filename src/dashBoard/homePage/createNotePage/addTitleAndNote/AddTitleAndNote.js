@@ -22,22 +22,53 @@ function AddTitleAndNote(props) {
   };
   return (
     <View>
-      <View style={AddTitleAndNoteStyle.title}>
-        <TextInput
-          style={{height: 40, borderColor: props.color, borderWidth: 1}}
-          placeholder="title"
-          onChangeText={(text) => handleTitleValue(text)}
-          value={title}
-        />
-      </View>
-      <View style={AddTitleAndNoteStyle.note}>
-        <TextInput
-          style={{height: 40, borderColor: props.color, borderWidth: 1}}
-          placeholder="note"
-          onChangeText={(text) => handleNoteValue(text)}
-          value={notes}
-        />
-      </View>
+      {props.index === undefined ? (
+        <View>
+          <View style={AddTitleAndNoteStyle.title}>
+            <TextInput
+              style={{height: 40, borderColor: props.color, borderWidth: 1}}
+              placeholder="title"
+              onChangeText={(text) => handleTitleValue(text)}
+              value={title}
+            />
+          </View>
+          <View style={AddTitleAndNoteStyle.note}>
+            <TextInput
+              style={{height: 40, borderColor: props.color, borderWidth: 1}}
+              placeholder="note"
+              onChangeText={(text) => handleNoteValue(text)}
+              value={notes}
+            />
+          </View>
+        </View>
+      ) : (
+        <View>
+          <View style={AddTitleAndNoteStyle.title}>
+            <TextInput
+              style={{
+                height: 40,
+                borderColor: props.item.color,
+                borderWidth: 1,
+              }}
+              placeholder="title"
+              onChangeText={(text) => handleTitleValue(text)}
+              value={title}
+            />
+          </View>
+          <View style={AddTitleAndNoteStyle.note}>
+            <TextInput
+              style={{
+                height: 40,
+                borderColor: props.item.color,
+                borderWidth: 1,
+              }}
+              placeholder="note"
+              onChangeText={(text) => handleNoteValue(text)}
+              value={notes}
+            />
+          </View>
+        </View>
+      )}
     </View>
   );
 }

@@ -45,26 +45,49 @@ function CreateNotePage({navigation, route}) {
     //   )}
     // </View>
     <View>
-      <View
-        style={{
-          height: '100%',
-          backgroundColor: color,
-          paddingTop: 25,
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-        }}>
-        <View style={CreateNoteStyles.headerOptions}>
-          <HeaderOptions />
-        </View>
+      {index === undefined ? (
+        <View
+          style={{
+            height: '100%',
+            backgroundColor: color,
+            paddingTop: 25,
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}>
+          <View style={CreateNoteStyles.headerOptions}>
+            <HeaderOptions />
+          </View>
 
-        <View style={CreateNoteStyles.body}>
-          <AddTitleAndNote item={item} index={index} color={color} />
-        </View>
+          <View style={CreateNoteStyles.body}>
+            <AddTitleAndNote item={item} index={index} color={color} />
+          </View>
 
-        <View style={CreateNoteStyles.footer}>
-          <FooterSide index={index} setColor={setColor} />
+          <View style={CreateNoteStyles.footer}>
+            <FooterSide index={index} setColor={setColor} />
+          </View>
         </View>
-      </View>
+      ) : (
+        <View
+          style={{
+            height: '100%',
+            backgroundColor: item.color ,
+            paddingTop: 25,
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}>
+          <View style={CreateNoteStyles.headerOptions}>
+            <HeaderOptions />
+          </View>
+
+          <View style={CreateNoteStyles.body}>
+            <AddTitleAndNote item={item} index={index} color={color} />
+          </View>
+
+          <View style={CreateNoteStyles.footer}>
+            <FooterSide index={index} setColor={setColor} />
+          </View>
+        </View>
+      )}
     </View>
   );
 }
