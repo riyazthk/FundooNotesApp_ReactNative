@@ -1,12 +1,12 @@
+/* eslint-disable react-native/no-inline-styles */
 import {FlatList, TouchableOpacity, View} from 'react-native';
 import {Card} from 'react-native-elements';
 import colorItemStyle from './colorItemsStyle';
-import React, {useState} from 'react';
+import React from 'react';
 import {addColorNote} from '../../../../IntermediateDataServices/CallDataBase';
-import {useNavigation} from '@react-navigation/native';
 
 function ColorItems() {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   let notesColor = [
     {title: 'MAROON', id: '#fc9dc9'},
     {title: 'WHITE', id: '#FFFFFF'},
@@ -17,10 +17,10 @@ function ColorItems() {
     {title: 'OLIVE', id: '#f7d6be'},
     {title: 'LIME', id: '#ebebeb'},
   ];
-  const [color, setColor] = useState();
+  // const [color, setColor] = useState();
   const handleClickColor = (value) => {
     addColorNote(value);
-    setColor(value);
+    // setColor(value);
     // navigation.navigate('createNotePage', {color: value});
   };
   const renderItem = ({item}) => {
@@ -32,7 +32,8 @@ function ColorItems() {
             height: 40,
             width: 40,
             borderRadius: 32,
-          }}></Card>
+          }}
+        />
       </TouchableOpacity>
     );
   };

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import React from 'react';
+import {View} from 'react-native';
 import AddTitleAndNote from '../addTitleAndNote/AddTitleAndNote';
 import FooterSide from '../footerSide/FooterSide';
 import HeaderOptions from '../headerOptions/HeaderOptions';

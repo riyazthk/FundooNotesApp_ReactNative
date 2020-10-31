@@ -19,5 +19,6 @@ const FooterSideStyle = StyleSheet.create({
   ellipsis: {
     width: 30,
   },
+  styleImage: {height: 35, width: 35},
 });
 export default FooterSideStyle;

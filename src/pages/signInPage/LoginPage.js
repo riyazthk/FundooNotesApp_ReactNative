@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import styles from './LoginPageStyle';
 import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
-import {AddToken} from '../../dataBase/AddToken';
 import {Input} from 'react-native-elements';
 import StatusBarView from '../../dashBoard/statusBar/StatusBarView';
 import {FaceBookLogin, SignIn} from '../../services/UserServices';

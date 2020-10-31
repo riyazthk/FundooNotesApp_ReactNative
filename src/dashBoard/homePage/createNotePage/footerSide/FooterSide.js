@@ -1,20 +1,18 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {useState} from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
-import {Card} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {View, Text, Image} from 'react-native';
 import RightBottomSheet from '../bottomSheetPage/RightBottomSheet';
 import FooterSideStyle from './FooterSideStyle';
 
 function FooterSide(props) {
-  const [index, setIndex] = useState(props.index);
+  const [index] = useState(props.index);
   return (
     <View>
       <View style={FooterSideStyle.footerComponent}>
         <View style={FooterSideStyle.addCircle}>
           <Image
             source={require('../../../../assets/extra.png')}
-            style={{height: 35, width: 35}}
+            style={FooterSideStyle.styleImage}
           />
         </View>
         <View style={FooterSideStyle.text}>

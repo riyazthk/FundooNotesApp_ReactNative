@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useRef} from 'react';
 import {useState} from 'react';
-import {View, Image, Text, TouchableOpacity, FlatList} from 'react-native';
+import {View, Image, Text, TouchableOpacity} from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {CallDataBases} from '../../../../IntermediateDataServices/CallDataBase';
 import ColorItems from '../colorItems/ColorItems';
@@ -9,7 +9,7 @@ import bottomSheetStyle from './RightBottomSheetStyle';
 
 function RightBottomSheet(props) {
   const navigation = useNavigation();
-  const [index, setIndex] = useState(props.index);
+  const [index] = useState(props.index);
   const [deleteOption, setDeleteOption] = useState('');
   const refRBSheet = useRef();
   const handleClick = () => {
@@ -25,15 +25,14 @@ function RightBottomSheet(props) {
   const handleClickSend = () => {};
   const handleClickCollaborator = () => {};
   const handleClickLabels = () => {};
-  const handleClickColor = () => {};
   return (
     <View>
       <TouchableOpacity
         onPress={() => handleClick()}
-        style={{height: 35, width: 35}}>
+        style={bottomSheetStyle.styleImage}>
         <Image
           source={require('../../../../assets/more.png')}
-          style={{height: 35, width: 35}}
+          style={bottomSheetStyle.styleImage}
         />
       </TouchableOpacity>
       <RBSheet
@@ -55,7 +54,7 @@ function RightBottomSheet(props) {
             <View style={bottomSheetStyle.deleteImage}>
               <Image
                 source={require('../../../../assets/delete.png')}
-                style={{height: 40, width: 40}}
+                style={bottomSheetStyle.styleImage}
               />
             </View>
             <View style={bottomSheetStyle.deleteText}>
@@ -68,7 +67,7 @@ function RightBottomSheet(props) {
             <View style={bottomSheetStyle.copyImage}>
               <Image
                 source={require('../../../../assets/copy.png')}
-                style={{height: 40, width: 40}}
+                style={bottomSheetStyle.styleImage}
               />
             </View>
             <View style={bottomSheetStyle.copyText}>
@@ -81,7 +80,7 @@ function RightBottomSheet(props) {
             <View style={bottomSheetStyle.sendImage}>
               <Image
                 source={require('../../../../assets/share1.png')}
-                style={{height: 40, width: 40}}
+                style={bottomSheetStyle.styleImage}
               />
             </View>
             <View style={bottomSheetStyle.sendText}>
@@ -94,7 +93,7 @@ function RightBottomSheet(props) {
             <View style={bottomSheetStyle.collaboratorImage}>
               <Image
                 source={require('../../../../assets/collaborator.png')}
-                style={{height: 40, width: 40}}
+                style={bottomSheetStyle.styleImage}
               />
             </View>
             <View style={bottomSheetStyle.collaboratorText}>
@@ -109,7 +108,7 @@ function RightBottomSheet(props) {
             <View style={bottomSheetStyle.labelsImage}>
               <Image
                 source={require('../../../../assets/arrow.png')}
-                style={{height: 40, width: 40}}
+                style={bottomSheetStyle.styleImage}
               />
             </View>
             <View style={bottomSheetStyle.labelsText}>

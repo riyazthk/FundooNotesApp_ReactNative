@@ -71,5 +71,9 @@ const bottomSheetStyle = StyleSheet.create({
     fontSize: 25,
     textAlign: 'center',
   },
+  styleImage: {
+    height: 40,
+    width: 40,
+  },
 });
 export default bottomSheetStyle;
