@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import {View} from 'react-native';
 import {Card} from 'react-native-elements';
 import StatusBarView from '../../../statusBar/StatusBarView';
-import AddNotesSymbol from '../../addNotesSymbols/AddNotesSymbol';
 import SearchBarCard from '../../searchBarCard/SearchBar';
 import FooterOptions from '../footerHomePage/FooterOptions';
+import ViewNotes from '../viewNotes/ViewNotes';
 import homePageStyles from './homePageStyle';
 
 class HomePage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
   render() {
     return (
@@ -20,6 +20,9 @@ class HomePage extends Component {
             <Card containerStyle={homePageStyles.titleCard}>
               <SearchBarCard />
             </Card>
+          </View>
+          <View style={homePageStyles.ViewNote}>
+            <ViewNotes />
           </View>
           <View>
             <FooterOptions />

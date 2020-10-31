@@ -1,14 +1,14 @@
 import {useNavigation} from '@react-navigation/native';
+//import {useNavigation} from '@react-navigation/native';
 import React, {Component} from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
 import {Card} from 'react-native-elements';
 import FooterOptionsStyles from './FooterOptionsStyle';
-function FooterOptions(createNotePage) {
+function FooterOptions() {
   const navigation = useNavigation();
-  // render() {
   return (
     <View>
-      <View>
+      <View style={FooterOptionsStyles.footerBody}>
         <View style={FooterOptionsStyles.headerFooter}>
           <View style={FooterOptionsStyles.outerFooter}></View>
           <View style={FooterOptionsStyles.footerStyle}>
@@ -59,5 +59,4 @@ function FooterOptions(createNotePage) {
     </View>
   );
 }
-// }
 export default FooterOptions;

@@ -8,7 +8,7 @@ import LastNameInput from './LastNameInput';
 import EmailInput from '../signInPage/EmailInput';
 import PasswordInput from '../signInPage/PasswordInput';
 import ConfirmPasswordInput from './ConfirmPasswordInput';
-import {SignUpData} from '../../services/dataBaseController';
+import {SignUpData} from '../../services/UserServices';
 class SignUp extends Component {
   constructor(props) {
     super(props);

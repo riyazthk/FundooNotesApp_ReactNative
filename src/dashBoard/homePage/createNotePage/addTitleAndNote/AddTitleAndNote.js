@@ -1,62 +1,44 @@
 import {View, Text} from 'react-native';
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import AddTitleAndNoteStyle from './AddTitleAndNoteStyle';
 import {TextInput} from 'react-native';
-import {AddNotes} from '../../../../services/dataBaseController';
 import HeaderOptions from '../../../homePage/createNotePage/headerOptions/HeaderOptions';
 import {CallDataBase} from '../../../../IntermediateDataServices/CallDataBase';
-class AddTitleAndNote extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: {
-        titleValue: '',
-      },
-      notes: {
-        notesValue: '',
-      },
-    };
-  }
-  handleTitleValue = (title) => {
-    this.setState({
-      title: {
-        titleValue: title,
-      },
-    });
-    console.log(this.state.title.titleValue);
+
+function AddTitleAndNote(props) {
+  const [title, setTitle] = useState(
+    props.item !== undefined ? props.item.title : '',
+  );
+  const [notes, setNotes] = useState(
+    props.item !== undefined ? props.item.notes : '',
+  );
+  const handleTitleValue = (text) => {
+    setTitle(text);
   };
-  handleNoteValue = (notes) => {
-    this.setState({
-      notes: {
-        notesValue: notes,
-      },
-    });
-    // HeaderOptions(this.state.title.titleValue, this.state.notes.notesValue);
-    CallDataBase(this.state.title.titleValue, this.state.notes.notesValue);
+  const handleNoteValue = (notes) => {
+    setNotes(notes);
+    CallDataBase(title, notes, props.index);
   };
-  // handleSubmitData = () => {
-  //   AddNotes(this.state.title.titleValue, this.state.notes.notesValue);
-  // };
-  render() {
-    return (
-      <View>
-        <View style={AddTitleAndNoteStyle.title}>
-          <TextInput
-            style={{height: 40, borderColor: 'white', borderWidth: 1}}
-            placeholder="title"
-            onChangeText={(text) => this.handleTitleValue(text)}
-            //value={value}
-          />
-        </View>
-        <View style={AddTitleAndNoteStyle.note}>
-          <TextInput
-            style={{height: 40, borderColor: 'white', borderWidth: 1}}
-            placeholder="note"
-            onChangeText={(text) => this.handleNoteValue(text)}
-          />
-        </View>
+  return (
+    <View>
+      <View style={AddTitleAndNoteStyle.title}>
+        <TextInput
+          style={{height: 40, borderColor: 'white', borderWidth: 1}}
+          placeholder="title"
+          onChangeText={(text) => handleTitleValue(text)}
+          value={title}
+        />
       </View>
-    );
-  }
+      <View style={AddTitleAndNoteStyle.note}>
+        <TextInput
+          style={{height: 40, borderColor: 'white', borderWidth: 1}}
+          placeholder="note"
+          onChangeText={(text) => handleNoteValue(text)}
+          value={notes}
+        />
+      </View>
+    </View>
+  );
 }
+
 export default AddTitleAndNote;

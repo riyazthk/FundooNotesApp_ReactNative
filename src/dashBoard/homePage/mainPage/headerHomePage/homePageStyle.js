@@ -21,7 +21,12 @@ const homePageStyles = StyleSheet.create({
     elevation: 7,
   },
   searchBar: {
-    height: '70%',
+    height: '15%',
+    // backgroundColor: 'blue',
+  },
+  ViewNote: {
+    height: '80%',
+    // backgroundColor: 'violet',
   },
 });
 export default homePageStyles;

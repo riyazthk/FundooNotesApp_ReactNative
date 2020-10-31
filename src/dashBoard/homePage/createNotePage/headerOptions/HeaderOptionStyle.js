@@ -7,16 +7,16 @@ const HeaderOptionStyle = StyleSheet.create({
     flexDirection: 'row',
   },
   backOptions: {
-    width: 190,
+    width: '50%',
   },
   pin: {
-    width: 80,
+    width: '20%',
   },
   remainder: {
-    width: 80,
+    width: '20%',
   },
   archieve: {
-    width: 80,
+    width: '20%',
   },
 });
 export default HeaderOptionStyle;

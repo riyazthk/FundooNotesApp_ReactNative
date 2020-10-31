@@ -2,7 +2,7 @@ import {View, Text, Button} from 'react-native';
 import React, {Component} from 'react';
 import {Card, Input} from 'react-native-elements';
 import EmailStyle from './UserEmailStyle';
-import {GetUserEmail} from '../../services/dataBaseController';
+import {GetUserEmail} from '../../services/UserServices';
 const regexValidateEmail = new RegExp(
   /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
 );

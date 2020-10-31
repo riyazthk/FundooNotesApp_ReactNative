@@ -3,12 +3,11 @@ import React, {Component} from 'react';
 import styles from './LoginPageStyle';
 import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
-import {FaceBookLogin, SignIn} from '../../services/dataBaseController';
-// import {openDatabase} from 'react-native-sqlite-storage';
 import {AddToken} from '../../dataBase/AddToken';
-// var db = openDatabase({name: 'Reactoffline.db'});
 import {Input} from 'react-native-elements';
 import StatusBarView from '../../dashBoard/statusBar/StatusBarView';
+import {FaceBookLogin, SignIn} from '../../services/UserServices';
+import Snackbar from 'react-native-snackbar';
 class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -119,8 +118,13 @@ class LoginPage extends Component {
         // .catch((err) => {
         //   console.log('database wrongly created');
         // });
-
-        this.props.navigation.navigate('homePage');
+        setTimeout(() => {
+          Snackbar.show({
+            text: 'Login sucessFully',
+            duration: Snackbar.LENGTH_SHORT,
+          });
+          this.props.navigation.navigate('homePage');
+        }, 1500);
       }
     }
   };

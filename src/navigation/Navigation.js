@@ -5,8 +5,8 @@ import LoginPage from '../pages/signInPage/LoginPage';
 import UserEmail from '../pages/getUserEmailPage/UserEmail';
 import ResetPassword from '../pages/resetPasswordPage/ResetPassword';
 import SignUp from '../pages/signUpPage/SignUp';
-import CreateNotePage from '../dashBoard/homePage/createNotePage/createNote/CreateNotePage';
 import HomePage from '../dashBoard/homePage/mainPage/headerHomePage/HomePage';
+import CreateNotePage from '../dashBoard/homePage/createNotePage/createNote/CreateNotePage';
 
 const Stack = createStackNavigator();
 function Navigation() {

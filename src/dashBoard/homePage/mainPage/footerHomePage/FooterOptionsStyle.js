@@ -24,6 +24,7 @@ const FooterOptionsStyles = StyleSheet.create({
   headerFooter: {
     flexDirection: 'row',
     padding: 15,
+    // backgroundColor:'blue'
   },
   outerFooter: {
     width: '75%',
@@ -49,5 +50,13 @@ const FooterOptionsStyles = StyleSheet.create({
   drawingSymbol: {height: 40, width: 40},
   micSymbol: {height: 40, width: 40},
   imageSymbol: {height: 40, width: 40},
+  footerBody: {
+    position: 'relative',
+    bottom: '83%',
+    // top: '20%',
+    // backgroundColor: 'black',
+    //height: '20%',
+    width: '100%',
+  },
 });
 export default FooterOptionsStyles;

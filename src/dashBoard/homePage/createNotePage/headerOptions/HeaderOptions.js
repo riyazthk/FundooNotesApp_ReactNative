@@ -1,22 +1,24 @@
-import React, {Component} from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import React from 'react';
+import {View, Image, TouchableOpacity} from 'react-native';
+// import Icon from 'react-native-vector-icons/Ionicons';
 import HeaderOptionStyle from './HeaderOptionStyle';
-import {IconFill, IconOutline} from '@ant-design/icons-react-native';
+// import {IconFill, IconOutline} from '@ant-design/icons-react-native';
 import {useNavigation} from '@react-navigation/native';
-import {AddNotes} from '../../../../services/dataBaseController';
+// import {AddNotes, GetNotes} from '../../../../services/dataBaseController';
 import {CallDataBases} from '../../../../IntermediateDataServices/CallDataBase';
+// import ViewNotes from '../../mainPage/viewNotes/ViewNotes';
 function HeaderOptions() {
-  const HandleBackToHomePage = () => {
+  const handleBackToHomePage = () => {
     // AddNotes(title, notes);
     CallDataBases();
     navigation.navigate('homePage');
+    //ViewNotes();
   };
   const navigation = useNavigation();
   return (
     <View style={HeaderOptionStyle.headerOptions}>
       <View style={HeaderOptionStyle.backOptions}>
-        <TouchableOpacity onPress={() => HandleBackToHomePage()}>
+        <TouchableOpacity onPress={() => handleBackToHomePage()}>
           <Image
             source={require('../../../../assets/back.png')}
             style={{height: 35, width: 35}}
