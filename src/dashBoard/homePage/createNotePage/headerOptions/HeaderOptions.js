@@ -13,43 +13,38 @@ import {
 } from '../../../../IntermediateDataServices/CallDataBase';
 import {AddNotes, EditNotes} from '../../../../services/noteService';
 
-const HeaderOptions = ({setPin, pin, title, notes, color, index}) => {
-  // const [title, setTitle] = useState(
-  //   props.item !== undefined ? props.item.title : '',
-  // );
-  // const [notes, setNotes] = useState(
-  //   props.item !== undefined ? props.item.notes : '',
-  // );
-  // const [pin, setPin] = useState(
-  //   props.item !== undefined ? (props.item.pin === true ? false : true) : true,
-  // );
-
+const HeaderOptions = ({
+  setPin,
+  pin,
+  title,
+  notes,
+  color,
+  index,
+  setArchieve,
+}) => {
+  let archieve = false;
   const handleBackToHomePage = () => {
-    // AddNotes(title, notes);
-    //CallDataBases(title, notes);
     console.log('check value ', title, notes, color, index, pin);
     if (index === undefined) {
       console.log('add notes');
-      AddNotes(title, notes, color, pin);
+      AddNotes(title, notes, color, pin, archieve);
     } else {
       console.log('edit notes');
-      EditNotes(title, notes, index, color, pin);
+      EditNotes(title, notes, index, color, pin, archieve);
     }
     navigation.navigate('homePage');
-    //ViewNotes();
   };
   const handlePin = () => {
-    console.log('pinned', pin);
     setPin(!pin);
-    // callPinned(
-    //   props.item.title,
-    //   props.item.notes,
-    //   props.index,
-    //   props.item.color,
-    //   pin,
-    // );
-    //callPinned(pin);
-    console.log('after pin', pin);
+  };
+  const handleArchieve = () => {
+    console.log('archieve value', archieve);
+    console.log('setarchieve value', setArchieve);
+    setArchieve(!archieve);
+    archieve = true;
+    handleBackToHomePage();
+
+    console.log('after archieve value', archieve);
   };
   const navigation = useNavigation();
   return (
@@ -87,12 +82,14 @@ const HeaderOptions = ({setPin, pin, title, notes, color, index}) => {
           style={{height: 35, width: 35}}
         />
       </View>
-      <View style={HeaderOptionStyle.archieve}>
-        <Image
-          source={require('../../../../assets/archive.png')}
-          style={{height: 35, width: 35}}
-        />
-      </View>
+      <TouchableOpacity onPress={() => handleArchieve()}>
+        <View style={HeaderOptionStyle.archieve}>
+          <Image
+            source={require('../../../../assets/archive.png')}
+            style={{height: 35, width: 35}}
+          />
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };

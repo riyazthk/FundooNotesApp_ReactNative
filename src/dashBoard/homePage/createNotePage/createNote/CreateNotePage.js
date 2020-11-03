@@ -11,8 +11,11 @@ function CreateNotePage({navigation, route}) {
   const [notes, setNotes] = useState(item !== undefined ? item.notes : '');
   const [color, setColor] = useState(item !== undefined ? item.color : 'white');
   const [pin, setPin] = useState(item !== undefined ? item.pin : false);
+  const [archieve, setArchieve] = useState(
+    item != undefined ? item.archieve : false,
+  );
   const [check, setCheck] = useState(0);
-  console.log('check title', title, notes, color, pin);
+  console.log('check title', title, notes, color, pin, archieve);
   return (
     <View>
       {index === undefined ? (
@@ -28,6 +31,8 @@ function CreateNotePage({navigation, route}) {
             <HeaderOptions
               pin={pin}
               setPin={setPin}
+              // archieve={archieve}
+              setArchieve={setArchieve}
               title={title}
               notes={notes}
               color={color}
@@ -67,6 +72,8 @@ function CreateNotePage({navigation, route}) {
               notes={notes}
               color={color}
               index={index}
+              // archieve={archieve}
+              setArchieve={setArchieve}
             />
           </View>
 

@@ -1,5 +1,5 @@
 import React, {Component, useState} from 'react';
-import {View} from 'react-native';
+import {View, TouchableOpacity, Image} from 'react-native';
 import {Card} from 'react-native-elements';
 import StatusBarView from '../../../statusBar/StatusBarView';
 import SearchBarCard from '../../searchBarCard/SearchBar';
@@ -7,7 +7,7 @@ import FooterOptions from '../footerHomePage/FooterOptions';
 import ViewNotes from '../viewNotes/ViewNotes';
 import homePageStyles from './homePageStyle';
 
-const HomePage = () => {
+const HomePage = ({navigation}) => {
   const [changeViewNote, setChangeViewNote] = useState(false);
   console.log('view look ', changeViewNote);
   return (
@@ -16,7 +16,10 @@ const HomePage = () => {
         <StatusBarView />
       </View>
       <View style={homePageStyles.searchNotes}>
-        <SearchBarCard setChangeViewNote={setChangeViewNote} />
+        <SearchBarCard
+          setChangeViewNote={setChangeViewNote}
+          // navigation={navigation}
+        />
       </View>
       <View style={homePageStyles.ViewNote}>
         <ViewNotes changeViewNote={changeViewNote} />

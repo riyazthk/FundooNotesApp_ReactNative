@@ -1,14 +1,11 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {
-  NavigationContainer,
-  NavigationHelpersContext,
-} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import HomePage from '../homePage/mainPage/headerHomePage/HomePage';
 import Remainder from '../homePage/remainder/Remainder';
 
 const Drawer = createDrawerNavigator();
 
-export default function navigationDrawer() {
+export default function navigationDrawer({navigation}) {
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="homePage">

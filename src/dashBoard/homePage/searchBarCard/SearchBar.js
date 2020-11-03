@@ -4,25 +4,24 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {Card} from 'react-native-elements';
 import HeaderOptionStyle from '../createNotePage/headerOptions/HeaderOptionStyle';
 import SearchBarStyle from './SearchBarStyle';
-function SearchBarCard({setChangeViewNote}) {
-  const navigation = useNavigation();
+function SearchBarCard({setChangeViewNote, navigation}) {
+  // const navigation = useNavigation();
   const [gridView, setGridView] = useState(false);
   const handleViewNotes = () => {
-    // console.log('enter grid view');
-    // setGridView(!gridView);
-    // console.log('console', gridView);
-    setChangeViewNote(!gridView);
-    // console.log(setChangeViewNote);
+    setGridView(!gridView);
+    setChangeViewNote(gridView);
   };
   return (
-    <View style={SearchBarStyle.searchBar}>
-      <Card containerStyle={SearchBarStyle.titleCard}>
+    <Card containerStyle={SearchBarStyle.titleCard}>
+      <View style={SearchBarStyle.searchBar}>
         <View style={SearchBarStyle.headerOptions}>
           <View style={SearchBarStyle.menu}>
-            <Image
-              source={require('../../../assets/menu.png')}
-              style={{height: 35, width: 35}}
-            />
+            <TouchableOpacity>
+              <Image
+                source={require('../../../assets/menu.png')}
+                style={{height: 35, width: 35}}
+              />
+            </TouchableOpacity>
           </View>
           <View style={SearchBarStyle.search}>
             <Text style={SearchBarStyle.searchText}>Search Your Notes...</Text>
@@ -52,8 +51,8 @@ function SearchBarCard({setChangeViewNote}) {
             </View>
           </TouchableOpacity>
         </View>
-      </Card>
-    </View>
+      </View>
+    </Card>
   );
 }
 

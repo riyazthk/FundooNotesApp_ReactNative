@@ -39,7 +39,7 @@ const ViewNotes = (props) => {
                       index: index,
                     })
                   }>
-                  {item.pin === true ? (
+                  {item.pin === true && item.archieve === false ? (
                     <View>
                       {/* <Text>pinned</Text> */}
                       <Card
@@ -80,7 +80,7 @@ const ViewNotes = (props) => {
                       index: index,
                     })
                   }>
-                  {item.pin === false ? (
+                  {item.pin === false && item.archieve === false ? (
                     <View>
                       <Card
                         containerStyle={{

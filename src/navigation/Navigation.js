@@ -7,6 +7,7 @@ import ResetPassword from '../pages/resetPasswordPage/ResetPassword';
 import SignUp from '../pages/signUpPage/SignUp';
 import HomePage from '../dashBoard/homePage/mainPage/headerHomePage/HomePage';
 import CreateNotePage from '../dashBoard/homePage/createNotePage/createNote/CreateNotePage';
+import navigationDrawer from '../dashBoard/drawerPage/DrawerComponent';
 
 const Stack = createStackNavigator();
 function Navigation() {
@@ -23,6 +24,7 @@ function Navigation() {
         <Stack.Screen name="signUp" component={SignUp} />
         <Stack.Screen name="homePage" component={HomePage} />
         <Stack.Screen name="createNotePage" component={CreateNotePage} />
+        <Stack.Screen name="drawer" component={navigationDrawer} />
       </Stack.Navigator>
     </NavigationContainer>
   );
