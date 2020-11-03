@@ -23,6 +23,7 @@ const HeaderOptions = ({
   setArchieve,
 }) => {
   let archieve = false;
+  const [flag, setFlag] = useState(Math.random());
   const handleBackToHomePage = () => {
     console.log('check value ', title, notes, color, index, pin);
     if (index === undefined) {
@@ -32,19 +33,16 @@ const HeaderOptions = ({
       console.log('edit notes');
       EditNotes(title, notes, index, color, pin, archieve);
     }
-    navigation.navigate('homePage');
+    navigation.navigate('homePage', {flag: flag});
   };
   const handlePin = () => {
     setPin(!pin);
   };
   const handleArchieve = () => {
-    console.log('archieve value', archieve);
-    console.log('setarchieve value', setArchieve);
     setArchieve(!archieve);
     archieve = true;
     handleBackToHomePage();
-
-    console.log('after archieve value', archieve);
+    navigation.navigate('ArchieveNote');
   };
   const navigation = useNavigation();
   return (

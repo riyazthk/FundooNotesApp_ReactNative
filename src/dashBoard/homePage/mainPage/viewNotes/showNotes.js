@@ -32,7 +32,7 @@
 //                         </View>
 //                       </Card>
 //                     </View>
-//                   )} 
+//                   )}
 //   )
 // };
-// export default showNotes
+// export default showNotes;

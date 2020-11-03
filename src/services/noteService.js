@@ -1,6 +1,6 @@
 import firebase from '../fireBaseConfig/fireBaseAuthenticationConfig';
 import dbase from '../fireBaseConfig/fireBaseAuthenticationConfig';
-import Config from 'react-native-config';
+import dbStorage from '../fireBaseConfig/fireBaseAuthenticationConfig';
 export async function AddNotes(
   titleValue,
   notesValue,
@@ -67,4 +67,19 @@ export async function EditNotes(
     .ref('/notes/' + 'THbOLZ2ABpbWuZnJI1THnh4QBl72')
     .child(key[index])
     .update(data);
+}
+
+export async function addImage(image) {
+  console.log('imageee', image);
+  console.log('image uri', image.uri);
+  const uploadPath = image.uri;
+  let response = await dbStorage.dbStorage
+    .ref('/profile')
+    .putString(uploadPath);
+  // console.log(response);
+}
+export async function retrieveImageDb() {
+  const response = await dbStorage.dbStorage.ref('/profile').getDownloadURL();
+  console.log(response);
+  return response;
 }

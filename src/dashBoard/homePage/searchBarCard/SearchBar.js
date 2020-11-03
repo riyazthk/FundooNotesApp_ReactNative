@@ -1,12 +1,15 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {Component, useState} from 'react';
+import React, {Component, useRef, useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {Card} from 'react-native-elements';
+import RBSheet from 'react-native-raw-bottom-sheet';
 import HeaderOptionStyle from '../createNotePage/headerOptions/HeaderOptionStyle';
+import UserProfile from '../mainPage/userProfile/UserProfile';
 import SearchBarStyle from './SearchBarStyle';
 function SearchBarCard({setChangeViewNote, navigation}) {
   // const navigation = useNavigation();
   const [gridView, setGridView] = useState(false);
+  const refRBSheet = useRef();
   const handleViewNotes = () => {
     setGridView(!gridView);
     setChangeViewNote(gridView);
@@ -16,7 +19,7 @@ function SearchBarCard({setChangeViewNote, navigation}) {
       <View style={SearchBarStyle.searchBar}>
         <View style={SearchBarStyle.headerOptions}>
           <View style={SearchBarStyle.menu}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
               <Image
                 source={require('../../../assets/menu.png')}
                 style={{height: 35, width: 35}}
@@ -41,8 +44,7 @@ function SearchBarCard({setChangeViewNote, navigation}) {
 
           {/* </View> */}
           {/* </View> */}
-          <TouchableOpacity
-            onPress={() => navigation.navigate('createNotePage')}>
+          <TouchableOpacity onPress={() => refRBSheet.current.open()}>
             <View style={SearchBarStyle.loginbl}>
               <Image
                 source={require('../../../assets/loginbl.png')}
@@ -51,6 +53,35 @@ function SearchBarCard({setChangeViewNote, navigation}) {
             </View>
           </TouchableOpacity>
         </View>
+      </View>
+
+      <View>
+        <RBSheet
+          ref={refRBSheet}
+          closeOnDragDown={true}
+          closeOnPressMask={true}
+          customStyles={{
+            wrapper: {
+              backgroundColor: 'tranperent',
+            },
+            draggableIcon: {
+              backgroundColor: '#000',
+            },
+            container: {
+              borderTopStartRadius: 40,
+              borderTopEndRadius: 40,
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              elevation: 5,
+            },
+          }}
+          height={500}>
+          <UserProfile />
+        </RBSheet>
       </View>
     </Card>
   );

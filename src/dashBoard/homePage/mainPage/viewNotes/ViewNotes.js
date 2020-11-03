@@ -4,18 +4,22 @@ import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import {Card} from 'react-native-elements';
 import {GetNotes} from '../../../../services/noteService';
 
-const ViewNotes = (props) => {
+const ViewNotes = (props, {flag}) => {
   const navigation = useNavigation();
   const [viewNote, setViewNote] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
+  //console.log('value', props.flag);
   useEffect(() => {
     GetNotes()
       .then((res) => {
+        //setIsLoading(false);
         setViewNote(res);
       })
       .catch((err) => {
         console.log('error', err);
       });
-  }, []);
+  }, [flag]);
+
   return (
     <View>
       <ScrollView>

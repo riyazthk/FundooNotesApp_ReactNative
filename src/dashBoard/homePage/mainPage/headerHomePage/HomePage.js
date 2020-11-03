@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {Component, useState} from 'react';
 import {View, TouchableOpacity, Image} from 'react-native';
 import {Card} from 'react-native-elements';
@@ -10,6 +11,7 @@ import homePageStyles from './homePageStyle';
 const HomePage = ({navigation}) => {
   const [changeViewNote, setChangeViewNote] = useState(false);
   console.log('view look ', changeViewNote);
+  // const navigation = useNavigation();
   return (
     <View style={homePageStyles.body}>
       <View>
@@ -18,7 +20,7 @@ const HomePage = ({navigation}) => {
       <View style={homePageStyles.searchNotes}>
         <SearchBarCard
           setChangeViewNote={setChangeViewNote}
-          // navigation={navigation}
+          navigation={navigation}
         />
       </View>
       <View style={homePageStyles.ViewNote}>
