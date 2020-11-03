@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import {View} from 'react-native';
 import {Card} from 'react-native-elements';
 import StatusBarView from '../../../statusBar/StatusBarView';
@@ -7,29 +7,25 @@ import FooterOptions from '../footerHomePage/FooterOptions';
 import ViewNotes from '../viewNotes/ViewNotes';
 import homePageStyles from './homePageStyle';
 
-class HomePage extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
+const HomePage = () => {
+  const [changeViewNote, setChangeViewNote] = useState(false);
+  console.log('view look ', changeViewNote);
+  return (
+    <View style={homePageStyles.body}>
       <View>
         <StatusBarView />
-        <View style={homePageStyles.bodyPage}>
-          <View style={homePageStyles.searchBar}>
-            <Card containerStyle={homePageStyles.titleCard}>
-              <SearchBarCard />
-            </Card>
-          </View>
-          <View style={homePageStyles.ViewNote}>
-            <ViewNotes />
-          </View>
-          <View>
-            <FooterOptions />
-          </View>
-        </View>
       </View>
-    );
-  }
-}
+      <View style={homePageStyles.searchNotes}>
+        <SearchBarCard setChangeViewNote={setChangeViewNote} />
+      </View>
+      <View style={homePageStyles.ViewNote}>
+        <ViewNotes changeViewNote={changeViewNote} />
+      </View>
+      <View>
+        <FooterOptions />
+      </View>
+    </View>
+  );
+};
+
 export default HomePage;

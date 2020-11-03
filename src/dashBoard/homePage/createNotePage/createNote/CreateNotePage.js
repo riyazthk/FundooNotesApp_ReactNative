@@ -7,43 +7,13 @@ import CreateNoteStyles from './CreateNotePageStyle';
 
 function CreateNotePage({navigation, route}) {
   const {item = undefined, index = undefined} = route.params ?? {};
-  const [color, setColor] = useState('white');
-  //console.log('color', color);
+  const [title, setTitle] = useState(item !== undefined ? item.title : '');
+  const [notes, setNotes] = useState(item !== undefined ? item.notes : '');
+  const [color, setColor] = useState(item !== undefined ? item.color : 'white');
+  const [pin, setPin] = useState(item !== undefined ? item.pin : false);
+  const [check, setCheck] = useState(0);
+  console.log('check title', title, notes, color, pin);
   return (
-    // <View>
-    //   {color === undefined ? (
-    //     <View style={CreateNoteStyles.header}>
-    //       <View style={CreateNoteStyles.headerOptions}>
-    //         <HeaderOptions />
-    //       </View>
-    //       <View style={CreateNoteStyles.body}>
-    //         <AddTitleAndNote item={item} index={index} />
-    //       </View>
-    //       <View style={CreateNoteStyles.footer}>
-    //         <FooterSide index={index} />
-    //       </View>
-    //     </View>
-    //   ) : (
-    //     <View
-    //       style={{
-    //         backgroundColor: color,
-    //         height: '100%',
-    //         paddingTop: 25,
-    //         flexDirection: 'column',
-    //         justifyContent: 'space-between',
-    //       }}>
-    //       <View style={CreateNoteStyles.headerOptions}>
-    //         <HeaderOptions />
-    //       </View>
-    //       <View style={CreateNoteStyles.body}>
-    //         <AddTitleAndNote item={item} index={index} />
-    //       </View>
-    //       <View style={CreateNoteStyles.footer}>
-    //         <FooterSide index={index} />
-    //       </View>
-    //     </View>
-    //   )}
-    // </View>
     <View>
       {index === undefined ? (
         <View
@@ -55,36 +25,69 @@ function CreateNotePage({navigation, route}) {
             justifyContent: 'space-between',
           }}>
           <View style={CreateNoteStyles.headerOptions}>
-            <HeaderOptions />
+            <HeaderOptions
+              pin={pin}
+              setPin={setPin}
+              title={title}
+              notes={notes}
+              color={color}
+              index={index}
+            />
           </View>
 
           <View style={CreateNoteStyles.body}>
-            <AddTitleAndNote item={item} index={index} color={color} />
+            <AddTitleAndNote
+              setTitle={setTitle}
+              setNotes={setNotes}
+              index={index}
+              color={color}
+              title={title}
+              notes={notes}
+            />
           </View>
 
           <View style={CreateNoteStyles.footer}>
-            <FooterSide index={index} setColor={setColor} />
+            <FooterSide index={index} setColor={setColor} setCheck={setCheck} />
           </View>
         </View>
       ) : (
         <View
           style={{
             height: '100%',
-            backgroundColor: item.color ,
+            backgroundColor: check === 0 ? item.color : color,
             paddingTop: 25,
             flexDirection: 'column',
             justifyContent: 'space-between',
           }}>
           <View style={CreateNoteStyles.headerOptions}>
-            <HeaderOptions />
+            <HeaderOptions
+              pin={pin}
+              setPin={setPin}
+              title={title}
+              notes={notes}
+              color={color}
+              index={index}
+            />
           </View>
 
           <View style={CreateNoteStyles.body}>
-            <AddTitleAndNote item={item} index={index} color={color} />
+            <AddTitleAndNote
+              setTitle={setTitle}
+              setNotes={setNotes}
+              index={index}
+              color={color}
+              title={title}
+              notes={notes}
+            />
           </View>
 
           <View style={CreateNoteStyles.footer}>
-            <FooterSide index={index} setColor={setColor} />
+            <FooterSide
+              item={item}
+              index={index}
+              setColor={setColor}
+              setCheck={setCheck}
+            />
           </View>
         </View>
       )}

@@ -1,22 +1,20 @@
-import Drawer from 'react-native-drawer';
-import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {
+  NavigationContainer,
+  NavigationHelpersContext,
+} from '@react-navigation/native';
+import HomePage from '../homePage/mainPage/headerHomePage/HomePage';
+import Remainder from '../homePage/remainder/Remainder';
 
-class DrawerComponent extends Component {
-  closeControlPanel = () => {
-    this._drawer.close();
-  };
-  openControlPanel = () => {
-    this._drawer.open();
-  };
-  render() {
-    return (
-      <View>
-        <Drawer
-          ref={(ref) => (this._drawer = ref)}
-          // content={ }
-        />
-      </View>
-    );
-  }
+const Drawer = createDrawerNavigator();
+
+export default function navigationDrawer() {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="homePage">
+        <Drawer.Screen name="homePage" component={HomePage} />
+        <Drawer.Screen name="remainder" component={Remainder} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
 }

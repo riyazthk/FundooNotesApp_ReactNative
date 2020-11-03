@@ -6,6 +6,7 @@ import FooterSideStyle from './FooterSideStyle';
 
 function FooterSide(props) {
   const [index] = useState(props.index);
+
   // const [color] = useState(props.setC);
   return (
     <View>
@@ -20,7 +21,12 @@ function FooterSide(props) {
           <Text style={FooterSideStyle.footerText}>Edited 12:17</Text>
         </View>
         <View style={FooterSideStyle.ellipsis}>
-          <RightBottomSheet index={index} setColor={props.setColor} />
+          <RightBottomSheet
+            index={index}
+            item={props.item}
+            setColor={props.setColor}
+            setCheck={props.setCheck}
+          />
         </View>
       </View>
     </View>

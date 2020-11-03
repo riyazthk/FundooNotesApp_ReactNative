@@ -117,7 +117,12 @@ function RightBottomSheet(props) {
           </View>
         </TouchableOpacity>
         <View>
-          <ColorItems setColor={props.setColor} />
+          <ColorItems
+            setColor={props.setColor}
+            setCheck={props.setCheck}
+            index={props.index}
+            item={props.item}
+          />
         </View>
       </RBSheet>
     </View>

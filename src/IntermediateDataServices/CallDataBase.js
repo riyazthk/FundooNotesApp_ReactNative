@@ -4,19 +4,25 @@ let boolean = false;
 let getTitle;
 let getNotes;
 let getIndex;
-let getColor;
+let getColor = 'white';
+let getPin = false;
 export function CallDataBase(title, notes, index) {
   getTitle = title;
   getNotes = notes;
   getIndex = index;
-  console.log(boolean);
+  console.log('print title', getTitle, getNotes);
 }
-export function CallDataBases() {
+export function CallDataBases(title, notes) {
   boolean = true;
-
-  if (getColor === undefined) {
-    getColor = 'white';
+  if (getTitle === undefined) {
+    getTitle = title;
   }
+  if (getNotes === undefined) {
+    getNotes = notes;
+  }
+  // if (getColor === undefined) {
+  //   getColor = 'white';
+  // }
   console.log('test', getTitle, getNotes);
   if (
     boolean === true &&
@@ -24,17 +30,35 @@ export function CallDataBases() {
     getNotes !== undefined &&
     getIndex === undefined
   ) {
-    AddNotes(getTitle, getNotes, getColor);
+    console.log('add notes');
+    AddNotes(getTitle, getNotes, getColor, getPin);
   } else if (getIndex !== undefined) {
-    EditNotes(getTitle, getNotes, getIndex, getColor);
+    console.log('edit notes', getColor);
+    EditNotes(getTitle, getNotes, getIndex, getColor, getPin);
   }
 }
-export function addColorNote(value) {
-  console.log('color', value);
-
-  getColor = value;
+// export function addColorNote(title, notes, index, color, pin) {
+//   console.log('pinned data', title, notes, pin, index, color);
+//   getTitle = title;
+//   getNotes = notes;
+//   getColor = color;
+//   getIndex = index;
+//   getPin = pin;
+// }
+export function addColorNote(color) {
+  getColor = color;
 }
 export function CallDeleteNotes(value, index) {
-  console.log('deleteNote');
+  console.log('deleteNote', index);
   DeleteNotes(index);
+}
+// export function callPinned(title, notes, index, color, pin) {
+//   getTitle = title;
+//   getNotes = notes;
+//   getPin = pin;
+//   getIndex = index;
+//   getColor = color;
+// }
+export function callPinned(pin) {
+  getPin = pin;
 }

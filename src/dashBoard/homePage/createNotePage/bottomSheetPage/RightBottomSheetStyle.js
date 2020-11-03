@@ -74,6 +74,7 @@ const bottomSheetStyle = StyleSheet.create({
   styleImage: {
     height: 40,
     width: 40,
+    // backgroundColor: 'black',
   },
 });
 export default bottomSheetStyle;
