@@ -20,7 +20,7 @@ function ColorItems({setColor, setCheck, index, item}) {
   // const [color, setColor] = useState();
   const handleClickColor = (value) => {
     //console.log('dfsgfgf', item.title, item.notes);
-   // addColorNote(item.title, item.notes, index, value, item.pin);
+    // addColorNote(item.title, item.notes, index, value, item.pin);
     setColor(value);
     setCheck(1);
     // navigation.navigate('createNotePage', {color: value});

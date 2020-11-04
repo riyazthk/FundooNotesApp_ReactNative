@@ -49,7 +49,7 @@ const ViewNotes = (props, {flag}) => {
                       <Card
                         containerStyle={{
                           backgroundColor: item.color,
-                          width: props.changeViewNote === false ? 100 : null,
+                          width: props.changeViewNote === false ? 170 : null,
                         }}>
                         <View>
                           <Text>{item.title}</Text>
@@ -89,7 +89,7 @@ const ViewNotes = (props, {flag}) => {
                       <Card
                         containerStyle={{
                           backgroundColor: item.color,
-                          width: props.changeViewNote === false ? 100 : null,
+                          width: props.changeViewNote === false ? 170 : null,
                         }}>
                         <View>
                           <Text>{item.title}</Text>

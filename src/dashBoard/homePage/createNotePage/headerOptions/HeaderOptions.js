@@ -1,10 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Image,
-  TouchableOpacity,
-  TouchableOpacityBase,
-} from 'react-native';
+import {View, Image, TouchableOpacity, Text} from 'react-native';
 import HeaderOptionStyle from './HeaderOptionStyle';
 import {useNavigation} from '@react-navigation/native';
 import {
@@ -12,6 +7,7 @@ import {
   callPinned,
 } from '../../../../IntermediateDataServices/CallDataBase';
 import {AddNotes, EditNotes} from '../../../../services/noteService';
+import Remainder from '../remainder/Remainder';
 
 const HeaderOptions = ({
   setPin,
@@ -39,11 +35,15 @@ const HeaderOptions = ({
     setPin(!pin);
   };
   const handleArchieve = () => {
-    setArchieve(!archieve);
-    archieve = true;
-    handleBackToHomePage();
-    navigation.navigate('ArchieveNote');
+    if (setArchieve === false) {
+      //setArchieve(!archieve);
+      archieve = true;
+      handleBackToHomePage();
+    } else {
+      archieve = false;
+    }
   };
+
   const navigation = useNavigation();
   return (
     <View style={HeaderOptionStyle.headerOptions}>
@@ -75,19 +75,16 @@ const HeaderOptions = ({
         </View>
       )}
       <View style={HeaderOptionStyle.remainder}>
-        <Image
-          source={require('../../../../assets/reminderplus.png')}
-          style={{height: 35, width: 35}}
-        />
+        <Remainder />
       </View>
-      <TouchableOpacity onPress={() => handleArchieve()}>
-        <View style={HeaderOptionStyle.archieve}>
+      <View style={HeaderOptionStyle.archieve}>
+        <TouchableOpacity onPress={() => handleArchieve()}>
           <Image
             source={require('../../../../assets/archive.png')}
             style={{height: 35, width: 35}}
           />
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
