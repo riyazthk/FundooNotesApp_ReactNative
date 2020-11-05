@@ -54,7 +54,7 @@ const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
       );
     }
     console.log('get flag value', flag);
-    navigation.navigate('homePage', {flag: flag});
+    navigation.navigate('home', {flag: flag});
   };
   const handlePin = () => {
     props.setPin(!props.pin);

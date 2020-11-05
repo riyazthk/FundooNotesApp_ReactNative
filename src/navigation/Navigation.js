@@ -8,7 +8,6 @@ import SignUp from '../pages/signUpPage/SignUp';
 import HomePage from '../dashBoard/homePage/mainPage/headerHomePage/HomePage';
 import CreateNotePage from '../dashBoard/homePage/createNotePage/createNote/CreateNotePage';
 import navigationDrawer from '../dashBoard/drawerPage/DrawerComponent';
-import ArchieveNote from '../dashBoard/homePage/createNotePage/archieveNote/ArchieveNote';
 import DrawerComponent from '../dashBoard/drawerPage/DrawerComponent';
 import RestorePage from '../dashBoard/homePage/createNotePage/delete/RestorePage';
 
