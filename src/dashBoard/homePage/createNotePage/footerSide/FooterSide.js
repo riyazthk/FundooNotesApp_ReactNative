@@ -1,13 +1,9 @@
 import React from 'react';
-import {useState} from 'react';
 import {View, Text, Image} from 'react-native';
 import RightBottomSheet from '../bottomSheetPage/RightBottomSheet';
 import FooterSideStyle from './FooterSideStyle';
 
 function FooterSide(props) {
-  const [index] = useState(props.index);
-  // console.log('check title footer side', props.title, props.notes, index);
-  // const [color] = useState(props.setC);
   return (
     <View>
       <View style={FooterSideStyle.footerComponent}>

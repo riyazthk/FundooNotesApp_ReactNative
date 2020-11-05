@@ -1,10 +1,8 @@
-import {View, Text} from 'react-native';
-import React, {Component, useState} from 'react';
+/* eslint-disable react-native/no-inline-styles */
+import {View} from 'react-native';
+import React from 'react';
 import AddTitleAndNoteStyle from './AddTitleAndNoteStyle';
 import {TextInput} from 'react-native';
-import HeaderOptions from '../../../homePage/createNotePage/headerOptions/HeaderOptions';
-import {CallDataBase} from '../../../../IntermediateDataServices/CallDataBase';
-import {set} from 'react-native-reanimated';
 import {RNChipView} from 'react-native-chip-view';
 import Alarm from 'react-native-vector-icons/MaterialCommunityIcons';
 function AddTitleAndNote({
@@ -17,7 +15,6 @@ function AddTitleAndNote({
   dateTime,
   remainder,
 }) {
-  // console.log(title, notes, index, 'remainder', remainder);
   const handleTitleValue = (text) => {
     setTitle(text);
   };

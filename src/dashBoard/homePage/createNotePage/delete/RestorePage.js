@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {Image, View, TouchableOpacity, TextInput} from 'react-native';
 import AddTitleAndNoteStyle from '../addTitleAndNote/AddTitleAndNoteStyle';
@@ -30,7 +32,6 @@ const RestorePage = ({route}) => {
                 borderWidth: 1,
               }}
               placeholder="title"
-              // onChangeText={(text) => handleTitleValue(text)}
               value={item.title}
             />
           </View>
@@ -42,7 +43,6 @@ const RestorePage = ({route}) => {
                 borderWidth: 1,
               }}
               placeholder="note"
-              //onChangeText={(text) => handleNoteValue(text)}
               value={item.notes}
             />
           </View>

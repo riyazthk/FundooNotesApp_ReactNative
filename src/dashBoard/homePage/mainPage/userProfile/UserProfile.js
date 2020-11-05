@@ -1,5 +1,5 @@
 import React, {Component, useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image, Avatar} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import {
   addImage,
@@ -9,12 +9,7 @@ import {
 import UserProfileStyle from './UserProfileStyle';
 import * as Progress from 'react-native-progress';
 function UserProfile() {
-  //   constructor(props) {
-  //     super(props);
-  //     this.state = {
-  //       resourcePath: {},
-  //     };
-  //   }
+  var imageBlob = null;
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [transfered, setTransfered] = useState(0);
@@ -46,7 +41,7 @@ function UserProfile() {
       },
     };
 
-    ImagePicker.showImagePicker(options, (res) => {
+    ImagePicker.showImagePicker(options, async (res) => {
       console.log('Response = ', res);
 
       if (res.didCancel) {
@@ -59,6 +54,8 @@ function UserProfile() {
         const source = {uri: res.uri};
         setImage(source);
       }
+      //var blob = new Blob([image], {type: 'image/jpeg'});
+      imageBlob = await image.blob();
     });
     //console.log('resourcepath', this.state.resourcePath);
   };

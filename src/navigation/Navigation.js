@@ -5,9 +5,7 @@ import LoginPage from '../pages/signInPage/LoginPage';
 import UserEmail from '../pages/getUserEmailPage/UserEmail';
 import ResetPassword from '../pages/resetPasswordPage/ResetPassword';
 import SignUp from '../pages/signUpPage/SignUp';
-import HomePage from '../dashBoard/homePage/mainPage/headerHomePage/HomePage';
 import CreateNotePage from '../dashBoard/homePage/createNotePage/createNote/CreateNotePage';
-import navigationDrawer from '../dashBoard/drawerPage/DrawerComponent';
 import DrawerComponent from '../dashBoard/drawerPage/DrawerComponent';
 import RestorePage from '../dashBoard/homePage/createNotePage/delete/RestorePage';
 
@@ -16,8 +14,6 @@ function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        // initialRouteName={user ? 'homePage' : 'loginPage'}
-        // screenOptions={{headerShown: false}}>
         initialRouteName={'homePage'}
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="loginPage" component={LoginPage} />
@@ -27,8 +23,6 @@ function Navigation() {
         <Stack.Screen name="homePage" component={DrawerComponent} />
         <Stack.Screen name="createNotePage" component={CreateNotePage} />
         <Stack.Screen name="restorePage" component={RestorePage} />
-        {/* <Stack.Screen name="drawer" component={DrawerComponent} /> */}
-        {/* <DrawerComponent /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

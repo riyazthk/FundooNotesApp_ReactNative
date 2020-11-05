@@ -1,13 +1,11 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {Component, useRef, useState} from 'react';
+/* eslint-disable react-native/no-inline-styles */
+import React, {useRef, useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {Card} from 'react-native-elements';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import HeaderOptionStyle from '../createNotePage/headerOptions/HeaderOptionStyle';
 import UserProfile from '../mainPage/userProfile/UserProfile';
 import SearchBarStyle from './SearchBarStyle';
 function SearchBarCard({setChangeViewNote, navigation}) {
-  // const navigation = useNavigation();
   const [gridView, setGridView] = useState(false);
   const [toggleImage, setToggleImage] = useState(false);
   const refRBSheet = useRef();
@@ -66,8 +64,6 @@ function SearchBarCard({setChangeViewNote, navigation}) {
               </TouchableOpacity>
             </View>
           )}
-          {/* </View> */}
-          {/* </View> */}
 
           <View style={SearchBarStyle.loginbl}>
             <TouchableOpacity onPress={() => refRBSheet.current.open()}>
@@ -104,7 +100,7 @@ function SearchBarCard({setChangeViewNote, navigation}) {
               elevation: 5,
             },
           }}
-          height={1000}>
+          height={500}>
           <UserProfile />
         </RBSheet>
       </View>

@@ -21,13 +21,9 @@ export async function AddNotes(
   };
   console.log(data);
   await dbase.dbase.ref('/notes/' + 'THbOLZ2ABpbWuZnJI1THnh4QBl72').push(data);
-  // let key = await dbase.dbase.ref('/notes/' + 'THbOLZ2ABpbWuZnJI1THnh4QBl72').push().
-  //return callback;
 }
 let key = [];
-let boolean = true;
 export async function GetNotes() {
-  console.log('get view notes');
   let arr = [];
   await firebase.firebase
     .database()
@@ -80,16 +76,37 @@ export async function EditNotes(
 }
 
 export async function addImage(image) {
-  console.log('imageee', image);
-  console.log('image uri', image.uri);
   const uploadPath = image.uri;
-  let response = await dbStorage.dbStorage
-    .ref('/profile' + image.name)
-    .put(uploadPath);
-  // console.log(response);
+  await dbStorage.dbStorage.ref('/profile' + image.name).put(uploadPath);
 }
 export async function retrieveImageDb() {
   const response = await dbStorage.dbStorage.ref('/profile').getDownloadURL();
   console.log(response);
   return response;
+}
+
+export async function addLabel(labelValue) {
+  let data = {
+    label: labelValue,
+  };
+  const response = await dbase.dbase
+    .ref('/label/' + 'THbOLZ2ABpbWuZnJI1THnh4QBl72')
+    .push(data);
+  return response;
+}
+let labelKey = [];
+export async function getLabel() {
+  let labelArr = [];
+  await firebase.firebase
+    .database()
+    .ref('/label/' + 'THbOLZ2ABpbWuZnJI1THnh4QBl72')
+    .once('value', function (snapshot) {
+      labelKey = [];
+      snapshot.forEach(function (childSnapShot) {
+        labelArr.push(childSnapShot.val());
+        labelKey.push(childSnapShot.key);
+      });
+    });
+  console.log('key', labelArr);
+  return labelArr;
 }

@@ -1,5 +1,4 @@
-import {useLinkProps, useNavigation} from '@react-navigation/native';
-//import {useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
 import {Card} from 'react-native-elements';
@@ -10,17 +9,12 @@ function FooterOptions(props) {
     <View>
       <View style={FooterOptionsStyles.footerBody}>
         <View style={FooterOptionsStyles.headerFooter}>
-          <View style={FooterOptionsStyles.outerFooter}></View>
+          <View style={FooterOptionsStyles.outerFooter} />
           <View style={FooterOptionsStyles.footerStyle}>
             <Card containerStyle={FooterOptionsStyles.notesCard}>
               <View>
                 <TouchableOpacity
-                  onPress={() =>
-                    // navigation.navigate('createNotePage', {
-                    //   setFlag: props.setFlag,
-                    // })
-                    navigation.navigate('createNotePage')
-                  }>
+                  onPress={() => navigation.navigate('createNotePage')}>
                   <Image
                     source={require('../../../../assets/plus2.png')}
                     style={FooterOptionsStyles.plusSymbol}

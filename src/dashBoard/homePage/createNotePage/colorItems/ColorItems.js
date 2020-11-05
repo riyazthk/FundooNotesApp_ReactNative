@@ -3,10 +3,8 @@ import {FlatList, TouchableOpacity, View} from 'react-native';
 import {Card} from 'react-native-elements';
 import colorItemStyle from './colorItemsStyle';
 import React from 'react';
-import {addColorNote} from '../../../../IntermediateDataServices/CallDataBase';
 
-function ColorItems({setColor, setCheck, index, item}) {
-  // const navigation = useNavigation();
+function ColorItems({setColor, setCheck}) {
   let notesColor = [
     {title: 'MAROON', id: '#fc9dc9'},
     {title: 'WHITE', id: '#FFFFFF'},
@@ -17,13 +15,10 @@ function ColorItems({setColor, setCheck, index, item}) {
     {title: 'OLIVE', id: '#f7d6be'},
     {title: 'LIME', id: '#ebebeb'},
   ];
-  // const [color, setColor] = useState();
+
   const handleClickColor = (value) => {
-    //console.log('dfsgfgf', item.title, item.notes);
-    // addColorNote(item.title, item.notes, index, value, item.pin);
     setColor(value);
     setCheck(1);
-    // navigation.navigate('createNotePage', {color: value});
   };
   const renderItem = ({item}) => {
     return (
@@ -47,7 +42,6 @@ function ColorItems({setColor, setCheck, index, item}) {
         renderItem={(item) => renderItem(item)}
         keyExtractor={(item) => item.title}
       />
-      {/* <CreateNotePage color={color} /> */}
     </View>
   );
 }

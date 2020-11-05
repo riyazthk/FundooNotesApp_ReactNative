@@ -1,4 +1,4 @@
-import {useLinkProps} from '@react-navigation/native';
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {View} from 'react-native';
 import AddTitleAndNote from '../addTitleAndNote/AddTitleAndNote';
@@ -13,7 +13,7 @@ function CreateNotePage({navigation, route}) {
   const [color, setColor] = useState(item !== undefined ? item.color : 'white');
   const [pin, setPin] = useState(item !== undefined ? item.pin : false);
   const [archieve, setArchieve] = useState(
-    item != undefined ? item.archieve : false,
+    item !== undefined ? item.archieve : false,
   );
   const [deleteNote, setDeleteNote] = useState(
     item !== undefined ? item.delete : false,
@@ -23,19 +23,6 @@ function CreateNotePage({navigation, route}) {
   );
   const [remainder, setRemainder] = useState(false);
   const [check, setCheck] = useState(0);
-  // console.log(
-  //   'check title',
-  //   title,
-  //   notes,
-  //   color,
-  //   'pin ',
-  //   pin,
-  //   'archieve ',
-  //   archieve,
-  //   'delete ',
-  //   deleteNote,
-  //   index,
-  // );
   console.log('notes', title, notes, archieve);
   return (
     <View>

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
@@ -56,12 +57,9 @@ function Remainder() {
                 }>
                 {item.remainder !== '' ? (
                   <View>
-                    {/* <Text>pinned</Text> */}
                     <Card
                       containerStyle={{
                         backgroundColor: item.color,
-                        // width: props.changeViewNote === false ? 100 : null,
-                        //width: 100,
                       }}>
                       <View>
                         <Text>{item.title}</Text>

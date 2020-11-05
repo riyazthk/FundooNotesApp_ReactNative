@@ -4,6 +4,7 @@ import HomePage from '../homePage/mainPage/headerHomePage/HomePage';
 import Remainder from '../homePage/remainder/Remainder';
 import Delete from '../homePage/createNotePage/delete/RestorePage';
 import ArchieveNote from '../homePage/mainPage/archieveNote/ArchieveNote';
+import CreateLabel from '../homePage/label/CreateLabel';
 const Drawer = createDrawerNavigator();
 
 function DrawerComponent({navigation}) {
@@ -13,7 +14,7 @@ function DrawerComponent({navigation}) {
       <Drawer.Screen name="remainder" component={Remainder} />
       <Drawer.Screen name="archieveNote" component={ArchieveNote} />
       <Drawer.Screen name="delete" component={Delete} />
-      {/* <Drawer.Screen name="label" component={createNewLabel} /> */}
+      <Drawer.Screen name="label" component={CreateLabel} />
     </Drawer.Navigator>
   );
 }

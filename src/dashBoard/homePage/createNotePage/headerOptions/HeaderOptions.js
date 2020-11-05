@@ -1,23 +1,14 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {View, Image, TouchableOpacity, Text} from 'react-native';
+import {View, Image, TouchableOpacity} from 'react-native';
 import HeaderOptionStyle from './HeaderOptionStyle';
 import {useNavigation} from '@react-navigation/native';
-import {
-  CallDataBases,
-  callPinned,
-} from '../../../../IntermediateDataServices/CallDataBase';
-import {
-  AddNotes,
-  DeleteNotes,
-  EditNotes,
-  GetNotes,
-} from '../../../../services/noteService';
+import {AddNotes, EditNotes} from '../../../../services/noteService';
 import Remainder from '../remainder/Remainder';
-// import ViewNotes from '../../mainPage/viewNotes/ViewNotes';
 
 const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
   let archieves = false;
-  const [flag, setFlag] = useState(Math.random());
+  const [flag] = useState(Math.random());
   const handleBackToHomePage = () => {
     console.log(
       'check value ',
@@ -29,7 +20,6 @@ const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
     );
     if (props.index === undefined) {
       console.log('add notes');
-      // setFlag(Math.random());
       AddNotes(
         props.title,
         props.notes,
@@ -41,7 +31,6 @@ const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
       );
     } else {
       console.log('edit notes');
-      //setFlag(Math.random());
       EditNotes(
         props.title,
         props.notes,
@@ -68,7 +57,6 @@ const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
       handleBackToHomePage();
     } else {
       console.log('else');
-      //archieves = false;
       props.setArchieve(false);
       console.log('enter', props.archieve);
     }

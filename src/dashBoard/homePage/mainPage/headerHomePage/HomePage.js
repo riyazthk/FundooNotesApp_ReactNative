@@ -1,7 +1,5 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {Component, useState} from 'react';
-import {View, TouchableOpacity, Image} from 'react-native';
-import {Card} from 'react-native-elements';
+import React, {useState} from 'react';
+import {View} from 'react-native';
 import StatusBarView from '../../../statusBar/StatusBarView';
 import SearchBarCard from '../../searchBarCard/SearchBar';
 import FooterOptions from '../footerHomePage/FooterOptions';
@@ -12,10 +10,7 @@ const HomePage = ({navigation, route}) => {
   const {flag = undefined} = route.params ?? {};
   // const flags=flag.getParam
   const [changeViewNote, setChangeViewNote] = useState(false);
-  //const [flag, setFlag] = useState(Math.random());
   console.log('view look ', flag);
-
-  // const navigation = useNavigation();
   return (
     <View style={homePageStyles.body}>
       <View>

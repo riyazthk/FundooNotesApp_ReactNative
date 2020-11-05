@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, TextInput, Button} from 'react-native';
+import {View, TouchableOpacity, TextInput, Button} from 'react-native';
 import {Image} from 'react-native-elements';
 import Modal from 'react-native-modal';
 import Calendar from 'react-native-vector-icons/AntDesign';
@@ -12,7 +13,6 @@ const Remainder = ({setRemainder, setDateTime}) => {
   const [date, setDate] = useState();
   const [time, setTime] = useState();
   const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
   console.log('checking', setRemainder);
   const showDate = () => {
     setMode('date');
