@@ -1,30 +1,30 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
+import {RNChipView} from 'react-native-chip-view';
 import {Card} from 'react-native-elements';
 import {GetNotes} from '../../../../services/noteService';
-
-const ViewNotes = (props, {flag}) => {
+import AddTitleAndNoteStyle from '../../createNotePage/addTitleAndNote/AddTitleAndNoteStyle';
+import Alarm from 'react-native-vector-icons/MaterialCommunityIcons';
+const ViewNotes = (props) => {
   const navigation = useNavigation();
   const [viewNote, setViewNote] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
-  //console.log('value', props.flag);
+  console.log('value', props.flag);
   useEffect(() => {
     GetNotes()
       .then((res) => {
-        //setIsLoading(false);
         setViewNote(res);
       })
       .catch((err) => {
         console.log('error', err);
       });
-  }, [flag]);
+  }, [props.flag]);
 
   return (
     <View>
       <ScrollView>
-        <View>
-          <Text>pinned</Text>
+        <View style={{paddingLeft: 10, paddingTop: 5}}>
+          <Text style={{fontSize: 25}}>pinned</Text>
         </View>
 
         <View
@@ -43,7 +43,9 @@ const ViewNotes = (props, {flag}) => {
                       index: index,
                     })
                   }>
-                  {item.pin === true && item.archieve === false ? (
+                  {item.pin === true &&
+                  item.archieve === false &&
+                  item.delete === false ? (
                     <View>
                       {/* <Text>pinned</Text> */}
                       <Card
@@ -57,6 +59,15 @@ const ViewNotes = (props, {flag}) => {
                         <View>
                           <Text>{item.notes}</Text>
                         </View>
+                        {item.remainder !== '' ? (
+                          <View style={{width: '60%'}}>
+                            <RNChipView
+                              title={item.remainder}
+                              avatar={<Alarm name="alarm" size={20} />}
+                              avatarStyle={AddTitleAndNoteStyle.avatar}
+                            />
+                          </View>
+                        ) : null}
                       </Card>
                     </View>
                   ) : null}
@@ -65,8 +76,8 @@ const ViewNotes = (props, {flag}) => {
             );
           })}
         </View>
-        <View>
-          <Text>others</Text>
+        <View style={{paddingLeft: 10, paddingTop: 5}}>
+          <Text style={{fontSize: 25}}>others</Text>
         </View>
         <View
           style={{
@@ -84,7 +95,9 @@ const ViewNotes = (props, {flag}) => {
                       index: index,
                     })
                   }>
-                  {item.pin === false && item.archieve === false ? (
+                  {item.pin === false &&
+                  item.archieve === false &&
+                  item.delete === false ? (
                     <View>
                       <Card
                         containerStyle={{
@@ -97,6 +110,15 @@ const ViewNotes = (props, {flag}) => {
                         <View>
                           <Text>{item.notes}</Text>
                         </View>
+                        {item.remainder !== '' ? (
+                          <View style={{width: '60%'}}>
+                            <RNChipView
+                              title={item.remainder}
+                              avatar={<Alarm name="alarm" size={20} />}
+                              avatarStyle={AddTitleAndNoteStyle.avatar}
+                            />
+                          </View>
+                        ) : null}
                       </Card>
                     </View>
                   ) : null}

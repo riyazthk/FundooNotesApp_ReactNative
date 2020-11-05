@@ -8,9 +8,13 @@ import FooterOptions from '../footerHomePage/FooterOptions';
 import ViewNotes from '../viewNotes/ViewNotes';
 import homePageStyles from './homePageStyle';
 
-const HomePage = ({navigation}) => {
+const HomePage = ({navigation, route}) => {
+  const {flag = undefined} = route.params ?? {};
+  // const flags=flag.getParam
   const [changeViewNote, setChangeViewNote] = useState(false);
-  console.log('view look ', changeViewNote);
+  //const [flag, setFlag] = useState(Math.random());
+  console.log('view look ', flag);
+
   // const navigation = useNavigation();
   return (
     <View style={homePageStyles.body}>
@@ -24,7 +28,7 @@ const HomePage = ({navigation}) => {
         />
       </View>
       <View style={homePageStyles.ViewNote}>
-        <ViewNotes changeViewNote={changeViewNote} />
+        <ViewNotes changeViewNote={changeViewNote} flag={flag} />
       </View>
       <View>
         <FooterOptions />

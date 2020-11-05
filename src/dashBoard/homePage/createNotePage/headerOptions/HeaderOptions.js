@@ -6,41 +6,71 @@ import {
   CallDataBases,
   callPinned,
 } from '../../../../IntermediateDataServices/CallDataBase';
-import {AddNotes, EditNotes} from '../../../../services/noteService';
+import {
+  AddNotes,
+  DeleteNotes,
+  EditNotes,
+  GetNotes,
+} from '../../../../services/noteService';
 import Remainder from '../remainder/Remainder';
+// import ViewNotes from '../../mainPage/viewNotes/ViewNotes';
 
-const HeaderOptions = ({
-  setPin,
-  pin,
-  title,
-  notes,
-  color,
-  index,
-  setArchieve,
-}) => {
-  let archieve = false;
+const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
+  let archieves = false;
   const [flag, setFlag] = useState(Math.random());
   const handleBackToHomePage = () => {
-    console.log('check value ', title, notes, color, index, pin);
-    if (index === undefined) {
+    console.log(
+      'check value ',
+      props.title,
+      props.notes,
+      props.color,
+      props.index,
+      props.pin,
+    );
+    if (props.index === undefined) {
       console.log('add notes');
-      AddNotes(title, notes, color, pin, archieve);
+      // setFlag(Math.random());
+      AddNotes(
+        props.title,
+        props.notes,
+        props.color,
+        props.pin,
+        archieves,
+        props.deleteNote,
+        props.dateTime,
+      );
     } else {
       console.log('edit notes');
-      EditNotes(title, notes, index, color, pin, archieve);
+      //setFlag(Math.random());
+      EditNotes(
+        props.title,
+        props.notes,
+        props.index,
+        props.color,
+        props.pin,
+        archieves,
+        props.deleteNote,
+        props.dateTime,
+      );
     }
+    console.log('get flag value', flag);
     navigation.navigate('homePage', {flag: flag});
   };
   const handlePin = () => {
-    setPin(!pin);
+    props.setPin(!props.pin);
   };
   const handleArchieve = () => {
-    if (setArchieve === false) {
-      //setArchieve(!archieve);
-      archieve = true;
+    console.log('entry', props.archieve);
+    if (props.archieve === false) {
+      archieves = true;
+      props.setArchieve(true);
+      console.log('enter', props.archieve);
       handleBackToHomePage();
     } else {
-      archieve = false;
+      console.log('else');
+      //archieves = false;
+      props.setArchieve(false);
+      console.log('enter', props.archieve);
     }
   };
 
@@ -55,7 +85,7 @@ const HeaderOptions = ({
           />
         </TouchableOpacity>
       </View>
-      {pin === false ? (
+      {props.pin === false ? (
         <View style={HeaderOptionStyle.pin}>
           <TouchableOpacity onPress={() => handlePin()}>
             <Image
@@ -75,7 +105,10 @@ const HeaderOptions = ({
         </View>
       )}
       <View style={HeaderOptionStyle.remainder}>
-        <Remainder />
+        <Remainder
+          setRemainder={props.setRemainder}
+          setDateTime={props.setDateTime}
+        />
       </View>
       <View style={HeaderOptionStyle.archieve}>
         <TouchableOpacity onPress={() => handleArchieve()}>

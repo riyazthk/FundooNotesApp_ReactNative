@@ -36,7 +36,7 @@ const SearchBarStyle = StyleSheet.create({
     fontSize: 15,
   },
   list: {
-    //width: '100%',
+    width: '17%',
     // height: 60,
     //backgroundColor: 'red',
   },

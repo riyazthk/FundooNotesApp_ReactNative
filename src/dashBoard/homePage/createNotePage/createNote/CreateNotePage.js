@@ -1,3 +1,4 @@
+import {useLinkProps} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {View} from 'react-native';
 import AddTitleAndNote from '../addTitleAndNote/AddTitleAndNote';
@@ -14,8 +15,28 @@ function CreateNotePage({navigation, route}) {
   const [archieve, setArchieve] = useState(
     item != undefined ? item.archieve : false,
   );
+  const [deleteNote, setDeleteNote] = useState(
+    item !== undefined ? item.delete : false,
+  );
+  const [dateTime, setDateTime] = useState(
+    item !== undefined ? item.remainder : '',
+  );
+  const [remainder, setRemainder] = useState(false);
   const [check, setCheck] = useState(0);
-  console.log('check title', title, notes, color, pin, archieve);
+  // console.log(
+  //   'check title',
+  //   title,
+  //   notes,
+  //   color,
+  //   'pin ',
+  //   pin,
+  //   'archieve ',
+  //   archieve,
+  //   'delete ',
+  //   deleteNote,
+  //   index,
+  // );
+  console.log('notes', title, notes, archieve);
   return (
     <View>
       {index === undefined ? (
@@ -31,12 +52,17 @@ function CreateNotePage({navigation, route}) {
             <HeaderOptions
               pin={pin}
               setPin={setPin}
-              // archieve={archieve}
+              archieve={archieve}
               setArchieve={setArchieve}
               title={title}
               notes={notes}
               color={color}
               index={index}
+              deleteNote={deleteNote}
+              setRemainder={setRemainder}
+              remainder={remainder}
+              dateTime={dateTime}
+              setDateTime={setDateTime}
             />
           </View>
 
@@ -48,11 +74,18 @@ function CreateNotePage({navigation, route}) {
               color={color}
               title={title}
               notes={notes}
+              dateTime={dateTime}
+              remainder={remainder}
             />
           </View>
 
           <View style={CreateNoteStyles.footer}>
-            <FooterSide index={index} setColor={setColor} setCheck={setCheck} />
+            <FooterSide
+              index={index}
+              setColor={setColor}
+              setCheck={setCheck}
+              setDeleteNote={setDeleteNote}
+            />
           </View>
         </View>
       ) : (
@@ -72,8 +105,14 @@ function CreateNotePage({navigation, route}) {
               notes={notes}
               color={color}
               index={index}
-              // archieve={archieve}
+              archieve={archieve}
               setArchieve={setArchieve}
+              deleteNote={deleteNote}
+              remainder={remainder}
+              //setFlag={props.setFlag}
+              setRemainder={setRemainder}
+              setDateTime={setDateTime}
+              dateTime={dateTime}
             />
           </View>
 
@@ -85,6 +124,8 @@ function CreateNotePage({navigation, route}) {
               color={color}
               title={title}
               notes={notes}
+              remainder={remainder}
+              dateTime={dateTime}
             />
           </View>
 
@@ -92,8 +133,15 @@ function CreateNotePage({navigation, route}) {
             <FooterSide
               item={item}
               index={index}
+              pin={pin}
+              title={title}
+              notes={notes}
+              color={color}
+              archieve={archieve}
+              deleteNote={deleteNote}
               setColor={setColor}
               setCheck={setCheck}
+              setDeleteNote={setDeleteNote}
             />
           </View>
         </View>

@@ -1,7 +1,11 @@
 import React, {Component, useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
-import {addImage, retrieveImage} from '../../../../services/noteService';
+import {
+  addImage,
+  retrieveImage,
+  retrieveImageDb,
+} from '../../../../services/noteService';
 import UserProfileStyle from './UserProfileStyle';
 import * as Progress from 'react-native-progress';
 function UserProfile() {
@@ -63,7 +67,7 @@ function UserProfile() {
     let response = await addImage(image);
   };
   const retrieveImages = async () => {
-    await retrieveImage()
+    let response = await retrieveImageDb()
       .then((res) => {
         setRetrieveImage(res);
       })
@@ -91,6 +95,7 @@ function UserProfile() {
         </TouchableOpacity>
         <View style={UserProfileStyle.imageContainer}>
           {/* <Image source={{uri: image.uri}} style={UserProfileStyle.imageBox} /> */}
+
           {image !== null ? (
             <Image
               source={{uri: image.uri}}
@@ -110,11 +115,11 @@ function UserProfile() {
           </TouchableOpacity>
         )}
         {/* </View> */}
-        <TouchableOpacity onPress={() => retrieveImages()}>
-          <View>
-            <Image source={{uri: setRetrieveImage}} />
-          </View>
-        </TouchableOpacity>
+        {/* <TouchableOpacity onPress={() => retrieveImages()}> */}
+        <View>
+          <Image source={{retrieveImage}} />
+        </View>
+        {/* </TouchableOpacity> */}
       </View>
     </View>
   );

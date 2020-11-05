@@ -10,6 +10,7 @@ import CreateNotePage from '../dashBoard/homePage/createNotePage/createNote/Crea
 import navigationDrawer from '../dashBoard/drawerPage/DrawerComponent';
 import ArchieveNote from '../dashBoard/homePage/createNotePage/archieveNote/ArchieveNote';
 import DrawerComponent from '../dashBoard/drawerPage/DrawerComponent';
+import RestorePage from '../dashBoard/homePage/createNotePage/delete/RestorePage';
 
 const Stack = createStackNavigator();
 function Navigation() {
@@ -26,6 +27,7 @@ function Navigation() {
         <Stack.Screen name="signUp" component={SignUp} />
         <Stack.Screen name="homePage" component={DrawerComponent} />
         <Stack.Screen name="createNotePage" component={CreateNotePage} />
+        <Stack.Screen name="restorePage" component={RestorePage} />
         {/* <Stack.Screen name="drawer" component={DrawerComponent} /> */}
         {/* <DrawerComponent /> */}
       </Stack.Navigator>

@@ -5,23 +5,24 @@ import {TextInput} from 'react-native';
 import HeaderOptions from '../../../homePage/createNotePage/headerOptions/HeaderOptions';
 import {CallDataBase} from '../../../../IntermediateDataServices/CallDataBase';
 import {set} from 'react-native-reanimated';
-
-function AddTitleAndNote({setTitle, setNotes, title, notes, index, color}) {
-  // console.log('value are', props.item.title, props.item.notes);
-  // const [title, setTitles] = useState(
-  //   props.item !== undefined ? props.item.title : '',
-  // );
-  // const [notes, setNotess] = useState(
-  //   props.item !== undefined ? props.item.notes : '',
-  // );
-  console.log(title, notes, index);
+import {RNChipView} from 'react-native-chip-view';
+import Alarm from 'react-native-vector-icons/MaterialCommunityIcons';
+function AddTitleAndNote({
+  setTitle,
+  setNotes,
+  title,
+  notes,
+  index,
+  color,
+  dateTime,
+  remainder,
+}) {
+  // console.log(title, notes, index, 'remainder', remainder);
   const handleTitleValue = (text) => {
     setTitle(text);
   };
   const handleNoteValue = (note) => {
-    // console.log('boolean pin', props.pin);
     setNotes(note);
-    // CallDataBase(title, notes, props.index);
   };
   return (
     <View>
@@ -43,6 +44,15 @@ function AddTitleAndNote({setTitle, setNotes, title, notes, index, color}) {
               value={notes}
             />
           </View>
+          {remainder === true && dateTime !== '' ? (
+            <View style={{width: '60%'}}>
+              <RNChipView
+                title={dateTime}
+                avatar={<Alarm name="alarm" size={20} />}
+                avatarStyle={AddTitleAndNoteStyle.avatar}
+              />
+            </View>
+          ) : null}
         </View>
       ) : (
         <View>
@@ -70,6 +80,15 @@ function AddTitleAndNote({setTitle, setNotes, title, notes, index, color}) {
               value={notes}
             />
           </View>
+          {remainder === true && dateTime !== '' ? (
+            <View style={{width: '60%'}}>
+              <RNChipView
+                title={dateTime}
+                avatar={<Alarm name="alarm" size={20} />}
+                avatarStyle={AddTitleAndNoteStyle.avatar}
+              />
+            </View>
+          ) : null}
         </View>
       )}
     </View>

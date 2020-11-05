@@ -7,6 +7,8 @@ export async function AddNotes(
   colorValue,
   pinValue,
   archieveValue,
+  deleteValue,
+  remainderValue,
 ) {
   let data = {
     title: titleValue,
@@ -14,10 +16,13 @@ export async function AddNotes(
     color: colorValue,
     pin: pinValue,
     archieve: archieveValue,
+    delete: deleteValue,
+    remainder: remainderValue,
   };
   console.log(data);
   await dbase.dbase.ref('/notes/' + 'THbOLZ2ABpbWuZnJI1THnh4QBl72').push(data);
   // let key = await dbase.dbase.ref('/notes/' + 'THbOLZ2ABpbWuZnJI1THnh4QBl72').push().
+  //return callback;
 }
 let key = [];
 let boolean = true;
@@ -52,6 +57,8 @@ export async function EditNotes(
   color,
   pin,
   archieve,
+  deletes,
+  remainder,
 ) {
   console.log('index', index);
   let data = {
@@ -60,13 +67,16 @@ export async function EditNotes(
     color: color,
     pin: pin,
     archieve: archieve,
+    delete: deletes,
+    remainder: remainder,
   };
   console.log('edit', data);
-  await firebase.firebase
+  let response = await firebase.firebase
     .database()
     .ref('/notes/' + 'THbOLZ2ABpbWuZnJI1THnh4QBl72')
     .child(key[index])
     .update(data);
+  return response;
 }
 
 export async function addImage(image) {
@@ -74,8 +84,8 @@ export async function addImage(image) {
   console.log('image uri', image.uri);
   const uploadPath = image.uri;
   let response = await dbStorage.dbStorage
-    .ref('/profile')
-    .putString(uploadPath);
+    .ref('/profile' + image.name)
+    .put(uploadPath);
   // console.log(response);
 }
 export async function retrieveImageDb() {

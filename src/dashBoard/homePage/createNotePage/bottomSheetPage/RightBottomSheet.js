@@ -4,23 +4,34 @@ import {useState} from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {CallDeleteNotes} from '../../../../IntermediateDataServices/CallDataBase';
+import {EditNotes} from '../../../../services/noteService';
 import ColorItems from '../colorItems/ColorItems';
 import bottomSheetStyle from './RightBottomSheetStyle';
 
 function RightBottomSheet(props) {
   const navigation = useNavigation();
-  const [index] = useState(props.index);
-  const [deleteOption, setDeleteOption] = useState('');
+  //const [titles] = useState(props.title);
+  console.log('checking rightbottom sheet', props.title);
+  let deletes = false;
+  // const [deleteOption, setDeleteOption] = useState('');
   const refRBSheet = useRef();
   const handleClick = () => {
     console.log('working');
     refRBSheet.current.open();
   };
   const handleClickDelete = () => {
-    setDeleteOption('delete');
-    CallDeleteNotes(deleteOption, index);
-    navigation.navigate('homePage');
+    //  setDeleteNote(true);
+    // deletes = true;
+    console.log(props.title, props.notes);
+    // CallDeleteNotes(deleteOption, index);
+    // navigation.navigate('homePage');
+    console.log('check value ', props.index);
+    console.log('edit notes');
+    // EditNotes(title, notes, index, color, pin, archieve, deletes);
+
+    // navigation.navigate('homePage');
   };
+
   const handleClickCopy = () => {};
   const handleClickSend = () => {};
   const handleClickCollaborator = () => {};
