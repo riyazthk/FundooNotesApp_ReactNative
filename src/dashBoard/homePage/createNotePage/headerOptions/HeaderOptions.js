@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import HeaderOptionStyle from './HeaderOptionStyle';
 import {useNavigation} from '@react-navigation/native';
-import {AddNotes, EditNotes} from '../../../../services/noteService';
+import {addNotes, editNotes} from '../../../../services/noteService';
 import Remainder from '../remainder/Remainder';
 
 const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
@@ -13,16 +13,16 @@ const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
     console.log(
       'check value ',
       props.title,
-      props.notes,
+      props.description,
       props.color,
-      props.index,
+      props.noteIndex,
       props.pin,
     );
-    if (props.index === undefined) {
+    if (props.noteIndex === undefined) {
       console.log('add notes');
-      AddNotes(
+      addNotes(
         props.title,
-        props.notes,
+        props.description,
         props.color,
         props.pin,
         archieves,
@@ -31,10 +31,10 @@ const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
       );
     } else {
       console.log('edit notes');
-      EditNotes(
+      editNotes(
         props.title,
-        props.notes,
-        props.index,
+        props.description,
+        props.noteIndex,
         props.color,
         props.pin,
         archieves,

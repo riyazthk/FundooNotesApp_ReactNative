@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import {RNChipView} from 'react-native-chip-view';
 import {Card} from 'react-native-elements';
-import {GetNotes} from '../../../../services/noteService';
+import {getNotes} from '../../../../services/noteService';
 import AddTitleAndNoteStyle from '../../createNotePage/addTitleAndNote/AddTitleAndNoteStyle';
 import Alarm from 'react-native-vector-icons/MaterialCommunityIcons';
 const ViewNotes = (props) => {
@@ -12,7 +12,7 @@ const ViewNotes = (props) => {
   const [viewNote, setViewNote] = useState([]);
   console.log('value', props.flag);
   useEffect(() => {
-    GetNotes()
+    getNotes()
       .then((res) => {
         setViewNote(res);
       })
@@ -33,37 +33,36 @@ const ViewNotes = (props) => {
             flexDirection: props.changeViewNote === false ? 'row' : 'column',
             flexWrap: props.changeViewNote === false ? 'wrap' : 'nowrap',
           }}>
-          {viewNote.map((item, index) => {
+          {viewNote.map((notes, noteIndex) => {
             return (
-              <View key={index}>
+              <View key={noteIndex}>
                 <TouchableOpacity
-                  key={index}
+                  key={noteIndex}
                   onPress={() =>
                     navigation.navigate('createNotePage', {
-                      item: item,
-                      index: index,
+                      notes: notes,
+                      noteIndex: noteIndex,
                     })
                   }>
-                  {item.pin === true &&
-                  item.archieve === false &&
-                  item.delete === false ? (
+                  {notes.pin === true &&
+                  notes.archieve === false &&
+                  notes.delete === false ? (
                     <View>
-                      {/* <Text>pinned</Text> */}
                       <Card
                         containerStyle={{
-                          backgroundColor: item.color,
+                          backgroundColor: notes.color,
                           width: props.changeViewNote === false ? 170 : null,
                         }}>
                         <View>
-                          <Text>{item.title}</Text>
+                          <Text>{notes.title}</Text>
                         </View>
                         <View>
-                          <Text>{item.notes}</Text>
+                          <Text>{notes.notes}</Text>
                         </View>
-                        {item.remainder !== '' ? (
+                        {notes.remainder !== '' ? (
                           <View style={{width: '60%'}}>
                             <RNChipView
-                              title={item.remainder}
+                              title={notes.remainder}
                               avatar={<Alarm name="alarm" size={20} />}
                               avatarStyle={AddTitleAndNoteStyle.avatar}
                             />
@@ -85,38 +84,39 @@ const ViewNotes = (props) => {
             flexDirection: props.changeViewNote === false ? 'row' : 'column',
             flexWrap: props.changeViewNote === false ? 'wrap' : 'nowrap',
           }}>
-          {viewNote.map((item, index) => {
+          {viewNote.map((notes, noteIndex) => {
             return (
-              <View key={index}>
+              <View key={noteIndex}>
                 <TouchableOpacity
-                  key={index}
+                  key={noteIndex}
                   onPress={() =>
                     navigation.navigate('createNotePage', {
-                      item: item,
-                      index: index,
+                      notes: notes,
+                      noteIndex: noteIndex,
                     })
                   }>
-                  {item.pin === false &&
-                  item.archieve === false &&
-                  item.delete === false ? (
+                  {notes.pin === false &&
+                  notes.archieve === false &&
+                  notes.delete === false ? (
                     <View>
                       <Card
                         containerStyle={{
-                          backgroundColor: item.color,
+                          backgroundColor: notes.color,
                           width: props.changeViewNote === false ? 170 : null,
                         }}>
                         <View>
-                          <Text>{item.title}</Text>
+                          <Text>{notes.title}</Text>
                         </View>
                         <View>
-                          <Text>{item.notes}</Text>
+                          <Text>{notes.notes}</Text>
                         </View>
-                        {item.remainder !== '' ? (
-                          <View style={{width: '60%'}}>
+                        {notes.remainder !== '' ? (
+                          <View style={{width: '100%'}}>
                             <RNChipView
-                              title={item.remainder}
+                              title={notes.remainder}
                               avatar={<Alarm name="alarm" size={20} />}
                               avatarStyle={AddTitleAndNoteStyle.avatar}
+                              titleStyle={AddTitleAndNoteStyle.titlestyle}
                             />
                           </View>
                         ) : null}

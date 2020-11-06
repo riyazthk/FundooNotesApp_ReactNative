@@ -116,8 +116,8 @@ function RightBottomSheet(props) {
           <ColorItems
             setColor={props.setColor}
             setCheck={props.setCheck}
-            index={props.index}
-            item={props.item}
+            noteIndex={props.noteIndex}
+            note={props.note}
           />
         </View>
       </RBSheet>

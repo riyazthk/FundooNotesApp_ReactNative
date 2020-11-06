@@ -18,8 +18,8 @@ function FooterSide(props) {
         </View>
         <View style={FooterSideStyle.ellipsis}>
           <RightBottomSheet
-            index={props.index}
-            item={props.item}
+            noteIndex={props.noteIndex}
+            notes={props.notes}
             pin={props.pin}
             archive={props.archieve}
             delete={props.delete}

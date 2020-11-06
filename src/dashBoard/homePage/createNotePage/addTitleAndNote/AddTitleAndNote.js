@@ -7,10 +7,10 @@ import {RNChipView} from 'react-native-chip-view';
 import Alarm from 'react-native-vector-icons/MaterialCommunityIcons';
 function AddTitleAndNote({
   setTitle,
-  setNotes,
+  setDescription,
   title,
-  notes,
-  index,
+  description,
+  noteIndex,
   color,
   dateTime,
   remainder,
@@ -18,12 +18,12 @@ function AddTitleAndNote({
   const handleTitleValue = (text) => {
     setTitle(text);
   };
-  const handleNoteValue = (note) => {
-    setNotes(note);
+  const handleNoteValue = (description) => {
+    setDescription(description);
   };
   return (
     <View>
-      {index === undefined ? (
+      {noteIndex === undefined ? (
         <View>
           <View style={AddTitleAndNoteStyle.title}>
             <TextInput
@@ -38,7 +38,7 @@ function AddTitleAndNote({
               style={{height: 40, borderColor: color, borderWidth: 1}}
               placeholder="note"
               onChangeText={(text) => handleNoteValue(text)}
-              value={notes}
+              value={description}
             />
           </View>
           {remainder === true && dateTime !== '' ? (
@@ -74,7 +74,7 @@ function AddTitleAndNote({
               }}
               placeholder="note"
               onChangeText={(text) => handleNoteValue(text)}
-              value={notes}
+              value={description}
             />
           </View>
           {remainder === true && dateTime !== '' ? (

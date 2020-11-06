@@ -3,15 +3,14 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Card, Image} from 'react-native-elements';
-import {GetNotes} from '../../../../services/noteService';
+import {getNotes} from '../../../../services/noteService';
 import SearchBarStyle from '../../searchBarCard/SearchBarStyle';
 const ArchieveNote = () => {
   const [archieveNote, setArchieveNote] = useState([]);
   const navigation = useNavigation();
   useEffect(() => {
-    GetNotes()
+    getNotes()
       .then((res) => {
-        //setIsLoading(false);
         setArchieveNote(res);
       })
       .catch((err) => {
@@ -41,31 +40,31 @@ const ArchieveNote = () => {
         </View>
       </View>
       <View>
-        {archieveNote.map((item, index) => {
+        {archieveNote.map((note, noteIndex) => {
           return (
-            <View key={index}>
+            <View key={noteIndex}>
               <TouchableOpacity
-                key={index}
+                key={noteIndex}
                 onPress={() =>
                   navigation.navigate('createNotePage', {
-                    item: item,
-                    index: index,
+                    note: note,
+                    noteIndex: noteIndex,
                   })
                 }>
-                {item.archieve === true ? (
+                {note.archieve === true ? (
                   <View>
                     {/* <Text>pinned</Text> */}
                     <Card
                       containerStyle={{
-                        backgroundColor: item.color,
+                        backgroundColor: note.color,
                         // width: props.changeViewNote === false ? 100 : null,
                         //width: 100,
                       }}>
                       <View>
-                        <Text>{item.title}</Text>
+                        <Text>{note.title}</Text>
                       </View>
                       <View>
-                        <Text>{item.notes}</Text>
+                        <Text>{note.notes}</Text>
                       </View>
                     </Card>
                   </View>

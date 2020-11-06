@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {RNChipView} from 'react-native-chip-view';
 import {Image, Card} from 'react-native-elements';
-import {GetNotes} from '../../../services/noteService';
+import {getNotes, GetNotes} from '../../../services/noteService';
 import SearchBarStyle from '../searchBarCard/SearchBarStyle';
 import Alarm from 'react-native-vector-icons/MaterialCommunityIcons';
 import AddTitleAndNoteStyle from '../createNotePage/addTitleAndNote/AddTitleAndNoteStyle';
@@ -12,7 +12,7 @@ function Remainder() {
   const [remainderNote, setRemainderNote] = useState([]);
   const navigation = useNavigation();
   useEffect(() => {
-    GetNotes()
+    getNotes()
       .then((res) => {
         //setIsLoading(false);
         setRemainderNote(res);
@@ -44,32 +44,32 @@ function Remainder() {
         </View>
       </View>
       <View>
-        {remainderNote.map((item, index) => {
+        {remainderNote.map((notes, noteIndex) => {
           return (
-            <View key={index}>
+            <View key={noteIndex}>
               <TouchableOpacity
-                key={index}
+                key={noteIndex}
                 onPress={() =>
                   navigation.navigate('createNotePage', {
-                    item: item,
-                    index: index,
+                    notes: notes,
+                    noteIndex: noteIndex,
                   })
                 }>
-                {item.remainder !== '' ? (
+                {notes.remainder !== '' ? (
                   <View>
                     <Card
                       containerStyle={{
-                        backgroundColor: item.color,
+                        backgroundColor: notes.color,
                       }}>
                       <View>
-                        <Text>{item.title}</Text>
+                        <Text>{notes.title}</Text>
                       </View>
                       <View>
-                        <Text>{item.notes}</Text>
+                        <Text>{notes.notes}</Text>
                       </View>
                       <View style={{width: '60%'}}>
                         <RNChipView
-                          title={item.remainder}
+                          title={notes.remainder}
                           avatar={<Alarm name="alarm" size={20} />}
                           avatarStyle={AddTitleAndNoteStyle.avatar}
                         />

@@ -7,26 +7,30 @@ import HeaderOptions from '../headerOptions/HeaderOptions';
 import CreateNoteStyles from './CreateNotePageStyle';
 
 function CreateNotePage({navigation, route}) {
-  const {item = undefined, index = undefined} = route.params ?? {};
-  const [title, setTitle] = useState(item !== undefined ? item.title : '');
-  const [notes, setNotes] = useState(item !== undefined ? item.notes : '');
-  const [color, setColor] = useState(item !== undefined ? item.color : 'white');
-  const [pin, setPin] = useState(item !== undefined ? item.pin : false);
+  const {notes = undefined, noteIndex = undefined} = route.params ?? {};
+  const [title, setTitle] = useState(notes !== undefined ? notes.title : '');
+  const [description, setDescription] = useState(
+    notes !== undefined ? notes.notes : '',
+  );
+  const [color, setColor] = useState(
+    notes !== undefined ? notes.color : 'white',
+  );
+  const [pin, setPin] = useState(notes !== undefined ? notes.pin : false);
   const [archieve, setArchieve] = useState(
-    item !== undefined ? item.archieve : false,
+    notes !== undefined ? notes.archieve : false,
   );
   const [deleteNote, setDeleteNote] = useState(
-    item !== undefined ? item.delete : false,
+    notes !== undefined ? notes.delete : false,
   );
   const [dateTime, setDateTime] = useState(
-    item !== undefined ? item.remainder : '',
+    notes !== undefined ? notes.remainder : '',
   );
   const [remainder, setRemainder] = useState(false);
   const [check, setCheck] = useState(0);
   console.log('notes', title, notes, archieve);
   return (
     <View>
-      {index === undefined ? (
+      {noteIndex === undefined ? (
         <View
           style={{
             height: '100%',
@@ -42,9 +46,9 @@ function CreateNotePage({navigation, route}) {
               archieve={archieve}
               setArchieve={setArchieve}
               title={title}
-              notes={notes}
+              description={description}
               color={color}
-              index={index}
+              noteIndex={noteIndex}
               deleteNote={deleteNote}
               setRemainder={setRemainder}
               remainder={remainder}
@@ -56,11 +60,11 @@ function CreateNotePage({navigation, route}) {
           <View style={CreateNoteStyles.body}>
             <AddTitleAndNote
               setTitle={setTitle}
-              setNotes={setNotes}
-              index={index}
+              setDescription={setDescription}
+              noteIndex={noteIndex}
               color={color}
               title={title}
-              notes={notes}
+              description={description}
               dateTime={dateTime}
               remainder={remainder}
             />
@@ -68,10 +72,11 @@ function CreateNotePage({navigation, route}) {
 
           <View style={CreateNoteStyles.footer}>
             <FooterSide
-              index={index}
+              noteIndex={noteIndex}
               setColor={setColor}
               setCheck={setCheck}
               setDeleteNote={setDeleteNote}
+              notes={notes}
             />
           </View>
         </View>
@@ -79,7 +84,7 @@ function CreateNotePage({navigation, route}) {
         <View
           style={{
             height: '100%',
-            backgroundColor: check === 0 ? item.color : color,
+            backgroundColor: check === 0 ? notes.color : color,
             paddingTop: 25,
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -89,9 +94,9 @@ function CreateNotePage({navigation, route}) {
               pin={pin}
               setPin={setPin}
               title={title}
-              notes={notes}
+              description={description}
               color={color}
-              index={index}
+              noteIndex={noteIndex}
               archieve={archieve}
               setArchieve={setArchieve}
               deleteNote={deleteNote}
@@ -106,11 +111,11 @@ function CreateNotePage({navigation, route}) {
           <View style={CreateNoteStyles.body}>
             <AddTitleAndNote
               setTitle={setTitle}
-              setNotes={setNotes}
-              index={index}
+              setDescription={setDescription}
+              noteIndex={noteIndex}
               color={color}
               title={title}
-              notes={notes}
+              description={description}
               remainder={remainder}
               dateTime={dateTime}
             />
@@ -118,11 +123,11 @@ function CreateNotePage({navigation, route}) {
 
           <View style={CreateNoteStyles.footer}>
             <FooterSide
-              item={item}
-              index={index}
+              notes={notes}
+              noteIndex={noteIndex}
               pin={pin}
               title={title}
-              notes={notes}
+              description={description}
               color={color}
               archieve={archieve}
               deleteNote={deleteNote}

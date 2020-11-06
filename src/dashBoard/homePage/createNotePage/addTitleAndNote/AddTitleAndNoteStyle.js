@@ -10,9 +10,13 @@ const AddTitleAndNoteStyle = StyleSheet.create({
     //  backgroundColor: 'black',
   },
   avatar: {
-    // backgroundColor: 'red',
+    //backgroundColor: 'white',
     //width: '50',
     justifyContent: 'center',
+  },
+  titlestyle: {
+    // width: 30,
+    //width: 100,
   },
 });
 export default AddTitleAndNoteStyle;
