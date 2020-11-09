@@ -5,6 +5,7 @@ import AddTitleAndNoteStyle from './AddTitleAndNoteStyle';
 import {TextInput} from 'react-native';
 import {RNChipView} from 'react-native-chip-view';
 import Alarm from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Chip} from 'react-native-paper';
 function AddTitleAndNote({
   setTitle,
   setDescription,
@@ -14,7 +15,10 @@ function AddTitleAndNote({
   color,
   dateTime,
   remainder,
+  label,
+  labels,
 }) {
+  console.log('labels', label);
   const handleTitleValue = (text) => {
     setTitle(text);
   };
@@ -50,6 +54,9 @@ function AddTitleAndNote({
               />
             </View>
           ) : null}
+          {label !== '' ? <Chip>{label}</Chip> : null}
+          {/* {label !== undefined ? <Chip>{label}</Chip> : null} */}
+          {/* {labels !== undefined ? <Chip>{labels}</Chip> : null} */}
         </View>
       ) : (
         <View>
@@ -86,6 +93,9 @@ function AddTitleAndNote({
               />
             </View>
           ) : null}
+          {label !== '' ? <Chip>{label}</Chip> : null}
+          {/* {label !== undefined ? <Chip>{label}</Chip> : null} */}
+          {/* {labels !== undefined ? <Chip>{labels}</Chip> : null} */}
         </View>
       )}
     </View>

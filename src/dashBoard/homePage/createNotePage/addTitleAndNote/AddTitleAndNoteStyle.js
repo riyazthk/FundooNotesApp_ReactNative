@@ -13,6 +13,8 @@ const AddTitleAndNoteStyle = StyleSheet.create({
     //backgroundColor: 'white',
     //width: '50',
     justifyContent: 'center',
+    width: '10%',
+    //backgroundColor: 'black',
   },
   titlestyle: {
     // width: 30,

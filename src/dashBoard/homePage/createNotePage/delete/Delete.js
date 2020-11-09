@@ -1,13 +1,16 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import {View, TouchableOpacity, Text, Image} from 'react-native';
 import {Card} from 'react-native-elements';
-import {GetNotes} from '../../../../services/noteService';
-const Delete = () => {
-  const [deleteNote, setDeleteNote] = useState();
+import {getNotes} from '../../../../services/noteService';
+import SearchBarStyle from '../../searchBarCard/SearchBarStyle';
+const Delete = ({route}) => {
+  const {flag = undefined} = route.params ?? {};
+  const [restoreNote, setRestoreNote] = useState(false);
+  const [deleteNote, setDeleteNote] = useState([]);
   const navigation = useNavigation();
   useEffect(() => {
-    GetNotes()
+    getNotes()
       .then((res) => {
         //setIsLoading(false);
         setDeleteNote(res);
@@ -15,34 +18,56 @@ const Delete = () => {
       .catch((err) => {
         console.log('error', err);
       });
-  }, []);
+  }, [flag]);
+  // console.log('delete notes', deleteNote);
   return (
-    <View>
-      {deleteNote.map((item, index) => {
+    <View
+      style={{
+        paddingTop: 30,
+        paddingLeft: 15,
+        height: '100%',
+        backgroundColor: 'white',
+      }}>
+      <View>
+        <View style={{height: 50, flexDirection: 'row'}}>
+          <View style={SearchBarStyle.menu}>
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+              <Image
+                source={require('../../../../assets/menu.png')}
+                style={{height: 35, width: 35}}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={{width: '55%'}}>
+            <Text style={{fontSize: 28}}>Deleted</Text>
+          </View>
+        </View>
+      </View>
+      {deleteNote.map((deleteNotes, deleteNotesIndex) => {
         return (
-          <View key={index}>
+          <View key={deleteNotesIndex}>
             <TouchableOpacity
-              key={index}
+              key={deleteNotesIndex}
               onPress={() =>
                 navigation.navigate('restorePage', {
-                  item: item,
-                  index: index,
+                  deleteNotes: deleteNotes,
+                  deleteNotesIndex: deleteNotesIndex,
                 })
               }>
-              {item.delete === true ? (
+              {deleteNotes.delete === true ? (
                 <View>
                   {/* <Text>pinned</Text> */}
                   <Card
                     containerStyle={{
-                      backgroundColor: item.color,
+                      backgroundColor: deleteNotes.color,
                       // width: props.changeViewNote === false ? 100 : null,
                       //width: 100,
                     }}>
                     <View>
-                      <Text>{item.title}</Text>
+                      <Text>{deleteNotes.title}</Text>
                     </View>
                     <View>
-                      <Text>{item.notes}</Text>
+                      <Text>{deleteNotes.notes}</Text>
                     </View>
                   </Card>
                 </View>

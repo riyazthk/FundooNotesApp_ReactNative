@@ -70,6 +70,7 @@ function Remainder() {
                       <View style={{width: '60%'}}>
                         <RNChipView
                           title={notes.remainder}
+                          //titleStyle={{backgroundColor: 'blue'}}
                           avatar={<Alarm name="alarm" size={20} />}
                           avatarStyle={AddTitleAndNoteStyle.avatar}
                         />

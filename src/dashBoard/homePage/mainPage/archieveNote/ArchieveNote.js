@@ -40,31 +40,31 @@ const ArchieveNote = () => {
         </View>
       </View>
       <View>
-        {archieveNote.map((note, noteIndex) => {
+        {archieveNote.map((notes, noteIndex) => {
           return (
             <View key={noteIndex}>
               <TouchableOpacity
                 key={noteIndex}
                 onPress={() =>
                   navigation.navigate('createNotePage', {
-                    note: note,
+                    notes: notes,
                     noteIndex: noteIndex,
                   })
                 }>
-                {note.archieve === true ? (
+                {notes.archieve === true ? (
                   <View>
                     {/* <Text>pinned</Text> */}
                     <Card
                       containerStyle={{
-                        backgroundColor: note.color,
+                        backgroundColor: notes.color,
                         // width: props.changeViewNote === false ? 100 : null,
                         //width: 100,
                       }}>
                       <View>
-                        <Text>{note.title}</Text>
+                        <Text>{notes.title}</Text>
                       </View>
                       <View>
-                        <Text>{note.notes}</Text>
+                        <Text>{notes.notes}</Text>
                       </View>
                     </Card>
                   </View>

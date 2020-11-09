@@ -14,6 +14,7 @@ export async function addNotes(
   archieveValue,
   deleteValue,
   remainderValue,
+  labelValue,
 ) {
   let data = {
     title: titleValue,
@@ -23,8 +24,9 @@ export async function addNotes(
     archieve: archieveValue,
     delete: deleteValue,
     remainder: remainderValue,
+    label: labelValue,
   };
-  console.log(data);
+  console.log('data', data);
   await dbase.dbase.ref('/notes/' + 'THbOLZ2ABpbWuZnJI1THnh4QBl72').push(data);
 }
 
@@ -45,7 +47,7 @@ export async function getNotes() {
   return arr;
 }
 
-export async function deleteNotes(index) {
+export async function deletes(index) {
   console.log(key[index]);
   await firebase.firebase
     .database()
@@ -63,8 +65,8 @@ export async function editNotes(
   archieve,
   deletes,
   remainder,
+  label,
 ) {
-  console.log('index', index);
   let data = {
     title: getTitle,
     notes: getNotes,
@@ -73,6 +75,7 @@ export async function editNotes(
     archieve: archieve,
     delete: deletes,
     remainder: remainder,
+    label: label,
   };
   console.log('edit', data);
   let response = await firebase.firebase
@@ -100,19 +103,6 @@ export function addImage(image) {
     });
   console.log('storaage', storageRef);
 }
-//.put(image);
-//console.log('response sucess', storageRef);
-// Create a reference to 'mountains.jpg'
-// var profileRef = storageRef.child('profile.jpeg');
-
-// // Create a reference to 'images/mountains.jpg'
-// var profilrImagesRef = storageRef.child('images/profile.jpeg');
-// profileRef.name === profilrImagesRef.name; // true
-// profileRef.fullPath === profilrImagesRef.fullPath; // false
-//storageRef('/profile/' + 'er.riyaz2507@gmail.com').put(file);
-// const uploadPath = image.uri;
-// await dbStorage.dbStorage.ref('/profile').put(uploadPath);
-//}
 
 export async function retrieveImageDb() {
   const response = await dbStorage.dbStorage.ref('/profile').getDownloadURL();
@@ -145,4 +135,38 @@ export async function getLabel() {
     });
   console.log('key', labelArr);
   return labelArr;
+}
+let dataValue = [];
+export async function updateLabel(
+  getTitle,
+  getNotes,
+  color,
+  pin,
+  archieve,
+  deletes,
+  remainder,
+  label,
+  labelIndex,
+) {
+  let data = {
+    title: getTitle,
+    notes: getNotes,
+    color: color,
+    pin: pin,
+    archieve: archieve,
+    delete: deletes,
+    remainder: remainder,
+    label: label,
+  };
+  console.log('label key value', labelKey, labelIndex);
+  dataValue.push(data);
+  let dbData = {
+    label: label,
+    notes: dataValue,
+  };
+  await firebase.firebase
+    .database()
+    .ref('/label/' + 'THbOLZ2ABpbWuZnJI1THnh4QBl72/')
+    .child(labelKey[labelIndex])
+    .update(dbData);
 }

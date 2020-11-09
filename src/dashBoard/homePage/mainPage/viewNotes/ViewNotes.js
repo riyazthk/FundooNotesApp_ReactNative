@@ -7,6 +7,7 @@ import {Card} from 'react-native-elements';
 import {getNotes} from '../../../../services/noteService';
 import AddTitleAndNoteStyle from '../../createNotePage/addTitleAndNote/AddTitleAndNoteStyle';
 import Alarm from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Chip} from 'react-native-paper';
 const ViewNotes = (props) => {
   const navigation = useNavigation();
   const [viewNote, setViewNote] = useState([]);
@@ -52,6 +53,7 @@ const ViewNotes = (props) => {
                         containerStyle={{
                           backgroundColor: notes.color,
                           width: props.changeViewNote === false ? 170 : null,
+                          borderRadius: 10,
                         }}>
                         <View>
                           <Text>{notes.title}</Text>
@@ -60,13 +62,21 @@ const ViewNotes = (props) => {
                           <Text>{notes.notes}</Text>
                         </View>
                         {notes.remainder !== '' ? (
-                          <View style={{width: '60%'}}>
+                          <View style={{width: '80%'}}>
                             <RNChipView
                               title={notes.remainder}
                               avatar={<Alarm name="alarm" size={20} />}
-                              avatarStyle={AddTitleAndNoteStyle.avatar}
+                              avatarStyle={{
+                                width: '40%',
+                                justifyContent: 'center',
+                                paddingLeft: 24,
+                              }}
+                              backgroundColor={notes.color}
                             />
                           </View>
+                        ) : null}
+                        {notes.label !== '' ? (
+                          <Chip style={{width: 70}}>{notes.label}</Chip>
                         ) : null}
                       </Card>
                     </View>
@@ -103,6 +113,7 @@ const ViewNotes = (props) => {
                         containerStyle={{
                           backgroundColor: notes.color,
                           width: props.changeViewNote === false ? 170 : null,
+                          borderRadius: 10,
                         }}>
                         <View>
                           <Text>{notes.title}</Text>
@@ -111,14 +122,22 @@ const ViewNotes = (props) => {
                           <Text>{notes.notes}</Text>
                         </View>
                         {notes.remainder !== '' ? (
-                          <View style={{width: '100%'}}>
+                          <View style={{width: '80%'}}>
                             <RNChipView
                               title={notes.remainder}
                               avatar={<Alarm name="alarm" size={20} />}
-                              avatarStyle={AddTitleAndNoteStyle.avatar}
-                              titleStyle={AddTitleAndNoteStyle.titlestyle}
+                              avatarStyle={{
+                                width: '40%',
+                                justifyContent: 'center',
+                                paddingLeft: 24,
+                              }}
+                              backgroundColor={notes.color}
+                              //titleStyle={AddTitleAndNoteStyle.titlestyle}
                             />
                           </View>
+                        ) : null}
+                        {notes.label !== '' ? (
+                          <Chip style={{width: 70}}>{notes.label}</Chip>
                         ) : null}
                       </Card>
                     </View>

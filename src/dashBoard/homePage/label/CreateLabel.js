@@ -10,11 +10,14 @@ const CreateLabel = ({navigation}) => {
   const [label, setLabel] = useState('');
   const [showLabel, setShowLabel] = useState([]);
   const [editLabels, setEditLabels] = useState(false);
+  const [showClickLabel, setShowClickLabel] = useState(false);
+  const [labelIndex, setLabelIndex] = useState();
   useEffect(() => {
     getLabel()
       .then((res) => {
         //setIsLoading(false);
         setShowLabel(res);
+        console.log('label valueee', res);
       })
       .catch((err) => {
         console.log('error', err);
@@ -31,8 +34,10 @@ const CreateLabel = ({navigation}) => {
     let response = await addLabel(label);
     console.log('response label', response);
   };
-  const editLabel = () => {
+  const editLabel = (labelValue, labelIndex) => {
+    console.log('label index', labelIndex);
     setEditLabels(!editLabels);
+    setLabelIndex(labelIndex);
   };
   const handleEditLabel = (text) => {
     setLabel(text);
@@ -101,56 +106,73 @@ const CreateLabel = ({navigation}) => {
           </View>
         </View>
       </TouchableOpacity>
-      <View style={{height: '80%'}}>
-        {showLabel.map((item, index) => {
+      <View style={{height: '80%', width: '100%'}}>
+        {showLabel.map((labelValue, labelIndexValue) => {
           return (
             <TouchableOpacity
-              onPress={() => editLabel()}
+              onPress={() => editLabel(labelValue, labelIndexValue)}
               style={{backgroundColor: 'white'}}>
               <View
                 style={{
                   flexDirection: 'row',
-                  background: 'red',
                   width: '100%',
-                  height: 70,
-                  //justifyContent: 'space-around',
                   paddingTop: 5,
                 }}>
-                <View style={{width: '25%'}}>
-                  {editLabels === false ? (
+                {editLabels === false ? (
+                  <View flexDirection="row">
                     <Image
                       source={require('../../../assets/arrow.png')}
                       style={createLabelStyle.plusSymbol}
                     />
-                  ) : (
-                    <TouchableOpacity>
-                      <Image
-                        source={require('../../../assets/trash.png')}
-                        style={createLabelStyle.plusSymbol}
+                    <View style={{width: '60%'}}>
+                      <TextInput
+                        onChangeText={(text) => handleEditLabel(text)}
+                        value={labelValue}
                       />
-                    </TouchableOpacity>
-                  )}
-                </View>
-                <View style={{width: '60%'}}>
-                  <TextInput
-                    // style={{height: 40, borderColor: color, borderWidth: 1}}
-                    // placeholder="title"
-                    onChangeText={(text) => handleEditLabel(text)}
-                    value={item.label}
-                  />
-                </View>
-                {editLabels === false ? (
-                  <Image
-                    source={require('../../../assets/edit.png')}
-                    style={createLabelStyle.plusSymbol}
-                  />
-                ) : (
-                  <TouchableOpacity>
+                    </View>
                     <Image
-                      source={require('../../../assets/tick1.png')}
+                      source={require('../../../assets/edit.png')}
                       style={createLabelStyle.plusSymbol}
                     />
-                  </TouchableOpacity>
+                  </View>
+                ) : (
+                  <View>
+                    {labelIndex === labelIndexValue ? (
+                      <View style={{flexDirection: 'row'}}>
+                        <Image
+                          source={require('../../../assets/trash.png')}
+                          style={createLabelStyle.plusSymbol}
+                        />
+                        <View style={{width: '60%'}}>
+                          <TextInput
+                            onChangeText={(text) => handleEditLabel(text)}
+                            value={labelValue}
+                          />
+                        </View>
+                        <Image
+                          source={require('../../../assets/tick1.png')}
+                          style={createLabelStyle.plusSymbol}
+                        />
+                      </View>
+                    ) : (
+                      <View style={{flexDirection: 'row'}}>
+                        <Image
+                          source={require('../../../assets/arrow.png')}
+                          style={createLabelStyle.plusSymbol}
+                        />
+                        <View style={{width: '60%'}}>
+                          <TextInput
+                            onChangeText={(text) => handleEditLabel(text)}
+                            value={labelValue}
+                          />
+                        </View>
+                        <Image
+                          source={require('../../../assets/edit.png')}
+                          style={createLabelStyle.plusSymbol}
+                        />
+                      </View>
+                    )}
+                  </View>
                 )}
               </View>
             </TouchableOpacity>

@@ -2,9 +2,9 @@ import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomePage from '../homePage/mainPage/headerHomePage/HomePage';
 import Remainder from '../homePage/remainder/Remainder';
-import Delete from '../homePage/createNotePage/delete/RestorePage';
 import ArchieveNote from '../homePage/mainPage/archieveNote/ArchieveNote';
 import CreateLabel from '../homePage/label/CreateLabel';
+import Delete from '../homePage/createNotePage/delete/Delete';
 const Drawer = createDrawerNavigator();
 
 function DrawerComponent({navigation}) {

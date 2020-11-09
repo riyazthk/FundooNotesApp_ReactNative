@@ -3,8 +3,13 @@ import React, {useState} from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import HeaderOptionStyle from './HeaderOptionStyle';
 import {useNavigation} from '@react-navigation/native';
-import {addNotes, editNotes} from '../../../../services/noteService';
+import {
+  addNotes,
+  editNotes,
+  updateLabel,
+} from '../../../../services/noteService';
 import Remainder from '../remainder/Remainder';
+import Snackbar from 'react-native-snackbar';
 
 const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
   let archieves = false;
@@ -17,9 +22,20 @@ const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
       props.color,
       props.noteIndex,
       props.pin,
+      'label',
+      props.label,
+      props.labelIndex,
     );
-    if (props.noteIndex === undefined) {
+    if (
+      props.noteIndex === undefined &&
+      props.title !== '' &&
+      props.description !== ''
+    ) {
       console.log('add notes');
+      if (props.labels !== undefined) {
+        props.setLabel = props.labels;
+        console.log('label ', props.label);
+      }
       addNotes(
         props.title,
         props.description,
@@ -28,9 +44,29 @@ const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
         archieves,
         props.deleteNote,
         props.dateTime,
+        props.label,
       );
-    } else {
+      if (
+        props.label !== '' &&
+        props.label !== undefined &&
+        props.labelIndex !== undefined
+      ) {
+        updateLabel(
+          props.title,
+          props.description,
+          props.color,
+          props.pin,
+          archieves,
+          props.deleteNote,
+          props.dateTime,
+          props.label,
+          props.labelIndex,
+        );
+      }
+      navigation.navigate('home', {flag: flag});
+    } else if (props.title !== '' && props.description !== '') {
       console.log('edit notes');
+
       editNotes(
         props.title,
         props.description,
@@ -40,10 +76,34 @@ const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
         archieves,
         props.deleteNote,
         props.dateTime,
+        props.label,
       );
+      if (
+        props.label !== '' &&
+        props.label !== undefined &&
+        props.labelIndex !== undefined
+      ) {
+        updateLabel(
+          props.title,
+          props.description,
+          props.color,
+          props.pin,
+          archieves,
+          props.deleteNote,
+          props.dateTime,
+          props.label,
+          props.labelIndex,
+        );
+      }
+      navigation.navigate('home', {flag: flag});
+    } else {
+      Snackbar.show({
+        text: 'title and notes not be an empty',
+        duration: Snackbar.LENGTH_SHORT,
+      });
+      navigation.navigate('home', {flag: flag});
     }
-    console.log('get flag value', flag);
-    navigation.navigate('home', {flag: flag});
+    // console.log('get flag value', flag);
   };
   const handlePin = () => {
     props.setPin(!props.pin);

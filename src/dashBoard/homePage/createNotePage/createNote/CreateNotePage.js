@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import AddTitleAndNote from '../addTitleAndNote/AddTitleAndNote';
 import FooterSide from '../footerSide/FooterSide';
@@ -7,7 +7,13 @@ import HeaderOptions from '../headerOptions/HeaderOptions';
 import CreateNoteStyles from './CreateNotePageStyle';
 
 function CreateNotePage({navigation, route}) {
-  const {notes = undefined, noteIndex = undefined} = route.params ?? {};
+  const {
+    notes = undefined,
+    noteIndex = undefined,
+    labels = undefined,
+    labelIndexValue = undefined,
+    flag = undefined,
+  } = route.params ?? {};
   const [title, setTitle] = useState(notes !== undefined ? notes.title : '');
   const [description, setDescription] = useState(
     notes !== undefined ? notes.notes : '',
@@ -25,9 +31,33 @@ function CreateNotePage({navigation, route}) {
   const [dateTime, setDateTime] = useState(
     notes !== undefined ? notes.remainder : '',
   );
-  const [remainder, setRemainder] = useState(false);
+  const [remainder, setRemainder] = useState(
+    notes !== undefined ? notes.remainder : '',
+  );
   const [check, setCheck] = useState(0);
-  console.log('notes', title, notes, archieve);
+  const [label, setLabel] = useState(notes !== undefined ? notes.label : '');
+  const [labelIndex, setLabelIndex] = useState();
+  console.log(
+    'notes',
+    title,
+    archieve,
+    'label ',
+    label,
+    notes,
+    'flag value',
+    flag,
+  );
+  // const notesObject = {
+  //   pin: pin,
+  //   setPin:
+  // };
+  useEffect(() => {
+    if (labels !== undefined) {
+      setLabel(labels);
+      setLabelIndex(labelIndexValue);
+    }
+  }, [flag]);
+
   return (
     <View>
       {noteIndex === undefined ? (
@@ -54,6 +84,10 @@ function CreateNotePage({navigation, route}) {
               remainder={remainder}
               dateTime={dateTime}
               setDateTime={setDateTime}
+              label={label}
+              setLabel={setLabel}
+              labels={labels}
+              labelIndex={labelIndex}
             />
           </View>
 
@@ -67,6 +101,8 @@ function CreateNotePage({navigation, route}) {
               description={description}
               dateTime={dateTime}
               remainder={remainder}
+              label={label}
+              labels={labels}
             />
           </View>
 
@@ -77,6 +113,7 @@ function CreateNotePage({navigation, route}) {
               setCheck={setCheck}
               setDeleteNote={setDeleteNote}
               notes={notes}
+              setLabel={setLabel}
             />
           </View>
         </View>
@@ -105,6 +142,10 @@ function CreateNotePage({navigation, route}) {
               setRemainder={setRemainder}
               setDateTime={setDateTime}
               dateTime={dateTime}
+              label={label}
+              labels={labels}
+              setLabel={setLabel}
+              labelIndex={labelIndex}
             />
           </View>
 
@@ -118,6 +159,8 @@ function CreateNotePage({navigation, route}) {
               description={description}
               remainder={remainder}
               dateTime={dateTime}
+              label={label}
+              labels={labels}
             />
           </View>
 
@@ -134,6 +177,7 @@ function CreateNotePage({navigation, route}) {
               setColor={setColor}
               setCheck={setCheck}
               setDeleteNote={setDeleteNote}
+              setLabel={setLabel}
             />
           </View>
         </View>

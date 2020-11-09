@@ -1,26 +1,46 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import {editNotes} from '../../../../services/noteService';
 import ColorItems from '../colorItems/ColorItems';
 import bottomSheetStyle from './RightBottomSheetStyle';
 
 function RightBottomSheet(props) {
+  const [flag, setFlag] = useState(Math.random());
   const navigation = useNavigation();
-  console.log('checking rightbottom sheet', props.title);
+  //const [deletes, setDeletes] = useState(false);
+  let deletes = false;
+  console.log('checking rightbottom sheet', props.notes, props.noteIndex);
   const refRBSheet = useRef();
   const handleClick = () => {
     console.log('working');
     refRBSheet.current.open();
   };
   const handleClickDelete = () => {
-    navigation.navigate('homePage');
+    deletes = true;
+    console.log('delete', deletes);
+    editNotes(
+      props.notes.title,
+      props.notes.notes,
+      props.noteIndex,
+      props.notes.color,
+      props.notes.pin,
+      props.notes.archieve,
+      deletes,
+      props.notes.remainder,
+      props.notes.label,
+    );
+    navigation.navigate('home', {flag: flag});
   };
 
   const handleClickCopy = () => {};
   const handleClickSend = () => {};
   const handleClickCollaborator = () => {};
-  const handleClickLabels = () => {};
+  const handleClickLabels = () => {
+    // props.setLabels();
+    navigation.navigate('addLabel');
+  };
   return (
     <View>
       <TouchableOpacity

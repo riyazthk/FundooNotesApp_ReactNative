@@ -27,6 +27,7 @@ function FooterSide(props) {
             setColor={props.setColor}
             setCheck={props.setCheck}
             setDeleteNote={props.setDeleteNote}
+            setLabels={props.setLabels}
           />
         </View>
       </View>

@@ -23,8 +23,9 @@ const FooterOptionsStyles = StyleSheet.create({
   },
   headerFooter: {
     flexDirection: 'row',
-    padding: 15,
+    // padding: 15,
     // backgroundColor:'blue'
+    height: 80,
   },
   outerFooter: {
     width: '75%',
@@ -52,7 +53,7 @@ const FooterOptionsStyles = StyleSheet.create({
   imageSymbol: {height: 40, width: 40},
   footerBody: {
     position: 'relative',
-    bottom: '83%',
+    bottom: '73%',
     // top: '20%',
     // backgroundColor: 'black',
     //height: '20%',

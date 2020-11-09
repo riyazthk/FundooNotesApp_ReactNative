@@ -25,7 +25,7 @@ const HomePage = ({navigation, route}) => {
       <View style={homePageStyles.ViewNote}>
         <ViewNotes changeViewNote={changeViewNote} flag={flag} />
       </View>
-      <View>
+      <View style={{height: '8%'}}>
         <FooterOptions />
       </View>
     </View>
