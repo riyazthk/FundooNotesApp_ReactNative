@@ -19,7 +19,7 @@ function RightBottomSheet(props) {
   };
   const handleClickDelete = () => {
     deletes = true;
-    console.log('delete', deletes);
+    console.log('delete', deletes, props.notes.checklabel,props.notes.label);
     editNotes(
       props.notes.title,
       props.notes.notes,
@@ -29,7 +29,8 @@ function RightBottomSheet(props) {
       props.notes.archieve,
       deletes,
       props.notes.remainder,
-      props.notes.label,
+      props.notes.label.value,
+      props.notes.label.check,
     );
     navigation.navigate('home', {flag: flag});
   };

@@ -6,7 +6,6 @@ import {getNotes} from '../../../../services/noteService';
 import SearchBarStyle from '../../searchBarCard/SearchBarStyle';
 const Delete = ({route}) => {
   const {flag = undefined} = route.params ?? {};
-  const [restoreNote, setRestoreNote] = useState(false);
   const [deleteNote, setDeleteNote] = useState([]);
   const navigation = useNavigation();
   useEffect(() => {

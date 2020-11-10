@@ -1,12 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
-import {View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import AddTitleAndNoteStyle from './AddTitleAndNoteStyle';
 import {TextInput} from 'react-native';
 import {RNChipView} from 'react-native-chip-view';
 import Alarm from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Chip} from 'react-native-paper';
-function AddTitleAndNote({
+import {useNavigation} from '@react-navigation/native';
+function AddTitleAndNote(props,{
   setTitle,
   setDescription,
   title,
@@ -17,44 +18,54 @@ function AddTitleAndNote({
   remainder,
   label,
   labels,
+  checklabel,
 }) {
-  console.log('labels', label);
+  const navigation = useNavigation();
+  console.log('labels', props.notesObject.label, props.notesObject.checklabel);
   const handleTitleValue = (text) => {
-    setTitle(text);
+    props.notesObject.setTitle(text);
   };
   const handleNoteValue = (description) => {
-    setDescription(description);
+    props.notesObject.setDescription(description);
   };
   return (
     <View>
-      {noteIndex === undefined ? (
+      {props.notesObject.noteIndex === undefined ? (
         <View>
           <View style={AddTitleAndNoteStyle.title}>
             <TextInput
-              style={{height: 40, borderColor: color, borderWidth: 1}}
+              style={{height: 40, borderColor: props.notesObject.color, borderWidth: 1}}
               placeholder="title"
               onChangeText={(text) => handleTitleValue(text)}
-              value={title}
+              value={props.notesObject.title}
             />
           </View>
           <View style={AddTitleAndNoteStyle.note}>
             <TextInput
-              style={{height: 40, borderColor: color, borderWidth: 1}}
+              style={{height: 40, borderColor: props.notesObject.color, borderWidth: 1}}
               placeholder="note"
               onChangeText={(text) => handleNoteValue(text)}
-              value={description}
+              value={props.notesObject.description}
             />
           </View>
-          {remainder === true && dateTime !== '' ? (
+          {props.notesObject.remainder === true && props.notesObject.dateTime !== '' ? (
             <View style={{width: '60%'}}>
               <RNChipView
-                title={dateTime}
+                title={props.notesObject.dateTime}
                 avatar={<Alarm name="alarm" size={20} />}
                 avatarStyle={AddTitleAndNoteStyle.avatar}
               />
             </View>
           ) : null}
-          {label !== '' ? <Chip>{label}</Chip> : null}
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('addLabel', {
+                label: props.notesObject.label,
+                checklabel: props.notesObject.checklabel,
+              })
+            }>
+            {props.notesObject.label !== '' ? <Chip style={{width: 50}}>{props.notesObject.label}</Chip> : null}
+          </TouchableOpacity>
           {/* {label !== undefined ? <Chip>{label}</Chip> : null} */}
           {/* {labels !== undefined ? <Chip>{labels}</Chip> : null} */}
         </View>
@@ -64,36 +75,48 @@ function AddTitleAndNote({
             <TextInput
               style={{
                 height: 40,
-                borderColor: color,
+                borderColor: props.notesObject.color,
                 borderWidth: 1,
               }}
               placeholder="title"
               onChangeText={(text) => handleTitleValue(text)}
-              value={title}
+              value={props.notesObject.title}
             />
           </View>
           <View style={AddTitleAndNoteStyle.note}>
             <TextInput
               style={{
                 height: 40,
-                borderColor: color,
+                borderColor: props.notesObject.color,
                 borderWidth: 1,
               }}
               placeholder="note"
               onChangeText={(text) => handleNoteValue(text)}
-              value={description}
+              value={props.notesObject.description}
             />
           </View>
-          {remainder === true && dateTime !== '' ? (
+          {props.notesObject.remainder === true && props.notesObject.dateTime !== '' ? (
             <View style={{width: '60%'}}>
               <RNChipView
-                title={dateTime}
+                title={props.notesObject.dateTime}
                 avatar={<Alarm name="alarm" size={20} />}
                 avatarStyle={AddTitleAndNoteStyle.avatar}
               />
             </View>
           ) : null}
-          {label !== '' ? <Chip>{label}</Chip> : null}
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('addLabel', {
+                label: props.notesObject.label,
+                checklabel: props.notesObject.checklabel,
+              })
+            }>
+            {props.notesObject.label !== '' ? (
+              <Chip style={{width: 100, justifyContent: 'space-around'}}>
+                {props.notesObject.label}
+              </Chip>
+            ) : null}
+          </TouchableOpacity>
           {/* {label !== undefined ? <Chip>{label}</Chip> : null} */}
           {/* {labels !== undefined ? <Chip>{labels}</Chip> : null} */}
         </View>

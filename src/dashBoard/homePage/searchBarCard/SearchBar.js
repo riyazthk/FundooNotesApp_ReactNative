@@ -55,7 +55,7 @@ function SearchBarCard({setChangeViewNote, navigation}) {
             <View style={SearchBarStyle.list}>
               <TouchableOpacity
                 onPress={() => handleViewNotes()}
-                style={SearchBarStyle.styleImage}>
+                style={{height: 30, width: 30}}>
                 <Image
                   source={require('../../../assets/grid.png')}
                   style={{height: 35, width: 35}}

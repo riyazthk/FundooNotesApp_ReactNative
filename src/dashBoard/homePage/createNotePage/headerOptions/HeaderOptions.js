@@ -11,88 +11,96 @@ import {
 import Remainder from '../remainder/Remainder';
 import Snackbar from 'react-native-snackbar';
 
-const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
+const HeaderOptions = (props) => {
   let archieves = false;
   const [flag] = useState(Math.random());
   const handleBackToHomePage = () => {
     console.log(
       'check value ',
-      props.title,
-      props.description,
-      props.color,
-      props.noteIndex,
-      props.pin,
+      props.notesObject.title,
+      props.notesObject.description,
+      props.notesObject.color,
+      props.notesObject.noteIndex,
+      props.notesObject.pin,
       'label',
-      props.label,
-      props.labelIndex,
+      props.notesObject.label,
+      props.notesObject.labelIndex,
+      'check label',
+      props.notesObject.checklabel,
     );
     if (
-      props.noteIndex === undefined &&
-      props.title !== '' &&
-      props.description !== ''
+      props.notesObject.noteIndex === undefined &&
+      props.notesObject.title !== '' &&
+      props.notesObject.description !== ''
     ) {
       console.log('add notes');
-      if (props.labels !== undefined) {
-        props.setLabel = props.labels;
+      if (props.notesObject.labels !== undefined) {
+        props.notesObject.setLabel = props.labels;
+        // props.setCheckLabel=props.checkLabel
         console.log('label ', props.label);
       }
       addNotes(
-        props.title,
-        props.description,
-        props.color,
-        props.pin,
+        props.notesObject.title,
+        props.notesObject.description,
+        props.notesObject.color,
+        props.notesObject.pin,
         archieves,
-        props.deleteNote,
-        props.dateTime,
-        props.label,
+        props.notesObject.deleteNote,
+        props.notesObject.dateTime,
+        props.notesObject.label,
+        props.notesObject.checklabel,
       );
       if (
-        props.label !== '' &&
-        props.label !== undefined &&
-        props.labelIndex !== undefined
+        props.notesObject.label !== '' &&
+        props.notesObject.label !== undefined &&
+        props.notesObject.labelIndex !== undefined
       ) {
         updateLabel(
-          props.title,
-          props.description,
-          props.color,
-          props.pin,
+          props.notesObject.title,
+          props.notesObject.description,
+          props.notesObject.color,
+          props.notesObject.pin,
           archieves,
-          props.deleteNote,
-          props.dateTime,
-          props.label,
-          props.labelIndex,
+          props.notesObject.deleteNote,
+          props.notesObject.dateTime,
+          props.notesObject.label,
+          props.notesObject.labelIndex,
         );
       }
       navigation.navigate('home', {flag: flag});
-    } else if (props.title !== '' && props.description !== '') {
+    } else if (
+      props.notesObject.title !== '' &&
+      props.notesObject.description !== ''
+    ) {
       console.log('edit notes');
 
       editNotes(
-        props.title,
-        props.description,
-        props.noteIndex,
-        props.color,
-        props.pin,
+        props.notesObject.title,
+        props.notesObject.description,
+        props.notesObject.noteIndex,
+        props.notesObject.color,
+        props.notesObject.pin,
         archieves,
-        props.deleteNote,
-        props.dateTime,
-        props.label,
+        props.notesObject.deleteNote,
+        props.notesObject.dateTime,
+        props.notesObject.label,
+        props.notesObject.checklabel,
       );
       if (
-        props.label !== '' &&
-        props.label !== undefined &&
-        props.labelIndex !== undefined
+        props.notesObject.label !== '' &&
+        props.notesObject.label !== undefined &&
+        props.notesObject.labelIndex !== undefined
       ) {
         updateLabel(
-          props.title,
-          props.description,
-          props.color,
-          props.pin,
+          props.notesObject.title,
+          props.notesObject.description,
+          props.notesObject.color,
+          props.notesObject.pin,
           archieves,
-          props.deleteNote,
-          props.dateTime,
-          props.label,
-          props.labelIndex,
+          props.notesObject.deleteNote,
+          props.notesObject.dateTime,
+          props.notesObject.label,
+          props.notesObject.labelIndex,
         );
       }
       navigation.navigate('home', {flag: flag});
@@ -106,19 +114,19 @@ const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
     // console.log('get flag value', flag);
   };
   const handlePin = () => {
-    props.setPin(!props.pin);
+    props.notesObject.setPin(!props.notesObject.pin);
   };
   const handleArchieve = () => {
-    console.log('entry', props.archieve);
-    if (props.archieve === false) {
+    console.log('entry', props.notesObject.archieve);
+    if (props.notesObject.archieve === false) {
       archieves = true;
-      props.setArchieve(true);
-      console.log('enter', props.archieve);
+      props.notesObject.setArchieve(true);
+      console.log('enter', props.notesObject.archieve);
       handleBackToHomePage();
     } else {
       console.log('else');
-      props.setArchieve(false);
-      console.log('enter', props.archieve);
+      props.notesObject.setArchieve(false);
+      console.log('enter', props.notesObject.archieve);
     }
   };
 
@@ -133,7 +141,7 @@ const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
           />
         </TouchableOpacity>
       </View>
-      {props.pin === false ? (
+      {props.notesObject.pin === false ? (
         <View style={HeaderOptionStyle.pin}>
           <TouchableOpacity onPress={() => handlePin()}>
             <Image
@@ -154,8 +162,8 @@ const HeaderOptions = (props, {setPin, pin, index, archieve, setArchieve}) => {
       )}
       <View style={HeaderOptionStyle.remainder}>
         <Remainder
-          setRemainder={props.setRemainder}
-          setDateTime={props.setDateTime}
+          setRemainder={props.notesObject.setRemainder}
+          setDateTime={props.notesObject.setDateTime}
         />
       </View>
       <View style={HeaderOptionStyle.archieve}>

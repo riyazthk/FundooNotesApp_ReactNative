@@ -15,7 +15,12 @@ export async function addNotes(
   deleteValue,
   remainderValue,
   labelValue,
+  checklabel,
 ) {
+  let label = {
+    value: labelValue,
+    check: checklabel,
+  };
   let data = {
     title: titleValue,
     notes: notesValue,
@@ -24,7 +29,7 @@ export async function addNotes(
     archieve: archieveValue,
     delete: deleteValue,
     remainder: remainderValue,
-    label: labelValue,
+    label: label,
   };
   console.log('data', data);
   await dbase.dbase.ref('/notes/' + 'THbOLZ2ABpbWuZnJI1THnh4QBl72').push(data);
@@ -65,8 +70,13 @@ export async function editNotes(
   archieve,
   deletes,
   remainder,
-  label,
+  labelValue,
+  checklabel,
 ) {
+  let label = {
+    value: labelValue,
+    check: checklabel,
+  };
   let data = {
     title: getTitle,
     notes: getNotes,

@@ -41,8 +41,8 @@ const SearchBarStyle = StyleSheet.create({
     //backgroundColor: 'red',
   },
   styleImage: {
-    height: 40,
-    width: 40,
+    height: 35,
+    width: 35,
     // backgroundColor: 'violet',
   },
   loginbl: {

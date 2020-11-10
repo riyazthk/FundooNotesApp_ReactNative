@@ -4,6 +4,7 @@ import RightBottomSheet from '../bottomSheetPage/RightBottomSheet';
 import FooterSideStyle from './FooterSideStyle';
 
 function FooterSide(props) {
+  console.log('footer side', props.notesObject.checklabel);
   return (
     <View>
       <View style={FooterSideStyle.footerComponent}>
@@ -18,16 +19,17 @@ function FooterSide(props) {
         </View>
         <View style={FooterSideStyle.ellipsis}>
           <RightBottomSheet
-            noteIndex={props.noteIndex}
+            noteIndex={props.notesObject.noteIndex}
             notes={props.notes}
-            pin={props.pin}
-            archive={props.archieve}
-            delete={props.delete}
-            color={props.color}
-            setColor={props.setColor}
-            setCheck={props.setCheck}
-            setDeleteNote={props.setDeleteNote}
-            setLabels={props.setLabels}
+            //pin={props.notesObject.pin}
+            //archive={props.notesObject.archieve}
+            //delete={props.notesObject.delete}
+            //color={props.notesObject.color}
+            //checklabel={props.notesObject.checklabel}
+            setColor={props.notesObject.setColor}
+            setCheck={props.notesObject.setCheck}
+            //setDeleteNote={props.notesObject.setDeleteNote}
+            //setLabels={props.notesObject.setLabels}
           />
         </View>
       </View>

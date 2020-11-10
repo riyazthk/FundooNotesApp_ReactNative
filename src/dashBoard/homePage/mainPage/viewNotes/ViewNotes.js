@@ -20,6 +20,7 @@ const ViewNotes = (props) => {
       .catch((err) => {
         console.log('error', err);
       });
+      
   }, [props.flag]);
 
   return (
@@ -75,8 +76,8 @@ const ViewNotes = (props) => {
                             />
                           </View>
                         ) : null}
-                        {notes.label !== '' ? (
-                          <Chip style={{width: 70}}>{notes.label}</Chip>
+                        {notes.label.value !== '' ? (
+                          <Chip style={{width: 70}}>{notes.label.value}</Chip>
                         ) : null}
                       </Card>
                     </View>
@@ -136,8 +137,8 @@ const ViewNotes = (props) => {
                             />
                           </View>
                         ) : null}
-                        {notes.label !== '' ? (
-                          <Chip style={{width: 70}}>{notes.label}</Chip>
+                        {notes.label.value !== '' ? (
+                          <Chip style={{width: 70}}>{notes.label.value}</Chip>
                         ) : null}
                       </Card>
                     </View>

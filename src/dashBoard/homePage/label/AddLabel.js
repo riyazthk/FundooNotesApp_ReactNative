@@ -7,13 +7,23 @@ import HeaderOptionStyle from '../createNotePage/headerOptions/HeaderOptionStyle
 import {useNavigation} from '@react-navigation/native';
 import {set} from 'react-native-reanimated';
 
-const AddLabel = () => {
+const AddLabel = ({route}) => {
+  const {label = undefined, checklabel = undefined} = route.params ?? {};
   const navigation = useNavigation();
   const [showLabel, setShowLabel] = useState([]);
   const [labelIndexValue, setLabelIndexValue] = useState();
+  //const [labels, setLabels] = useState(label !== undefined ? label : '');
   const [labels, setLabels] = useState('');
+  const [labelValue, setLabelValue] = useState('');
   const [flag, setFlag] = useState(Math.random());
+  const [checkLabelValue, setCheckLabelValue] = useState(
+    checklabel !== undefined ? true : false,
+  );
+  console.log('label ', labels, checkLabelValue);
   useEffect(() => {
+    if (label !== undefined) {
+      setLabels(label);
+    }
     getLabel()
       .then((res) => {
         //setIsLoading(false);
@@ -25,14 +35,16 @@ const AddLabel = () => {
       });
   }, []);
   const handleLabelProcess = () => {
+    console.log('check label', checkLabelValue, labels);
     navigation.navigate('createNotePage', {
       labels: labels,
+      checkLabelValue: checkLabelValue,
       flag: flag,
       labelIndexValue: labelIndexValue,
     });
   };
-  const handleLabelCheckBox = (labelValue, labelIndex) => {
-    console.log('labels', labelValue.label, labelIndex);
+  const handleLabelCheckBox = (labelValues, labelIndex) => {
+    console.log('labels', labelValue.label, labelIndex, labels);
     // setLabels([
     //   ...labels,
     //   {
@@ -40,9 +52,18 @@ const AddLabel = () => {
     //   },
     // ]);
     // console.log('object', Object.keys(labelValue).values);
-    setLabels(labelValue.label);
-    setLabelIndexValue(labelIndex);
-    console.log('result label', showLabel);
+    if (labels === '') {
+      setLabels(labelValues.label);
+      setCheckLabelValue(!checkLabelValue);
+      setLabelIndexValue(labelIndex);
+    } else if (labels !== '') {
+      setLabels('');
+      setCheckLabelValue(!checkLabelValue);
+      setLabelIndexValue(labelIndex);
+    }
+
+    //console.log('check', checkLabel);
+    // console.log('result label', showLabel);
   };
   return (
     <View style={{backgroundColor: 'white', height: '100%'}}>
@@ -59,26 +80,87 @@ const AddLabel = () => {
       <View>
         {showLabel.map((labelValue, labelIndex) => {
           return (
-            <TouchableOpacity
-              onPress={() => handleLabelCheckBox(labelValue, labelIndex)}>
-              <View style={{flexDirection: 'row'}}>
-                <Image
-                  source={require('../../../assets/arrow.png')}
-                  style={createLabelStyle.plusSymbol}
-                />
-                <View style={{width: '60%'}}>
-                  <TextInput
-                    //onChangeText={(text) => handleEditLabel(text)}
-                    //value={labelValue.key}
-                    value={labelValue.label}
-                  />
+            <View>
+              {checkLabelValue === false ? (
+                <TouchableOpacity
+                  onPress={() => handleLabelCheckBox(labelValue, labelIndex)}>
+                  <View style={{flexDirection: 'row'}}>
+                    <Image
+                      source={require('../../../assets/arrow.png')}
+                      style={createLabelStyle.plusSymbol}
+                    />
+                    <View style={{width: '60%'}}>
+                      <TextInput
+                        //onChangeText={(text) => handleEditLabel(text)}
+                        //value={labelValue.key}
+                        value={labelValue.label}
+                      />
+                    </View>
+                    <Image
+                      source={require('../../../assets/square.png')}
+                      style={createLabelStyle.plusSymbol}
+                    />
+                  </View>
+                </TouchableOpacity>
+              ) : (
+                <View>
+                  {labelIndexValue === labelIndex ? (
+                    <TouchableOpacity
+                      onPress={() =>
+                        handleLabelCheckBox(labelValue, labelIndex)
+                      }>
+                      <View style={{flexDirection: 'row'}}>
+                        <Image
+                          source={require('../../../assets/arrow.png')}
+                          style={createLabelStyle.plusSymbol}
+                        />
+                        <View style={{width: '60%'}}>
+                          <TextInput
+                            //onChangeText={(text) => handleEditLabel(text)}
+                            //value={labelValue.key}
+                            value={labelValue.label}
+                          />
+                        </View>
+                        <Image
+                          source={require('../../../assets/checkbox.png')}
+                          style={createLabelStyle.plusSymbol}
+                        />
+                      </View>
+                    </TouchableOpacity>
+                  ) : (
+                    <TouchableOpacity
+                      onPress={() =>
+                        handleLabelCheckBox(labelValue, labelIndex)
+                      }>
+                      <View style={{flexDirection: 'row'}}>
+                        <Image
+                          source={require('../../../assets/arrow.png')}
+                          style={createLabelStyle.plusSymbol}
+                        />
+                        <View style={{width: '60%'}}>
+                          <TextInput
+                            //onChangeText={(text) => handleEditLabel(text)}
+                            //value={labelValue.key}
+                            value={labelValue.label}
+                          />
+                        </View>
+                        {labelValue.label === labels ? (
+                          <Image
+                            source={require('../../../assets/checkbox.png')}
+                            style={createLabelStyle.plusSymbol}
+                          />
+                        ) : (
+                          <Image
+                            source={require('../../../assets/square.png')}
+                            style={createLabelStyle.plusSymbol}
+                          />
+                        )}
+                      </View>
+                    </TouchableOpacity>
+                  )}
                 </View>
-                {/* <Image
-                source={require('../../../assets/edit.png')}
-                style={createLabelStyle.plusSymbol}
-              /> */}
-              </View>
-            </TouchableOpacity>
+              )}
+            </View>
           );
         })}
       </View>

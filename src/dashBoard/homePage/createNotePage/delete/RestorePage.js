@@ -38,7 +38,8 @@ const RestorePage = ({route}) => {
       deleteNotes.archieve,
       restoreNote,
       deleteNotes.remainder,
-      deleteNotes.label,
+      deleteNotes.label.value,
+      deleteNotes.label.check,
     );
     navigation.navigate('delete', {flag: flag});
   };
