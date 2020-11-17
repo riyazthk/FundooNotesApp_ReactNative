@@ -16,6 +16,8 @@ target 'FundooNotesApp' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
+
   target 'FundooNotesAppTests' do
     inherit! :complete
     # Pods for testing

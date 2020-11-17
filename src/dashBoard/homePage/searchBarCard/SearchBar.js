@@ -3,9 +3,16 @@ import React, {useRef, useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {Card} from 'react-native-elements';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import SearchNotes from '../mainPage/searchNotes/SearchNotes';
 import UserProfile from '../mainPage/userProfile/UserProfile';
 import SearchBarStyle from './SearchBarStyle';
-function SearchBarCard({setChangeViewNote, navigation}) {
+function SearchBarCard({
+  setChangeViewNote,
+  navigation,
+  setSearchNote,
+  searchNote,
+  setFilterArray,
+}) {
   const [gridView, setGridView] = useState(false);
   const [toggleImage, setToggleImage] = useState(false);
   const refRBSheet = useRef();
@@ -37,7 +44,12 @@ function SearchBarCard({setChangeViewNote, navigation}) {
             </TouchableOpacity>
           </View>
           <View style={SearchBarStyle.search}>
-            <Text style={SearchBarStyle.searchText}>Search Your Notes...</Text>
+            {/* <Text style={SearchBarStyle.searchText}>Search Your Notes...</Text> */}
+            <SearchNotes
+              setSearchNote={setSearchNote}
+              searchNote={searchNote}
+              setFilterArray={setFilterArray}
+            />
           </View>
           {toggleImage === false ? (
             <View style={SearchBarStyle.list}>

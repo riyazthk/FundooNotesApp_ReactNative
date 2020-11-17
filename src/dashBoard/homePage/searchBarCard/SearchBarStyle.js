@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 const SearchBarStyle = StyleSheet.create({
   titleCard: {
     borderRadius: 10,
-    height: 60,
+    height: 70,
     // bo:'0px 0px 4px 4px lightgray',
     shadowColor: '#000',
     shadowOffset: {

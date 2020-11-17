@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
 import {Card} from 'react-native-elements';
+import pushNotification from '../../../../fireBaseConfig/pushNotification';
 import FooterOptionsStyles from './FooterOptionsStyle';
 function FooterOptions(props) {
   const navigation = useNavigation();
@@ -28,10 +29,12 @@ function FooterOptions(props) {
           <Card containerStyle={FooterOptionsStyles.optionsCard}>
             <View style={FooterOptionsStyles.innerOptionsCard}>
               <View style={FooterOptionsStyles.checkBox}>
-                <Image
-                  source={require('../../../../assets/checkbox.png')}
-                  style={FooterOptionsStyles.checkBoxSymbol}
-                />
+                <TouchableOpacity >
+                  <Image
+                    source={require('../../../../assets/checkbox.png')}
+                    style={FooterOptionsStyles.checkBoxSymbol}
+                  />
+                </TouchableOpacity>
               </View>
               <View style={FooterOptionsStyles.drawing}>
                 <Image

@@ -184,17 +184,21 @@ android {
 }
 
 dependencies {
+    compile(project(':react-native-firebase')) {   
+       transitive = false
+   }
+    implementation project(':react-native-fcm')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
-     implementation 'androidx.multidex:multidex:2.0.1'  // <-- ADD THIS DEPENDENCY
-         compile project(':react-native-vector-icons')
-
+    implementation 'androidx.multidex:multidex:2.0.1'  // <-- ADD THIS DEPENDENCY
+    compile project(':react-native-vector-icons')
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
-     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
-
-    //  implementation 'com.facebook.android:facebook-login:[8.1)'
-    // implementation project(':react-native-sqlite-storage')
+    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+    implementation "com.google.android.gms:play-services-base:15.0.0"
+    implementation "com.google.firebase:firebase-core:15.0.2"
+    implementation "com.google.firebase:firebase-messaging:15.0.2"
+    
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
     }

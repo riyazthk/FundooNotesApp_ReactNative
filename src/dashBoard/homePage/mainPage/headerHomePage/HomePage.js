@@ -7,26 +7,40 @@ import ViewNotes from '../viewNotes/ViewNotes';
 import homePageStyles from './homePageStyle';
 
 const HomePage = ({navigation, route}) => {
-  const {flag = undefined} = route.params ?? {};
+  const {flag = 0, labelValue = ''} = route.params ?? {};
   // const flags=flag.getParam
+  console.log('labelVAlue', labelValue.label);
   const [changeViewNote, setChangeViewNote] = useState(false);
+  const [searchNote, setSearchNote] = useState(false);
+  const [filterArray, setFilterArray] = useState([]);
   console.log('view look ', flag);
   return (
-    <View style={homePageStyles.body}>
+    <View>
       <View>
         <StatusBarView />
       </View>
-      <View style={homePageStyles.searchNotes}>
-        <SearchBarCard
-          setChangeViewNote={setChangeViewNote}
-          navigation={navigation}
-        />
-      </View>
-      <View style={homePageStyles.ViewNote}>
-        <ViewNotes changeViewNote={changeViewNote} flag={flag} />
-      </View>
-      <View style={{height: '8%'}}>
-        <FooterOptions />
+      <View style={homePageStyles.body}>
+        <View style={homePageStyles.searchNotes}>
+          <SearchBarCard
+            setChangeViewNote={setChangeViewNote}
+            navigation={navigation}
+            setSearchNote={setSearchNote}
+            searchNote={searchNote}
+            setFilterArray={setFilterArray}
+          />
+        </View>
+        <View style={homePageStyles.ViewNote}>
+          <ViewNotes
+            changeViewNote={changeViewNote}
+            flag={flag}
+            labelValue={labelValue}
+            searchNote={searchNote}
+            filterArray={filterArray}
+          />
+        </View>
+        <View style={{height: '8%'}}>
+          <FooterOptions />
+        </View>
       </View>
     </View>
   );

@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+
 import 'firebase/firestore';
 
 const firebaseConfig = {
@@ -14,4 +15,5 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const dbase = firebase.database();
 const dbStorage = firebase.storage();
+//const message = firebase.messaging();
 export default {dbase, firebase, dbStorage};

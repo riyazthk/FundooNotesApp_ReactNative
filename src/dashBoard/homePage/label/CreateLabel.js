@@ -4,7 +4,7 @@ import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import {Image} from 'react-native-elements';
 import SearchBarStyle from '../searchBarCard/SearchBarStyle';
 import createLabelStyle from './createLabelStyle';
-import {addLabel, getLabel} from '../../../services/noteService';
+import {addLabel, getLabel, deleteLabels} from '../../../services/noteService';
 const CreateLabel = ({navigation}) => {
   const [createLabels, setCreateLabels] = useState(false);
   const [label, setLabel] = useState('');
@@ -12,6 +12,7 @@ const CreateLabel = ({navigation}) => {
   const [editLabels, setEditLabels] = useState(false);
   const [showClickLabel, setShowClickLabel] = useState(false);
   const [labelIndex, setLabelIndex] = useState();
+  const [flag, setFlag] = useState(Math.random());
   useEffect(() => {
     getLabel()
       .then((res) => {
@@ -41,6 +42,11 @@ const CreateLabel = ({navigation}) => {
   };
   const handleEditLabel = (text) => {
     setLabel(text);
+  };
+  const handleClickDeleteLabel = (value, labelValue) => {
+    console.log('label index', value);
+    deleteLabels(value);
+    navigation.navigate('home', {labelValue: labelValue, flag: flag});
   };
   return (
     <View
@@ -127,32 +133,48 @@ const CreateLabel = ({navigation}) => {
                     <View style={{width: '60%'}}>
                       <TextInput
                         onChangeText={(text) => handleEditLabel(text)}
-                        value={labelValue}
+                        value={labelValue.label}
                       />
                     </View>
+
                     <Image
                       source={require('../../../assets/edit.png')}
                       style={createLabelStyle.plusSymbol}
                     />
+                    {/* </TouchableOpacity> */}
                   </View>
                 ) : (
                   <View>
                     {labelIndex === labelIndexValue ? (
                       <View style={{flexDirection: 'row'}}>
-                        <Image
-                          source={require('../../../assets/trash.png')}
-                          style={createLabelStyle.plusSymbol}
-                        />
+                        <View>
+                          <TouchableOpacity
+                            onPress={() =>
+                              handleClickDeleteLabel(
+                                labelIndexValue,
+                                labelValue,
+                              )
+                            }>
+                            <Image
+                              source={require('../../../assets/trash.png')}
+                              style={createLabelStyle.plusSymbol}
+                            />
+                          </TouchableOpacity>
+                        </View>
                         <View style={{width: '60%'}}>
                           <TextInput
                             onChangeText={(text) => handleEditLabel(text)}
-                            value={labelValue}
+                            value={labelValue.label}
                           />
                         </View>
-                        <Image
-                          source={require('../../../assets/tick1.png')}
-                          style={createLabelStyle.plusSymbol}
-                        />
+                        <TouchableOpacity
+                          onPress={() => editLabel(labelValue, labelIndexValue)}
+                          style={{backgroundColor: 'white'}}>
+                          <Image
+                            source={require('../../../assets/tick1.png')}
+                            style={createLabelStyle.plusSymbol}
+                          />
+                        </TouchableOpacity>
                       </View>
                     ) : (
                       <View style={{flexDirection: 'row'}}>
@@ -163,7 +185,7 @@ const CreateLabel = ({navigation}) => {
                         <View style={{width: '60%'}}>
                           <TextInput
                             onChangeText={(text) => handleEditLabel(text)}
-                            value={labelValue}
+                            value={labelValue.label}
                           />
                         </View>
                         <Image

@@ -48,7 +48,7 @@ export async function getNotes() {
         key.push(childSnapShot.key);
       });
     });
-  console.log('key', key);
+  console.log('keys', arr);
   return arr;
 }
 
@@ -179,4 +179,11 @@ export async function updateLabel(
     .ref('/label/' + 'THbOLZ2ABpbWuZnJI1THnh4QBl72/')
     .child(labelKey[labelIndex])
     .update(dbData);
+}
+export async function deleteLabels(index) {
+  console.log(labelKey[index]);
+  let response = await dbase.dbase
+    .ref('/label/' + 'THbOLZ2ABpbWuZnJI1THnh4QBl72')
+    .child(labelKey[index])
+    .remove();
 }
